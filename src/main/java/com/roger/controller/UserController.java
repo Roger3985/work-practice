@@ -3,10 +3,11 @@ package com.roger.controller;
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
-import lombok.Value;
+import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -45,5 +46,34 @@ public class UserController {
     public int findByUserName(String username) {
         User user = userService.findByUserName(username);
         return user.getId();
+    }
+
+    // 定義 BCryptPasswordEncoder 物件
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    /**
+     * 會員登入
+     * @param username 會員名稱
+     * @param password 會員密碼
+     * @return
+     */
+    @PostMapping("/login")
+    public Result<String> login(@Pattern(regexp = "^\\w{5,16}$") String username, @Pattern(regexp = "^\\w{5,16}$") String password) {
+        // 判斷會員名稱是否存在
+        User loginUser = userService.findByUserName(username);
+
+        // 判斷該會員是否存在
+        if (loginUser == null) {
+            return Result.error("會員名稱錯誤");
+        }
+
+        System.out.println(BCrypt.hashpw(password, BCrypt.gensalt()));
+        // 判斷密碼是否正確 loginUser 物件中的 password 是密文
+        if (passwordEncoder.matches(password, loginUser.getPassword())) {
+            // 登入成功
+            return Result.success("jwt token 令牌...");
+        }
+
+        return Result.error("密碼錯誤");
     }
 }

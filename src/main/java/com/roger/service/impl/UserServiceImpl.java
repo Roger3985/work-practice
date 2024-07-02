@@ -3,6 +3,7 @@ package com.roger.service.impl;
 import com.roger.mapper.UserMapper;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,15 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void register(String username, String password) {
-        // 加鹽
-        password = "work" + password + "practice";
+        // 加鹽 password = "work" + password + "practice";
+        // 簡單的 hashCode userMapper.add(username, String.valueOf(password.hashCode()));
 
-        // 簡單的 hashCode
-        userMapper.add(username, String.valueOf(password.hashCode()));
+        // bcrypt 對稱加密 (密碼長度:60位)
+        String encodedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        System.out.println(encodedPassword);
+
+        userMapper.add(username, encodedPassword);
     }
+
+
 }
