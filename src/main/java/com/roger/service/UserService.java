@@ -2,6 +2,8 @@ package com.roger.service;
 
 import com.roger.pojo.User;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -27,4 +29,14 @@ public interface UserService {
      * 刪除 user
      */
     void deleteUser(User user);
+
+    /**
+     * 修改會員資料
+     */
+    void upateUser(User user);
+
+    /**
+     * 透過送入的會員資料查詢
+     */
+    User findUsersByQuery(User query);
 }
