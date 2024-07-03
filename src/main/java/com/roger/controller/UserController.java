@@ -5,6 +5,7 @@ import com.roger.pojo.User;
 import com.roger.service.CustomUserDetailsService;
 import com.roger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,15 @@ public class UserController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    /**
+     * 查詢登入中的會員
+     * @return 會員的細節
+     */
+    @GetMapping("/current-user")
+    public UserDetails getCurrentUser() {
+        return userService.getCurrentUserDetails();
+    }
 
     /**
      * 會員註冊 (增)

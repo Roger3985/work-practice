@@ -4,6 +4,10 @@ import com.roger.mapper.UserMapper;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,15 +23,30 @@ public class UserServiceImpl implements UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    private final UserDetailsService userDetailsService;
+
+    @Autowired
+    public UserServiceImpl(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    @Override
+    public UserDetails getCurrentUserDetails() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            return (UserDetails) authentication.getPrincipal();
+        }
+        return null;
+    }
+
     /**
-     * 利用 username and password 查找 user
+     * 註冊會員
      */
     @Override
-    public User findByUserNameAndPassword(String username, String password) {
+    public void register(String username, String password) {
         // Passwordencoder 加密
         String hashPassword = passwordEncoder.encode(password);
-        User user = userMapper.findByUserNameAndPassword(username, hashPassword);
-        return user;
+        userMapper.add(username, hashPassword);
     }
 
     /**
@@ -64,6 +83,16 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     * 利用 username and password 查找 user
+     */
+    @Override
+    public User findByUserNameAndPassword(String username, String password) {
+        // Passwordencoder 加密
+        String hashPassword = passwordEncoder.encode(password);
+        User user = userMapper.findByUserNameAndPassword(username, hashPassword);
+        return user;
+    }
 
     /**
      * 透過 username 透過會員名稱查找會員
@@ -74,13 +103,4 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    /**
-     * 註冊會員
-     */
-    @Override
-    public void register(String username, String password) {
-        // Passwordencoder 加密
-        String hashPassword = passwordEncoder.encode(password);
-        userMapper.add(username, hashPassword);
-    }
 }
