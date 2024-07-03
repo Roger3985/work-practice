@@ -48,4 +48,4 @@ CREATE TABLE article (
     CONSTRAINT fk_article_user FOREIGN KEY (create_user) REFERENCES "user"(id)
 );
 
-COMMENT ON TABLE article IS '文章表';
+

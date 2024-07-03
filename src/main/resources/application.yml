@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/workpractice_event?useSSL=false&serverTimezone=UTC
+    url: jdbc:postgresql://localhost:5432/?useSSL=false&serverTimezone=UTC
     username: postgres
     password: B3sTpa55w0rd
     driver-class-name: org.postgresql.Driver
