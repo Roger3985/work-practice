@@ -3,8 +3,9 @@ package com.roger.service.impl;
 import com.roger.mapper.UserMapper;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /**
      * 透過 username 透過會員名稱查找會員
@@ -27,14 +31,28 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void register(String username, String password) {
-        // 加鹽 password = "work" + password + "practice";
-        // 簡單的 hashCode userMapper.add(username, String.valueOf(password.hashCode()));
+        // Passwordencoder 加密
+        String hashPassword = passwordEncoder.encode(password);
+        userMapper.add(username, hashPassword);
+    }
 
-        // bcrypt 對稱加密 (密碼長度:60位)
-        String encodedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-        System.out.println(encodedPassword);
+    /**
+     * 利用 username and password 查找 user
+     */
+    @Override
+    public User findByUserNameAndPassword(String username, String password) {
+        // Passwordencoder 加密
+        String hashPassword = passwordEncoder.encode(password);
+        User user = userMapper.findByUserNameAndPassword(username, hashPassword);
+        return user;
+    }
 
-        userMapper.add(username, encodedPassword);
+    /**
+     * 刪除 user
+     */
+    @Override
+    public void deleteUser(User user) {
+        userMapper.delete(user);
     }
 
 

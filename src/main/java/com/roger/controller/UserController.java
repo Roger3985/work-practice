@@ -3,14 +3,14 @@ package com.roger.controller;
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
-import jakarta.validation.constraints.Pattern;
-import lombok.extern.slf4j.Slf4j;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -18,62 +18,42 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     /**
-     * 註冊會員
-     * @param username 會員名稱
-     * @param password 會員密碼
-     * @return 返回結果
+     * 會員註冊 (增)
      */
-    @PostMapping("/register")
+    @PostMapping
     public Result register(String username, String password) {
+        // 參數較驗
         User user = userService.findByUserName(username);
+
         if (user == null) {
-            // 沒被占用 -> 可以註冊新的會員
+            // 沒被占用
             userService.register(username, password);
-            return Result.success();
+            return Result.success("註冊成功");
         } else {
-            // 被占用返回錯誤訊息
-            return Result.error("會員名已被佔用");
+            // 沒被占用返回錯誤訊息
+            return Result.error("此會員姓名已被註冊");
         }
     }
 
-    /**
-     * 利用會員姓名查找會員 ID
-     * @param username 會員姓名
-     * @return 返回會員 ID
-     */
-    @GetMapping("/findByUserName")
-    public int findByUserName(String username) {
-        User user = userService.findByUserName(username);
-        return user.getId();
-    }
+    @DeleteMapping("/deleteUser")
+    public Result deleteUser(String username, String password) {
+        // 參數較驗
+        User user = userService.findByUserNameAndPassword(username, password);
 
-    // 定義 BCryptPasswordEncoder 物件
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    /**
-     * 會員登入
-     * @param username 會員名稱
-     * @param password 會員密碼
-     * @return
-     */
-    @PostMapping("/login")
-    public Result<String> login(@Pattern(regexp = "^\\w{5,16}$") String username, @Pattern(regexp = "^\\w{5,16}$") String password) {
-        // 判斷會員名稱是否存在
-        User loginUser = userService.findByUserName(username);
-
-        // 判斷該會員是否存在
-        if (loginUser == null) {
-            return Result.error("會員名稱錯誤");
+        if (user != null) {
+            // 刪除 user
+            userService.deleteUser(user);
+            return Result.success("刪除成功");
+        } else {
+            // 沒有該會員資料返回錯誤訊息
+            return Result.error("沒有此會員訊息，刪除失敗");
         }
 
-        System.out.println(BCrypt.hashpw(password, BCrypt.gensalt()));
-        // 判斷密碼是否正確 loginUser 物件中的 password 是密文
-        if (passwordEncoder.matches(password, loginUser.getPassword())) {
-            // 登入成功
-            return Result.success("jwt token 令牌...");
-        }
-
-        return Result.error("密碼錯誤");
     }
+
+
 }

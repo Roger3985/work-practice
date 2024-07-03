@@ -34,7 +34,6 @@
       <version>3.0.3</version>
     </dependency>
 
-
     <!-- spring 驗證 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -63,11 +62,11 @@
     </dependency>
 
     <!-- bcrypt 加密 -->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.mindrot</groupId>
       <artifactId>jbcrypt</artifactId>
       <version>0.4</version>
-    </dependency>
+    </dependency> -->
 
     <!-- springframework.security -->
     <dependency>
@@ -76,12 +75,25 @@
       <version>6.3.0</version>
     </dependency>
 
-    <!-- jwt -->
+    <!-- 載入 Spring Security 的功能 -->
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <!-- Spring Security 專屬的單元測試 -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- jwt -->
+    <!-- <dependency>
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
       <version>4.4.0</version>
-    </dependency>
+    </dependency> -->
   </dependencies>
 
   <build>

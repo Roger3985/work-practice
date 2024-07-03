@@ -10,7 +10,7 @@ use workpractice_event;
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(32),
+    password VARCHAR(60),
     nickname VARCHAR(10) DEFAULT '',
     email VARCHAR(128) DEFAULT '',
     user_pic VARCHAR(128) DEFAULT '',

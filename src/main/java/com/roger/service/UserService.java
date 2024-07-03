@@ -17,4 +17,14 @@ public interface UserService {
      * @param password 會員密碼
      */
     void register(String username, String password);
+
+    /**
+     * 利用 username and password 查找 user
+     */
+    User findByUserNameAndPassword(String username, String password);
+
+    /**
+     * 刪除 user
+     */
+    void deleteUser(User user);
 }

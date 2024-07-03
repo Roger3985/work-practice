@@ -1,6 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/?useSSL=false&serverTimezone=UTC
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
-    password: B3sTpa55w0rd
+    password: mysecretpassword
     driver-class-name: org.postgresql.Driver
+
+
+
+
+
