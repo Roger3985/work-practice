@@ -4,6 +4,7 @@ import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import com.roger.service.CustomUserDetailsService;
 import com.roger.service.UserService;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,15 +30,48 @@ public class UserController {
      * @return 會員的細節
      */
     @GetMapping("/current-user")
-    public UserDetails getCurrentUser() {
-        return userService.getCurrentUserDetails();
+    public String getCurrentUser() {
+        return userService.getCurrentUserDetails().getUsername();
+    }
+
+//    /**
+//     * 會員登入
+//     */
+//    @PostMapping("/userLogin")
+//    public String userLogin(String username, String password) {
+//        return "Hello";
+//    }
+
+    /**
+     * 會員登入
+     * @param username 會員名稱
+     * @param password 會員密碼
+     * @return
+     */
+    @PostMapping("/userLogin")
+    public Result<String> login(@Pattern(regexp = "^\\w{5,16}$") String username, @Pattern(regexp = "^\\w{5,16}$") String password) {
+        // 判斷會員名稱是否存在
+        User loginUser = userService.findByUserName(username);
+
+        // 判斷該會員是否存在
+        if (loginUser == null) {
+            return Result.error("會員名稱錯誤");
+        }
+
+        // 判斷密碼是否正確 loginUser 物件中的 password 是密文
+        if (passwordEncoder.matches(password, loginUser.getPassword())) {
+            // 登入成功
+            return Result.success("登入成功");
+        }
+
+        return Result.error("密碼錯誤");
     }
 
     /**
      * 會員註冊 (增)
      */
     @PostMapping
-    public Result register(String username, String password) {
+    public Result register(@RequestParam("username") String username, @RequestParam("password") String password) {
         // 參數較驗
         User user = userService.findByUserName(username);
 
@@ -55,7 +89,7 @@ public class UserController {
      * 刪除會員
      */
     @DeleteMapping("/deleteUser")
-    public Result deleteUser(String username, String password) {
+    public Result deleteUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         // 參數較驗
         User user = userService.findByUserNameAndPassword(username, password);
 
