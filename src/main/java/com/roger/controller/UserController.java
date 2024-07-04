@@ -2,7 +2,7 @@ package com.roger.controller;
 
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
-import com.roger.service.CustomUserDetailsService;
+import com.roger.service.impl.CustomUserDetailsService;
 import com.roger.service.UserService;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,22 +31,15 @@ public class UserController {
         return userService.getCurrentUserDetails().getUsername();
     }
 
-//    /**
-//     * 會員登入
-//     */
-//    @PostMapping("/userLogin")
-//    public String userLogin(String username, String password) {
-//        return "Hello";
-//    }
-
     /**
      * 會員登入
      * @param username 會員名稱
      * @param password 會員密碼
-     * @return
+     * @return Result 結果(裡面會有正確內容或錯誤內容)
      */
     @PostMapping("/userLogin")
-    public Result<String> login(@Pattern(regexp = "^\\w{5,16}$") String username, @Pattern(regexp = "^\\w{5,16}$") String password) {
+    public Result<String> login(@Pattern(regexp = "^\\w{5,16}$") @RequestParam("username") String username,
+                                @Pattern(regexp = "^\\w{5,16}$") @RequestParam("password") String password) {
         // 判斷會員名稱是否存在
         User loginUser = userService.findByUserName(username);
 
@@ -68,7 +61,8 @@ public class UserController {
      * 會員註冊 (增)
      */
     @PostMapping("/register")
-    public Result register(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public Result register(@Pattern(regexp = "^\\w{5,16}$") @RequestParam("username") String username,
+                           @Pattern(regexp = "^\\w{5,16}$") @RequestParam("password") String password) {
         // 參數較驗
         User user = userService.findByUserName(username);
 
@@ -85,12 +79,13 @@ public class UserController {
     /**
      * 刪除會員
      */
-    @DeleteMapping("/deleteUser")
-    public Result deleteUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+    @DeleteMapping("/deleteUser/{username}/{password}")
+    public Result deleteUser(@PathVariable("username") String username,
+                             @PathVariable("password") String password) {
         // 參數較驗
-        User user = userService.findByUserNameAndPassword(username, password);
+        User user = userService.findByUserName(username);
 
-        if (user != null) {
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             // 刪除 user
             userService.deleteUser(user);
             return Result.success("刪除成功");

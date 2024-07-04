@@ -43,9 +43,11 @@ public class UserServiceImpl implements UserService {
      * 註冊會員
      */
     @Override
+    @Transactional
     public void register(String username, String password) {
         // Passwordencoder 加密
         String hashPassword = passwordEncoder.encode(password);
+
         userMapper.add(username, hashPassword);
     }
 
@@ -62,6 +64,7 @@ public class UserServiceImpl implements UserService {
      * 修改會員資料
      */
     @Override
+    @Transactional
     public void upateUser(User user) {
         user.setId(user.getId());
         user.setUsername(user.getUsername());
@@ -78,6 +81,7 @@ public class UserServiceImpl implements UserService {
      * 透過送入的會員資料查詢
      */
     @Override
+    @Transactional
     public User findUsersByQuery(User query) {
         User user = userMapper.findByUserQuery(query);
         return user;
@@ -87,6 +91,7 @@ public class UserServiceImpl implements UserService {
      * 利用 username and password 查找 user
      */
     @Override
+    @Transactional
     public User findByUserNameAndPassword(String username, String password) {
         // Passwordencoder 加密
         String hashPassword = passwordEncoder.encode(password);
@@ -98,6 +103,7 @@ public class UserServiceImpl implements UserService {
      * 透過 username 透過會員名稱查找會員
      */
     @Override
+    @Transactional
     public User findByUserName(String username) {
         User user = userMapper.findByUserName(username);
         return user;
