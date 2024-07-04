@@ -42,17 +42,6 @@ public class SecurityConfig {
             .sessionManagement(session -> session
                     .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
             )
-            // 設定 CSRF 保護
-            .csrf(csrf -> csrf
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                    .csrfTokenRequestHandler(createCsrfHandler())
-                    // 跨域請求中給與忽略
-                    .ignoringRequestMatchers("/user/register", "/user/userLogin")
-            )
-            // 設定 CORS 跨域
-            .cors(cors -> cors
-                .configurationSource(createCorsConfig())
-            )
             // 設定 Http Basic 認證和表單認證
             .formLogin(Customizer.withDefaults())
             .httpBasic(Customizer.withDefaults())
@@ -62,10 +51,8 @@ public class SecurityConfig {
                 .requestMatchers("/user/register").permitAll()
                 // 登入功能
                 .requestMatchers("/user/userLogin").permitAll()
-                // 查看現在登入人是誰
-                .requestMatchers("/user/current-user").permitAll()
                 // 除了註冊跟登入功能外其他的都需要
-                .anyRequest().denyAll()
+                .anyRequest().authenticated() // 其他認證過後就可以登入
             )
             .build();
     }
@@ -85,22 +72,5 @@ public class SecurityConfig {
         csrfHandler.setCsrfRequestAttributeName(null);
 
         return csrfHandler;
-    }
-
-    private CorsConfigurationSource createCorsConfig() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:8080"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowedMethods(List.of("*"));
-        config.setAllowCredentials(true);
-        config.setMaxAge(3600L);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        source.registerCorsConfiguration("/user/register", config);
-        source.registerCorsConfiguration("/user/userLogin", config);
-        source.registerCorsConfiguration("/user/current-user", config);
-
-        return source;
     }
 }

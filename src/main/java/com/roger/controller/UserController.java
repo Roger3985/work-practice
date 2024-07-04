@@ -6,11 +6,8 @@ import com.roger.service.CustomUserDetailsService;
 import com.roger.service.UserService;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -70,7 +67,7 @@ public class UserController {
     /**
      * 會員註冊 (增)
      */
-    @PostMapping
+    @PostMapping("/register")
     public Result register(@RequestParam("username") String username, @RequestParam("password") String password) {
         // 參數較驗
         User user = userService.findByUserName(username);
@@ -152,7 +149,7 @@ public class UserController {
         if (user != null) {
             return Result.success(user.getUsername());
         } else {
-            return Result.error("找到到會員資料");
+            return Result.error("找不到會員資料");
         }
     }
 
