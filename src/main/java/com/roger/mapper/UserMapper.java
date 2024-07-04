@@ -1,7 +1,10 @@
 package com.roger.mapper;
 
+import com.roger.dto.UserDto;
 import com.roger.pojo.User;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -11,32 +14,31 @@ public interface UserMapper {
      */
     @Insert("insert into \"user\"(username, password, create_time, update_time)" +
             " values(#{username}, #{password}, now(), now())")
-    void add(String username, String password);
+    void addUser(String username, String password);
 
     /**
      * 刪除會員
      */
     @Delete(("DELETE FROM \"user\" WHERE id = #{id}"))
-    void delete(User user);
+    void deleteUser(User user);
 
     /**
      * 修改會員資料
      */
-    @Update("UPDATE user SET " +
+    @Update("UPDATE \"user\" SET " +
             "username = #{username}, " +
             "password = #{password}, " +
             "nickname = #{nickname}, " +
             "email = #{email}, " +
-            "user_pic = #{userPic}, " +
-            "update_time = CURRENT_TIMESTAMP " +
+            "update_time = now()" +
             "WHERE id = #{id}")
-    void update(User user);
+    void updateUser(User user);
 
     /**
      * 透過送入的會員資料查詢
      */
     @SelectProvider(type = UserSqlProvider.class, method = "findUsersByQuery")
-    User findByUserQuery(User query);
+    List<User> findByUserQuery(User user);
 
     /**
      * 根據會員名稱查詢會員

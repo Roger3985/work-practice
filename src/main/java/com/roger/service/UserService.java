@@ -1,5 +1,7 @@
 package com.roger.service;
 
+import com.roger.dto.UserDto;
+import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -7,29 +9,27 @@ import java.util.List;
 
 public interface UserService {
 
-    public UserDetails getCurrentUserDetails();
+    UserDetails getCurrentUserDetails();
 
     /**
      * 註冊會員
-     * @param username 會員名稱
-     * @param password 會員密碼
      */
-    void register(String username, String password);
+    Result register(UserDto userDto);
 
     /**
-     * 刪除 user
+     * 刪除會員資料
      */
-    void deleteUser(User user);
+    Result deleteUser(UserDto userDto);
 
     /**
      * 修改會員資料
      */
-    void upateUser(User user);
+    Result upateUser(UserDto userDto);
 
     /**
      * 透過送入的會員資料查詢
      */
-    User findUsersByQuery(User query);
+    Result findUser(User user);
 
     /**
      * 透過 username 透過會員名稱查找會員
