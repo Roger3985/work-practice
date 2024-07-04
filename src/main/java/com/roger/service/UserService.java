@@ -3,13 +3,22 @@ package com.roger.service;
 import com.roger.dto.UserDto;
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
 public interface UserService {
 
+    /**
+     * 查看當前登入會員
+     */
     UserDetails getCurrentUserDetails();
+
+    /**
+     * 自定義登入會員
+     */
+    Result userLogin(UserDto userDto);
 
     /**
      * 註冊會員
@@ -29,7 +38,7 @@ public interface UserService {
     /**
      * 透過送入的會員資料查詢
      */
-    Result findUser(UserDto userDto);
+    Result findUser(User user);
 
     /**
      * 透過 username 透過會員名稱查找會員

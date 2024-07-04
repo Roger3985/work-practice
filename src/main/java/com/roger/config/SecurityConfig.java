@@ -23,14 +23,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(csrfConfigurer -> csrfConfigurer.disable())// 禁用 CSRF
+            // 禁用 CSRF
+            .csrf(csrfConfigurer -> csrfConfigurer.disable())
             // 設定 Session 的創建機制
             .sessionManagement(session -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
             )
-            // 設定 Http Basic 認證和表單認證
-            .formLogin(Customizer.withDefaults())
-            .httpBasic(Customizer.withDefaults())
             // 設定 api 的權限控制
             .authorizeHttpRequests((requests) -> requests
                 // 註冊功能
@@ -40,6 +38,14 @@ public class SecurityConfig {
                 // 除了註冊跟登入功能外其他的都需要
                 .anyRequest().authenticated() // 其他認證過後就可以登入
             )
+            // 自定義 form 表單登入
+//            .formLogin(form -> form
+//                    .loginPage("/login")
+//                    // 預設打到這個 url-pattern
+//                    .loginProcessingUrl("/user/userLogin")
+//                    .permitAll()
+//            )
+            .httpBasic(Customizer.withDefaults())
             .build();
     }
 }

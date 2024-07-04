@@ -4,7 +4,10 @@ spring:
     username: postgres
     password: mysecretpassword
     driver-class-name: org.postgresql.Driver
-
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: html
+    encoding: UTF-8
 
 
 
