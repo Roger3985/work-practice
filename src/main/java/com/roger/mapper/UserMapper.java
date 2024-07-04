@@ -38,7 +38,7 @@ public interface UserMapper {
      * 透過送入的會員資料查詢
      */
     @SelectProvider(type = UserSqlProvider.class, method = "findUsersByQuery")
-    List<User> findByUserQuery(User user);
+    List<User> findByUserQuery(UserDto userDto);
 
     /**
      * 根據會員名稱查詢會員

@@ -29,7 +29,7 @@ public interface UserService {
     /**
      * 透過送入的會員資料查詢
      */
-    Result findUser(User user);
+    Result findUser(UserDto userDto);
 
     /**
      * 透過 username 透過會員名稱查找會員

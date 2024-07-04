@@ -7,17 +7,17 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class UserSqlProvider {
 
-    public String findUsersByQuery(User user) {
+    public String findUsersByQuery(UserDto userDto) {
         return new SQL() {{
             SELECT("*");
             FROM("\"user\"");
-            if (user.getUsername() != null && !user.getUsername().isEmpty()) {
+            if (userDto.getUsername() != null && !userDto.getUsername().isEmpty()) {
                 WHERE("username = #{username}");
             }
-            if (user.getNickname() != null && !user.getNickname().isEmpty()) {
+            if (userDto.getNickname() != null && !userDto.getNickname().isEmpty()) {
                 WHERE("nickname = #{nickname}");
             }
-            if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+            if (userDto.getEmail() != null && !userDto.getEmail().isEmpty()) {
                 WHERE("email = #{email}");
             }
         }}.toString();

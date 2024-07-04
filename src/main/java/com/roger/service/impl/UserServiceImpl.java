@@ -110,8 +110,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     @Transactional
-    public Result findUser(User user) {
-        List<User> users = userMapper.findByUserQuery(user);
+    public Result findUser(UserDto userDto) {
+        List<User> users = userMapper.findByUserQuery(userDto);
         if (!users.isEmpty()) {
             List<String> usernames = users.stream()
                     .map(User::getUsername)
