@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(userDto.getUsername());
             // 使用 UsernamePasswordAuthenticationToken 進行認證
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, userDto.getPassword(), userDetails.getAuthorities());
-            //設置到上下文忠
+            //設置到上下文中
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return Result.success("登入成功");
         }
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
      * 註冊會員
      */
     @Override
-    @Transactional
+    @Transactional()
     public Result register(UserDto userDto) {
 
         // 檢查會員是否存在

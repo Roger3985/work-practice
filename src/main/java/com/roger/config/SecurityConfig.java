@@ -36,15 +36,6 @@ public class SecurityConfig {
                 // 除了註冊跟登入功能外其他的都需要
                 .anyRequest().authenticated() // 其他認證過後就可以登入
             )
-            // 自定義 form 表單登入
-            .formLogin(form -> form
-                    .loginPage("/login")
-                    // 自定義打到這個 url-pattern
-                    .loginProcessingUrl("/user/userLogin")
-                    // 成功登入後重導到的 url-pattern
-                    .defaultSuccessUrl("/user/current-user", true)
-                    .permitAll()
-            )
             .httpBasic(Customizer.withDefaults())
             // 禁用 CSRF
             .csrf(csrfConfigurer -> csrfConfigurer.disable())
