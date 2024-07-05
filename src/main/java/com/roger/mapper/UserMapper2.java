@@ -1,6 +1,7 @@
 package com.roger.mapper;
 
 import com.roger.mapper.dynamicSQL.UserSqlProviderIntersection;
+import com.roger.mapper.dynamicSQL.UserSqlProviderUnion;
 import com.roger.pojo.User;
 import org.apache.ibatis.annotations.*;
 
@@ -35,10 +36,16 @@ public interface UserMapper2 {
     void updateUser(User user);
 
     /**
-     * 透過送入的會員資料查詢
+     * 透過送入的會員資料查詢 (交集)
      */
     @SelectProvider(type = UserSqlProviderIntersection.class, method = "findUsersByQueryIntersection")
-    List<User> findByUserQuery(User user);
+    List<User> findByUserQueryIntersection(User user);
+
+    /**
+     * 透過送入的會員資料查詢 (聯集)
+     */
+    @SelectProvider(type = UserSqlProviderUnion.class, method = "findUsersByQueryUnion")
+    List<User> findByUserQueryUnion(User user);
 
     /**
      * 根據會員名稱查詢會員

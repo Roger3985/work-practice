@@ -24,9 +24,14 @@ public interface UserMapper {
     void updateUser(User user);
 
     /**
-     * 透過送入的會員資料查詢
+     * 透過送入的會員資料查詢 (交集)
      */
     List<User> findByUserQueryIntersection(User user);
+
+    /**
+     * 透過送入的會員資料查詢 (聯集)
+     */
+    List<User> findByUserQueryUnion(User user);
 
     /**
      * 根據會員名稱查詢會員

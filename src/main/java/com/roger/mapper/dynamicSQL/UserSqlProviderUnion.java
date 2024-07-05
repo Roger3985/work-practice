@@ -3,10 +3,9 @@ package com.roger.mapper.dynamicSQL;
 import com.roger.pojo.User;
 import org.apache.ibatis.jdbc.SQL;
 
+public class UserSqlProviderUnion {
 
-public class UserSqlProviderIntersection {
-
-    public String findUsersByQueryIntersection(User user) {
+    public String findUsersByQueryUnion(User user) {
         return new SQL() {{
             SELECT("*");
             FROM("\"user\"");
@@ -14,13 +13,11 @@ public class UserSqlProviderIntersection {
                 WHERE("username = #{username}");
             }
             if (user.getNickname() != null && !user.getNickname().isEmpty()) {
-                AND().WHERE("nickname = #{nickname}");
+                OR().WHERE("nickname = #{nickname}");
             }
             if (user.getEmail() != null && !user.getEmail().isEmpty()) {
-                AND().WHERE("email = #{email}");
+                OR().WHERE("email = #{email}");
             }
         }}.toString();
     }
-
-
 }

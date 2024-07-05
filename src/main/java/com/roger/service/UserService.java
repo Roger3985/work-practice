@@ -37,9 +37,14 @@ public interface UserService {
     Result upateUser(UserDto userDto);
 
     /**
-     * 透過送入的會員資料查詢
+     * 透過送入的會員資料查詢 (交集)
      */
     Result findUserIntersection(User user);
+
+    /**
+     * 透過送入的會員資料查詢 (聯集)
+     */
+    Result findUserUnion(User user);
 
     /**
      * 透過 username 透過會員名稱查找會員
@@ -47,4 +52,5 @@ public interface UserService {
      * @return 返回找到的會員，沒有則返回 null
      */
     User findByUserName(String username);
+
 }

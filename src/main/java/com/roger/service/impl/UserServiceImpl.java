@@ -156,6 +156,22 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 透過送入的會員資料查詢 (聯集)
+     */
+    @Override
+    @Transactional
+    public Result findUserUnion(User user) {
+        List<User> users = userMapper.findByUserQueryUnion(user);
+        if (!users.isEmpty()) {
+            List<String> usernames = users.stream()
+                    .map(User::getUsername)
+                    .collect(Collectors.toList());
+            return Result.success(usernames);
+        }
+        return Result.error("找不到會員資料");
+    }
+
+    /**
      * 透過 username 透過會員名稱查找會員
      */
     @Override

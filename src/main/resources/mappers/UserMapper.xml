@@ -16,7 +16,7 @@
     -->
     <insert id="addUser">
         INSERT INTO "user"(username, password, create_time, update_time)
-            values(#{username}, #{password}, now(), now())
+        values(#{username}, #{password}, now(), now())
     </insert>
     
     <delete id="deleteUser">
@@ -37,6 +37,7 @@
     <select id="findByUserQueryIntersection" resultType="com.roger.pojo.User">
         SELECT *
         FROM "user"
+        <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
         <where>
             <if test="username != null and username != ''">
                 AND username = #{username}
@@ -46,6 +47,23 @@
             </if>
             <if test="email != null and email != ''">
                 AND email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByUserQueryUnion" resultType="com.roger.pojo.User">
+        SELECT *
+        FROM "user"
+        <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
+        <where>
+            <if test="username != null and username != ''">
+                OR username = #{username}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                OR nickname = #{nickname}
+            </if>
+            <if test="email != null and email != ''">
+                OR email = #{email}
             </if>
         </where>
     </select>

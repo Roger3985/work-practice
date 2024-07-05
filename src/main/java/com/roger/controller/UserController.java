@@ -67,9 +67,9 @@ public class UserController {
      */
     @GetMapping("/searchByIntersection")
     public Result searchByIntersection(@RequestParam(value = "username", required = false) String username,
-                         @RequestParam(value = "nickname", required = false) String nickname,
-                         @RequestParam(value = "email",required = false) String email) {
-        // 將傳入參數都放入 userDto
+                                       @RequestParam(value = "nickname", required = false) String nickname,
+                                       @RequestParam(value = "email",required = false) String email) {
+        // 將傳入參數都放入 User
         User user = new User(username, nickname, email);
         return userService.findUserIntersection(user);
     }
@@ -77,5 +77,13 @@ public class UserController {
     /**
      * 透過有傳入的參數去找到對應的會員，假如沒有傳入就不帶入到查詢 (聯集)
      */
+    @GetMapping("/searchByUnion")
+    public Result searchByUnion(@RequestParam(value = "username", required = false) String username,
+                                @RequestParam(value = "nickname", required = false) String nickname,
+                                @RequestParam(value = "email",required = false) String email) {
+        // 將傳入參數都放入 userDto
+        User user = new User(username, nickname, email);
+        return userService.findUserUnion(user);
+    }
 
 }
