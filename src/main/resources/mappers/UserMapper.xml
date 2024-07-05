@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 對應介面的全限定符 -->
+<mapper namespace="com.roger.mapper.UserMapper">
+    <!--
+        xml 撰寫 sql 語句 沒有 Java 代碼
+        mybatis 固定你在特定標籤內的寫 sql 語句
+        mapper 應該有約束!
+    -->
+    <!--
+        聲明標籤寫sql語句
+        CRUD: insert、delete、update、select
+        每個介面對應一個方法! 方法的一個實現
+    -->
+    <insert id="addUser">
+        INSERT INTO "user"(username, password, create_time, update_time)
+            values(#{username}, #{password}, now(), now())
+    </insert>
+    
+    <delete id="deleteUser">
+        DELETE FROM "user"
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE "user" SET
+        username = #{username},
+        password = #{password},
+        nickname = #{nickname},
+        email = #{email},
+        update_time = now()
+        WHERE id = #{id}
+    </update>
+
+    <select id="findByUserQuery" resultType="com.roger.pojo.User">
+        SELECT *
+        FROM "user"
+        <where>
+            <if test="username != null and username != ''">
+                AND username = #{username}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND nickname = #{nickname}
+            </if>
+            <if test="email != null and email != ''">
+                AND email = #{email}
+            </if>
+        </where>
+    </select>
+    
+    <select id="findByUserName" resultType="com.roger.pojo.User">
+        SELECT *
+        FROM "user"
+        WHERE username = #{username}
+    </select>
+</mapper>

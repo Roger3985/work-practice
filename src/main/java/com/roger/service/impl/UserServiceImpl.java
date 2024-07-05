@@ -2,25 +2,22 @@ package com.roger.service.impl;
 
 import com.roger.dto.UserDto;
 import com.roger.mapper.UserMapper;
+import com.roger.mapper.UserMapper2;
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsPasswordService;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    private SecurityContextRepository securityContextRepository;
 
     /**
      * 查看當前登入會員
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
      * 自定義登入會員
      */
     @Override
-    public Result userLogin(UserDto userDto) {
+    public Result userLogin(UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         // 判斷會員名稱是否存在
         User loginUser = userMapper.findByUserName(userDto.getUsername());
 
@@ -66,9 +66,12 @@ public class UserServiceImpl implements UserService {
             // 登入成功，創建認證物件並設置
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(userDto.getUsername());
             // 使用 UsernamePasswordAuthenticationToken 進行認證
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, userDto.getPassword(), userDetails.getAuthorities());
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, passwordEncoder.encode(userDto.getPassword()), userDetails.getAuthorities());
             //設置到上下文中
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+            securityContext.setAuthentication(authentication);
+            SecurityContextHolder.setContext(securityContext);
+            securityContextRepository.saveContext(securityContext, httpServletRequest, httpServletResponse);
             return Result.success("登入成功");
         }
         return Result.error("密碼錯誤");
@@ -161,17 +164,4 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.findByUserName(username);
         return user;
     }
-
-    /**
-     * 利用 username and password 查找 user
-     */
-    @Override
-    @Transactional
-    public User findByUserNameAndPassword(String username, String password) {
-        // Passwordencoder 加密
-        String hashPassword = passwordEncoder.encode(password);
-        User user = userMapper.findByUserNameAndPassword(username, hashPassword);
-        return user;
-    }
-
 }

@@ -1,6 +1,6 @@
 package com.roger.service.impl;
 
-import com.roger.mapper.UserMapper;
+import com.roger.mapper.UserMapper2;
 import com.roger.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    UserMapper userMapper;
+    UserMapper2 userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

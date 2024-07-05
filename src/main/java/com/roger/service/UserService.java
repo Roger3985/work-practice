@@ -4,6 +4,7 @@ import com.roger.dto.UserDto;
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface UserService {
     /**
      * 自定義登入會員
      */
-    Result userLogin(UserDto userDto);
+    Result userLogin(UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
     /**
      * 註冊會員
@@ -46,10 +47,4 @@ public interface UserService {
      * @return 返回找到的會員，沒有則返回 null
      */
     User findByUserName(String username);
-
-    /**
-     * 利用 username and password 查找 user
-     */
-    User findByUserNameAndPassword(String username, String password);
-
 }

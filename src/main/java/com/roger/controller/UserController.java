@@ -5,6 +5,7 @@ import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,8 +34,8 @@ public class UserController {
      * 自定義會員登入
      */
     @PostMapping("/userLogin")
-    public Result<String> userLogin(@Valid @RequestBody UserDto userDto) {
-        return userService.userLogin(userDto);
+    public Result<String> userLogin(@Valid @RequestBody UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        return userService.userLogin(userDto, httpServletRequest, httpServletResponse);
     }
 
     /**
