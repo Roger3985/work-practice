@@ -26,7 +26,7 @@ public interface UserMapper {
     /**
      * 透過送入的會員資料查詢
      */
-    List<User> findByUserQuery(User user);
+    List<User> findByUserQueryIntersection(User user);
 
     /**
      * 根據會員名稱查詢會員

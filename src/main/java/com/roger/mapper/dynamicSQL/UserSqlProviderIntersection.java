@@ -4,9 +4,9 @@ import com.roger.pojo.User;
 import org.apache.ibatis.jdbc.SQL;
 
 
-public class UserSqlProvider {
+public class UserSqlProviderIntersection {
 
-    public String findUsersByQuery(User user) {
+    public String findUsersByQueryIntersection(User user) {
         return new SQL() {{
             SELECT("*");
             FROM("\"user\"");

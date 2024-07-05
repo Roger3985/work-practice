@@ -34,7 +34,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="findByUserQuery" resultType="com.roger.pojo.User">
+    <select id="findByUserQueryIntersection" resultType="com.roger.pojo.User">
         SELECT *
         FROM "user"
         <where>
