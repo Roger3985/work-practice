@@ -6,6 +6,7 @@ import com.roger.mapper.UserMapper2;
 import com.roger.pojo.Result;
 import com.roger.pojo.User;
 import com.roger.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "service block")
 @Service
 public class UserServiceImpl implements UserService {
 

@@ -1,10 +1,12 @@
 package com.roger.mapper;
 
 import com.roger.pojo.User;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Tag(name = "mapper block")
 @Mapper
 public interface UserMapper {
 
