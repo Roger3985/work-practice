@@ -6,7 +6,7 @@ create database workpractice_event;
 use workpractice_event;
 
 
--- 會員表
+-- 會員表，並與部門表關聯
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
@@ -15,10 +15,18 @@ CREATE TABLE "user" (
     email VARCHAR(128) DEFAULT '',
     user_pic VARCHAR(128) DEFAULT '',
     create_time TIMESTAMP NOT NULL,
-    update_time TIMESTAMP NOT NULL
+    update_time TIMESTAMP NOT NULL,
+    department_id INT REFERENCES department(id)
 );
 
 COMMENT ON TABLE "user" IS '會員表';
+
+-- 創建部門表
+CREATE TABLE department (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT
+);
 
 -- 分類表
 CREATE TABLE category (
