@@ -10,7 +10,7 @@ import org.springframework.core.io.Resource;
 import javax.sql.DataSource;
 
 @Configuration
-public class MybatisConfig {
+public class MyBatisConfig {
 
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) throws Exception {

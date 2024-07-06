@@ -18,3 +18,12 @@ mybatis:
     driver-class-name: org.postgresql.Driver
     mapper-locations: classpath:mappers/*.xml
     config-location: classpath:mybatis-config.xml
+
+# 配置 SpringDoc OpenAPI
+springdoc:
+  api-docs:
+    enabled: true # 預設的
+    path: /api-docs # API 文件的路徑，預設的
+  swagger-ui:
+    enabled: true # 預設的
+    path: /swagger-ui.html # Swagger UI 界面的路徑，預設的

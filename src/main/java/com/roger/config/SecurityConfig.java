@@ -45,10 +45,25 @@ public class SecurityConfig {
             )
             // 設定 api 的權限控制
             .authorizeHttpRequests((requests) -> requests
-                // 註冊功能
-                .requestMatchers("/user/register").permitAll()
-                // 登入功能
-                .requestMatchers("/user/userLogin").permitAll()
+
+                .requestMatchers(
+                        // 註冊功能
+                        "/user/register",
+                        // 登入功能
+                        "/user/userLogin",
+                        "/api/v1/auth/**",
+                        "/v2/api-docs/",
+                        "/v3/api-docs",
+                        "/v3/api-docs/**",
+                        "/swagger-resources",
+                        "/swagger-resources/**",
+                        "/configuration/ui",
+                        "/configuration/security",
+                        "/swagger-ui/**",
+                        "/webjars/**",
+                        "/swagger-ui.html")
+                    .permitAll()
+
                 // 除了註冊跟登入功能外其他的都需要
                 .anyRequest().authenticated() // 其他認證過後就可以登入
             )
