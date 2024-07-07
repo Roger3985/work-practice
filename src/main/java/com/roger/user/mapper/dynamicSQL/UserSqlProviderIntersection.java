@@ -1,6 +1,6 @@
-package com.roger.mapper.dynamicSQL;
+package com.roger.user.mapper.dynamicSQL;
 
-import com.roger.pojo.User;
+import com.roger.user.pojo.User;
 import org.apache.ibatis.jdbc.SQL;
 
 

@@ -1,13 +1,11 @@
-package com.roger.service;
+package com.roger.user.service;
 
-import com.roger.dto.UserDto;
-import com.roger.pojo.Result;
-import com.roger.pojo.User;
+import com.roger.user.dto.UserDto;
+import com.roger.user.pojo.Result;
+import com.roger.user.pojo.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 public interface UserService {
 

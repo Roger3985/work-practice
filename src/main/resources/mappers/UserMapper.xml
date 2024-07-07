@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace = 對應介面的全限定符 -->
-<mapper namespace="com.roger.mapper.UserMapper">
+<mapper namespace="com.roger.user.mapper.UserMapper">
     <!--
         xml 撰寫 sql 語句 沒有 Java 代碼
         mybatis 固定你在特定標籤內的寫 sql 語句
@@ -34,7 +34,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="findByUserQueryIntersection" resultType="com.roger.pojo.User">
+    <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"
         <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
@@ -51,7 +51,7 @@
         </where>
     </select>
 
-    <select id="findByUserQueryUnion" resultType="com.roger.pojo.User">
+    <select id="findByUserQueryUnion" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"
         <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
@@ -68,7 +68,7 @@
         </where>
     </select>
     
-    <select id="findByUserName" resultType="com.roger.pojo.User">
+    <select id="findByUserName" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"
         WHERE username = #{username}

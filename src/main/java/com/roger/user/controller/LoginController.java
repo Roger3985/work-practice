@@ -1,4 +1,4 @@
-package com.roger.controller;
+package com.roger.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

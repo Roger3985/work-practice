@@ -1,7 +1,7 @@
-package com.roger.service.impl;
+package com.roger.user.service.impl;
 
-import com.roger.mapper.UserMapper2;
-import com.roger.pojo.User;
+import com.roger.user.mapper.UserMapper2;
+import com.roger.user.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

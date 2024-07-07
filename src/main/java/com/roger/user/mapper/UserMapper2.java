@@ -1,8 +1,8 @@
-package com.roger.mapper;
+package com.roger.user.mapper;
 
-import com.roger.mapper.dynamicSQL.UserSqlProviderIntersection;
-import com.roger.mapper.dynamicSQL.UserSqlProviderUnion;
-import com.roger.pojo.User;
+import com.roger.user.mapper.dynamicSQL.UserSqlProviderIntersection;
+import com.roger.user.mapper.dynamicSQL.UserSqlProviderUnion;
+import com.roger.user.pojo.User;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.ibatis.annotations.*;
 

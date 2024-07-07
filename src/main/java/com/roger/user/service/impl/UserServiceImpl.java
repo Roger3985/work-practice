@@ -1,11 +1,10 @@
-package com.roger.service.impl;
+package com.roger.user.service.impl;
 
-import com.roger.dto.UserDto;
-import com.roger.mapper.UserMapper;
-import com.roger.mapper.UserMapper2;
-import com.roger.pojo.Result;
-import com.roger.pojo.User;
-import com.roger.service.UserService;
+import com.roger.user.dto.UserDto;
+import com.roger.user.mapper.UserMapper;
+import com.roger.user.pojo.Result;
+import com.roger.user.pojo.User;
+import com.roger.user.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

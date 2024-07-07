@@ -1,4 +1,4 @@
-package com.roger.pojo;
+package com.roger.user.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     private Integer id;
     private String username;
@@ -16,6 +18,7 @@ public class User {
     private String userPic;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+    private Integer department_id;
 
     public User(String username, String nickname, String email) {
         this.username = username;

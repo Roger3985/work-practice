@@ -1,4 +1,4 @@
-package com.roger.dto;
+package com.roger.user.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

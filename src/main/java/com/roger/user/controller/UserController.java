@@ -1,9 +1,9 @@
-package com.roger.controller;
+package com.roger.user.controller;
 
-import com.roger.dto.UserDto;
-import com.roger.pojo.Result;
-import com.roger.pojo.User;
-import com.roger.service.UserService;
+import com.roger.user.dto.UserDto;
+import com.roger.user.pojo.Result;
+import com.roger.user.pojo.User;
+import com.roger.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
