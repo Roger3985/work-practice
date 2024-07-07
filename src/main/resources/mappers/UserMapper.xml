@@ -14,16 +14,19 @@
         CRUD: insert、delete、update、select
         每個介面對應一個方法! 方法的一個實現
     -->
+    <!-- 新增使用者 -->
     <insert id="addUser">
         INSERT INTO "user"(username, password, create_time, update_time)
-        values(#{username}, #{password}, now(), now())
+        VALUES (#{username}, #{password}, now(), now())
     </insert>
-    
+
+    <!-- 刪除使用者 -->
     <delete id="deleteUser">
         DELETE FROM "user"
         WHERE id = #{id}
     </delete>
 
+    <!-- 更新使用者 -->
     <update id="updateUser">
         UPDATE "user" SET
         username = #{username},
@@ -34,6 +37,7 @@
         WHERE id = #{id}
     </update>
 
+    <!-- 透過傳入的條件查找使用者(交集) -->
     <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"
@@ -51,6 +55,7 @@
         </where>
     </select>
 
+    <!-- 透過傳入的條件查找使用者(聯集) -->
     <select id="findByUserQueryUnion" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"

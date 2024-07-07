@@ -22,5 +22,6 @@
     </environments> -->
     <mappers>
         <mapper resource="mappers/UserMapper.xml"/>
+        <mapper resource="mappers/DepartmentMapper.xml"/>
     </mappers>
 </configuration>

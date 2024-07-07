@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 對應介面的全限定符 -->
+<mapper namespace="com.roger.department.mapper.DepartmentMapper">
+    <!-- 透過部門名稱新增部門 -->
+    <insert id="addDepartment">
+        INSERT INTO department(name)
+        VALUES (#{name})
+    </insert>
+
+    <!-- 透過部門名稱查找部門 -->
+    <select id="findByDepartmentName" resultType="com.roger.department.pojo.Department">
+        SELECT * FROM department
+        WHERE name=#{name}
+    </select>
+</mapper>

@@ -17,6 +17,10 @@ public class UserDto {
     @Pattern(regexp = "^\\w{5,16}$")
     private String nickname;
 
+    @NotBlank
+    @Pattern(regexp = "^\\w{3,16}$")
+    private String name;
+
     /*
         (1) 必須以一個以上的文字&數字開頭
         (2) @ 之前可以出現 1 個以上的文字、數字與「-」的組合，例如 -abc-
@@ -56,6 +60,14 @@ public class UserDto {
         this.email = email;
     }
 
+    public UserDto(String username, String password, String nickname, String name, String email) {
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+        this.name = name;
+        this.email = email;
+    }
+
     public @NotBlank @Pattern(regexp = "^\\w{5,16}$") String getUsername() {
         return username;
     }
@@ -80,6 +92,14 @@ public class UserDto {
         this.nickname = nickname;
     }
 
+    public @NotBlank @Pattern(regexp = "^\\w{3,16}$") String getName() {
+        return name;
+    }
+
+    public void setName(@NotBlank @Pattern(regexp = "^\\w{3,16}$") String name) {
+        this.name = name;
+    }
+
     public @Pattern(regexp = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$") String getEmail() {
         return email;
     }
@@ -87,4 +107,6 @@ public class UserDto {
     public void setEmail(@Pattern(regexp = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$") String email) {
         this.email = email;
     }
+
+
 }

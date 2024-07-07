@@ -28,7 +28,7 @@ public class MyBatisConfig {
         // Mapper 代理物件的 FactoryBean -> 指定一個包 -> mapper 介面 -> sqlSessionFactory -> sqlSession -> getMapper -> mapper 代理物件 -> ioc
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         // mapper interface and mapper xml same package
-        mapperScannerConfigurer.setBasePackage("com.roger.mapper");
+        mapperScannerConfigurer.setBasePackage("com.roger.*.mapper");
         return mapperScannerConfigurer;
     }
 }

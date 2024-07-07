@@ -12,4 +12,9 @@ public interface DepartmentMapper {
      * 透過部門名稱查找部門
      */
     Department findByDepartmentName(String name);
+
+    /**
+     * 新增部門
+     */
+    void addDepartment(String name);
 }

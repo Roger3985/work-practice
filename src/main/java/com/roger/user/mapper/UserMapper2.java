@@ -16,7 +16,7 @@ public interface UserMapper2 {
      * 註冊
      */
     @Insert("INSERT INTO \"user\"(username, password, create_time, update_time)" +
-            " values(#{username}, #{password}, now(), now())")
+            " VALUES (#{username}, #{password}, now(), now())")
     void addUser(String username, String password);
 
     /**
