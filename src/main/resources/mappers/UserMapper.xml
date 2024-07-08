@@ -16,8 +16,8 @@
     -->
     <!-- 新增使用者 -->
     <insert id="addUser">
-        INSERT INTO "user"(username, password, create_time, update_time)
-        VALUES (#{username}, #{password}, now(), now())
+        INSERT INTO "user"(username, password, create_time, update_time, department_id)
+        VALUES (#{username}, #{password}, now(), now(), #{department_id})
     </insert>
 
     <!-- 刪除使用者 -->

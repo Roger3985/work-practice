@@ -22,7 +22,7 @@ public interface UserService {
     /**
      * 註冊會員
      */
-    Result register(UserDto userDto);
+    User register(UserDto userDto);
 
     /**
      * 刪除會員資料

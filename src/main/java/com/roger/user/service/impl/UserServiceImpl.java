@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,27 +88,20 @@ public class UserServiceImpl implements UserService {
      * 註冊會員
      */
     @Override
+    // @Transactional(propagation = Propagation.REQUIRES_NEW) // 有交易的情況下，還能各自獨立交易 作法二
     @Transactional
-    public Result register(UserDto userDto) {
-
+    public User register(UserDto userDto) {
         // 檢查會員是否存在
         User user = userMapper.findByUserName(userDto.getUsername());
         if (user != null) {
-            return Result.error("該會員名稱已經被註冊");
+            return user;
         }
-
-        // 檢查部門是否存在
-        Department department = departmentService.findByDepartmentName(userDto.getName());
-        if (department == null) {
-            Integer department1 = departmentService.addDepartment(userDto.getName());
-        }
-
         // Passwordencoder 加密
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
         // 添加新會員
-        userMapper.addUser(userDto.getUsername(), hashPassword, department.getId());
-
-        return Result.success("會員創建成功");
+        userMapper.addUser(userDto.getUsername(), hashPassword, userDto.getId());
+        int i = 1 / 0; // simulate an exception
+        return user;
     }
 
     /**

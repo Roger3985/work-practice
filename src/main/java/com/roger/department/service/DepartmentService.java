@@ -1,6 +1,8 @@
 package com.roger.department.service;
 
 import com.roger.department.pojo.Department;
+import com.roger.user.dto.UserDto;
+import com.roger.user.pojo.Result;
 
 public interface DepartmentService {
 
@@ -12,5 +14,5 @@ public interface DepartmentService {
     /**
      * 新增部門
      */
-    Integer addDepartment(String name);
+    Department addDepartment(UserDto userDto);
 }

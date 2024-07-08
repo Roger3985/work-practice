@@ -3,6 +3,8 @@ package com.roger.user.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
 public class UserDto {
 
@@ -17,8 +19,12 @@ public class UserDto {
     @Pattern(regexp = "^\\w{5,16}$")
     private String nickname;
 
-    @NotBlank
-    @Pattern(regexp = "^\\w{3,16}$")
+    @Setter
+    @Getter
+    private Integer id;
+
+    @Setter
+    @Getter
     private String name;
 
     /*
@@ -90,14 +96,6 @@ public class UserDto {
 
     public void setNickname(@Pattern(regexp = "^\\w{5,16}$") String nickname) {
         this.nickname = nickname;
-    }
-
-    public @NotBlank @Pattern(regexp = "^\\w{3,16}$") String getName() {
-        return name;
-    }
-
-    public void setName(@NotBlank @Pattern(regexp = "^\\w{3,16}$") String name) {
-        this.name = name;
     }
 
     public @Pattern(regexp = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$") String getEmail() {

@@ -66,19 +66,19 @@ public class UserController {
     /**
      * 會員註冊 (增)
      */
-    @Operation(
-            summary = "會員註冊",
-            description = "透過此路徑註冊新的會員"
-    )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "狀態碼正常", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))),
-            @ApiResponse(responseCode = "401", description = "沒有權限", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))),
-            @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
-    })
-    @PostMapping("/register")
-    public Result register(@Valid @RequestBody UserDto userDto) {
-        return userService.register(userDto);
-    }
+//    @Operation(
+//            summary = "會員註冊",
+//            description = "透過此路徑註冊新的會員"
+//    )
+//    @ApiResponses({
+//            @ApiResponse(responseCode = "200", description = "狀態碼正常", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))),
+//            @ApiResponse(responseCode = "401", description = "沒有權限", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))),
+//            @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
+//    })
+//    @PostMapping("/register")
+//    public User register(@Valid @RequestBody UserDto userDto) {
+//        User userService.register(userDto);
+//    }
 
     /**
      * 刪除會員
