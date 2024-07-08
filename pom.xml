@@ -28,11 +28,18 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- mybatis 依賴 -->
+    <!-- spring boot mybatis 依賴 -->
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>
       <artifactId>mybatis-spring-boot-starter</artifactId>
       <version>3.0.3</version>
+    </dependency>
+
+    <!-- mybatis 原生配置 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.16</version>
     </dependency>
 
     <!-- spring 驗證 -->

@@ -5,9 +5,15 @@
 <!-- 配置文件的根元素 -->
 <configuration>
     <settings>
-        <!-- 開啟 mybatis 的日誌輸出，選擇使用 system 進行控制台輸出 -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <mappers>
+        <mapper resource="classpath:/mappers/*.xml"/>
+    </mappers>
+<!--    <settings>-->
+<!--&lt;!&ndash; 開啟 mybatis 的日誌輸出，選擇使用 system 進行控制台輸出 &ndash;&gt;-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+<!--    </settings>-->
     <!-- 屬性: 定義配置外在化
     <!- <environments default="development">
         <environment id="development">
@@ -20,8 +26,8 @@
             </dataSource>
         </environment>
     </environments> -->
-    <mappers>
-        <mapper resource="mappers/UserMapper.xml"/>
-        <mapper resource="mappers/DepartmentMapper.xml"/>
-    </mappers>
+    <!-- <mappers>
+       <mapper resource="classpath:mappers/UserMapper.xml"/>
+            <mapper resource="classpath:mappers/ProductMapper.xml"/>
+    </mappers> -->
 </configuration>

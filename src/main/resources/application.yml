@@ -11,13 +11,13 @@ spring:
 
 # mybatis 整合 mybatis 可以拋棄 mybatis-config.xml
 mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  config-location: classpath:mybatis-config.xml
   datasource:
     url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: mysecretpassword
     driver-class-name: org.postgresql.Driver
-    mapper-locations: classpath:mappers/*.xml
-    config-location: classpath:mybatis-config.xml
 
 # 配置 SpringDoc OpenAPI
 springdoc:

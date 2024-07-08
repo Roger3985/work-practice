@@ -1,7 +1,7 @@
 package com.roger.user.service.impl;
 
-import com.roger.department.mapper.DepartmentMapper;
 import com.roger.department.pojo.Department;
+import com.roger.department.service.DepartmentService;
 import com.roger.user.dto.UserDto;
 import com.roger.user.mapper.UserMapper;
 import com.roger.user.pojo.Result;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Autowired
-    private DepartmentMapper departmentMapper;
+    private DepartmentService departmentService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -97,15 +97,15 @@ public class UserServiceImpl implements UserService {
         }
 
         // 檢查部門是否存在
-        Department department = departmentMapper.findByDepartmentName(userDto.getName());
+        Department department = departmentService.findByDepartmentName(userDto.getName());
         if (department == null) {
-            departmentMapper.addDepartment(userDto.getName());
+            Integer department1 = departmentService.addDepartment(userDto.getName());
         }
 
         // Passwordencoder 加密
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
         // 添加新會員
-        userMapper.addUser(userDto.getUsername(), hashPassword);
+        userMapper.addUser(userDto.getUsername(), hashPassword, department.getId());
 
         return Result.success("會員創建成功");
     }
