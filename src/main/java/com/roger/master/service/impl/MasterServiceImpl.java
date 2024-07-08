@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Service
 public class MasterServiceImpl implements MasterService {
@@ -34,23 +35,11 @@ public class MasterServiceImpl implements MasterService {
     @Transactional
     public Result UserWithDepartment(UserDto userDto) {
         // 添加部門的相關邏輯
-        Department department = null;
-        try {
-            department = departmentService.addDepartment(userDto);
-        } catch (RuntimeException e) {
-            Result.error("添加部門失敗" + e.getMessage());
-        }
+        Department department = departmentService.addDepartment(userDto);
         department = departmentService.findByDepartmentName(userDto.getName());
         // 放入 id
         userDto.setId(department.getId());
-
-        User user = null;
-        // 添加使用者的相關邏輯
-        try {
-            user = userService.register(userDto);
-        } catch (RuntimeException e) {
-            Result.error("添加使用者失敗" + e.getMessage());
-        }
+        User user = userService.register(userDto);
 
         // 返回錯誤結果
         if (user != null) {
@@ -59,3 +48,4 @@ public class MasterServiceImpl implements MasterService {
         return Result.success("新增會員成功，加入" + department.getName() + "部門");
     }
 }
+

@@ -1,5 +1,6 @@
 package com.roger.user.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -10,21 +11,26 @@ public class UserDto {
 
     @NotBlank
     @Pattern(regexp = "^\\w{5,16}$")
+    @Schema(description = "The username of the user", example = "Roger")
     private String username;
 
     @NotBlank
     @Pattern(regexp = "^\\w{5,16}$")
+    @Schema(description = "The password of the user", example = "123456")
     private String password;
 
     @Pattern(regexp = "^\\w{5,16}$")
+    @Schema(description = "The nickname of the user", example = "roger1")
     private String nickname;
 
     @Setter
     @Getter
+    @Schema(description = "The id of the department", example = "1")
     private Integer id;
 
     @Setter
     @Getter
+    @Schema(description = "The name of the department", example = "software")
     private String name;
 
     /*
@@ -39,6 +45,7 @@ public class UserDto {
         (9) @ 之後出現 1 個以上的「.」配上大小寫英文及數字的組合，結尾需為大小寫英文
      */
     @Pattern(regexp = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$")
+    @Schema(description = "The email of the user", example = "123@gmail.com")
     private String email;
 
     public UserDto() {

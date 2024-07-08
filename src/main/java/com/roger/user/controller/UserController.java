@@ -59,7 +59,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
     })
     @PostMapping("/userLogin")
-    public Result<String> userLogin(@Valid @RequestBody UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public Result<String> userLogin(@Valid @RequestBody @Schema UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         return userService.userLogin(userDto, httpServletRequest, httpServletResponse);
     }
 

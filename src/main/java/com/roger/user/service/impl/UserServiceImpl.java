@@ -21,6 +21,8 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +44,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private SecurityContextRepository securityContextRepository;
+
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
     /**
      * 查看當前登入會員
@@ -87,7 +92,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 註冊會員
      */
-    @Override
+    /* @Override
     // @Transactional(propagation = Propagation.REQUIRES_NEW) // 有交易的情況下，還能各自獨立交易 作法二
     @Transactional
     public User register(UserDto userDto) {
@@ -102,6 +107,26 @@ public class UserServiceImpl implements UserService {
         userMapper.addUser(userDto.getUsername(), hashPassword, userDto.getId());
         int i = 1 / 0; // simulate an exception
         return user;
+    } */
+
+    @Override
+    public User register(UserDto userDto) {
+        return transactionTemplate.execute(status -> {
+            try {
+                // MyBatis 操作，這裡示範使用 UserMapper
+                User user = userMapper.findByUserName(userDto.getUsername());
+                if (user != null) {
+                    return user; // 已存在的用戶返回
+                }
+                String hashedPassword = passwordEncoder.encode(userDto.getPassword());
+                userMapper.addUser(userDto.getUsername(), hashedPassword, userDto.getId());
+                int i = 1 / 0; // simulate an exception
+                return userMapper.findByUserName(userDto.getUsername()); // 返回新創建的用戶
+            } catch (Exception e) {
+                status.setRollbackOnly(); // 發生異常時回滾事務
+                throw new RuntimeException("Failed to register user", e);
+            }
+        });
     }
 
     /**

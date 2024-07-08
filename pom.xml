@@ -28,6 +28,12 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
+    <!-- For Spring AOP and AspectJ integration -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+
     <!-- spring boot mybatis 依賴 -->
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>
