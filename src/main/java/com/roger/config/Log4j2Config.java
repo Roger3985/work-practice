@@ -18,9 +18,9 @@ public class Log4j2Config {
         return LogManager.getLogger(getClass().getName());
     }
 
-//    @Bean
-//    public LoggerContext loggerContext() {
-//        LoggerContext context = Configurator.initialize("myApp", "classpath:log4j2-spring.xml");
-//        return context;
-//    }
+    @Bean
+    public LoggerContext loggerContext() {
+        LoggerContext context = Configurator.initialize("myApp", "classpath:log4j2-spring.xml");
+        return context;
+    }
 }

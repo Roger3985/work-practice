@@ -32,11 +32,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Transactional
     public Department addDepartment(UserDto userDto) {
         // 檢查部門是否存在
-        Department department = departmentMapper.findByDepartmentName(userDto.getName());
-        if (department != null) {
-            return department;
+        Department existingDepartment = departmentMapper.findByDepartmentName(userDto.getName());
+        if (existingDepartment != null) {
+            return existingDepartment;
         }
-        departmentMapper.addDepartment(userDto.getName());
-        return department;
+        // 部門不存在，創建新部門
+        Department newDepartment = new Department();
+        newDepartment.setName(userDto.getName());
+        departmentMapper.addDepartment(newDepartment.getName());
+        return newDepartment;
     }
 }

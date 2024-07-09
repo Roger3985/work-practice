@@ -15,7 +15,7 @@
         每個介面對應一個方法! 方法的一個實現
     -->
     <!-- 新增使用者 -->
-    <insert id="addUser">
+    <insert id="addUser" parameterType="com.roger.user.pojo.User" useGeneratedKeys="true">
         INSERT INTO "user"(username, password, create_time, update_time, department_id)
         VALUES (#{username}, #{password}, now(), now(), #{department_id})
     </insert>
