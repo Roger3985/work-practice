@@ -7,6 +7,7 @@ import com.roger.user.dto.UserDto;
 import com.roger.user.pojo.Result;
 import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class MasterServiceImpl implements MasterService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private Logger logger;
+
     /**
      * 交互 userService and DepartmentService
      */
@@ -41,10 +45,13 @@ public class MasterServiceImpl implements MasterService {
         userDto.setId(department.getId());
         User user = userService.register(userDto);
 
+
         // 返回錯誤結果
         if (user != null) {
+            logger.error("添加會員失敗");
             return Result.error("該會員名稱已經被註冊");
         }
+        logger.info("新增會員成功");
         return Result.success("新增會員成功，加入" + department.getName() + "部門");
     }
 }

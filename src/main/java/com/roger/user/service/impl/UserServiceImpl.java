@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -19,7 +20,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 註冊會員
      */
-    /* @Override
+    @Override
     // @Transactional(propagation = Propagation.REQUIRES_NEW) // 有交易的情況下，還能各自獨立交易 作法二
     @Transactional
     public User register(UserDto userDto) {
@@ -105,11 +105,11 @@ public class UserServiceImpl implements UserService {
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
         // 添加新會員
         userMapper.addUser(userDto.getUsername(), hashPassword, userDto.getId());
-        int i = 1 / 0; // simulate an exception
+        // int i = 1 / 0; // simulate an exception
         return user;
-    } */
+    }
 
-    @Override
+    /* @Override
     public User register(UserDto userDto) {
         return transactionTemplate.execute(status -> {
             try {
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
                 throw new RuntimeException("Failed to register user", e);
             }
         });
-    }
+    } */
 
     /**
      * 刪除 user

@@ -6,6 +6,8 @@ import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
@@ -20,6 +22,8 @@ public class MyBatisConfig {
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
         configuration.setLogImpl(StdOutImpl.class); // 使用標準輸出方式 STDOUT_LOGGING
         sessionFactoryBean.setConfiguration(configuration);
+        // Resource mybatisConfig = new ClassPathResource("mybatis-config.xml");
+        // sessionFactoryBean.setConfigLocation(mybatisConfig);
         // 全部的 mappers 設置
         sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*.xml"));
         return sessionFactoryBean;

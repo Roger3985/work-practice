@@ -33,6 +33,11 @@ public class UserDto {
     @Schema(description = "The name of the department", example = "software")
     private String name;
 
+    @Setter
+    @Getter
+    @Schema(description = "The description of the department", example = "this is a software department")
+    private String description;
+
     /*
         (1) 必須以一個以上的文字&數字開頭
         (2) @ 之前可以出現 1 個以上的文字、數字與「-」的組合，例如 -abc-

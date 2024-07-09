@@ -59,26 +59,9 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
     })
     @PostMapping("/userLogin")
-    public Result<String> userLogin(@Valid @RequestBody @Schema UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public Result<String> userLogin(@Valid @RequestBody UserDto userDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         return userService.userLogin(userDto, httpServletRequest, httpServletResponse);
     }
-
-    /**
-     * 會員註冊 (增)
-     */
-//    @Operation(
-//            summary = "會員註冊",
-//            description = "透過此路徑註冊新的會員"
-//    )
-//    @ApiResponses({
-//            @ApiResponse(responseCode = "200", description = "狀態碼正常", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))),
-//            @ApiResponse(responseCode = "401", description = "沒有權限", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class))),
-//            @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
-//    })
-//    @PostMapping("/register")
-//    public User register(@Valid @RequestBody UserDto userDto) {
-//        User userService.register(userDto);
-//    }
 
     /**
      * 刪除會員
@@ -127,9 +110,9 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
     })
     @GetMapping("/searchByIntersection")
-    public Result searchByIntersection(@RequestParam(value = "username", required = false) String username,
-                                       @RequestParam(value = "nickname", required = false) String nickname,
-                                       @RequestParam(value = "email",required = false) String email) {
+    public Result searchByIntersection(@RequestParam(value = "username", required = false) @Schema(description = "The username of the user", example = "Roger") String username,
+                                       @RequestParam(value = "nickname", required = false) @Schema(description = "The nickname of the user", example = "roger1") String nickname,
+                                       @RequestParam(value = "email",required = false) @Schema(description = "The email of the user", example = "123@gmail.com") String email) {
         // 將傳入參數都放入 User
         User user = new User(username, nickname, email);
         return userService.findUserIntersection(user);
@@ -148,9 +131,9 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
     })
     @GetMapping("/searchByUnion")
-    public Result searchByUnion(@RequestParam(value = "username", required = false) String username,
-                                @RequestParam(value = "nickname", required = false) String nickname,
-                                @RequestParam(value = "email",required = false) String email) {
+    public Result searchByUnion(@RequestParam(value = "username", required = false) @Schema(description = "The username of the user", example = "Roger") String username,
+                                @RequestParam(value = "nickname", required = false) @Schema(description = "The nickname of the user", example = "roger1") String nickname,
+                                @RequestParam(value = "email",required = false) @Schema(description = "The email of the user", example = "123@gmail.com") String email) {
         // 將傳入參數都放入 userDto
         User user = new User(username, nickname, email);
         return userService.findUserUnion(user);
