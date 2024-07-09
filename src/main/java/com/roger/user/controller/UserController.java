@@ -30,7 +30,6 @@ public class UserController {
 
     /**
      * 查詢登入中的會員
-     * @return 會員的細節
      */
     @Operation(
             summary = "獲得當前用戶名",

@@ -4958,3 +4958,102 @@ org.apache.ibatis.binding.BindingException: Parameter 'department' not found. Av
 2024-07-09 15:42:03.658 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@45211b78
 2024-07-09 15:42:03.660 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
 2024-07-09 15:42:03.850 [http-nio-8080-exec-1] INFO  com.roger.config.Log4j2Config$$SpringCGLIB$$0 - 新增會員成功
+2024-07-09 15:43:36.571 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-09 15:43:36.606 [main] INFO  com.roger.WorkPracticeApplication - Starting WorkPracticeApplication using Java 21.0.3 with PID 9840 (C:\Workplace\springboot_project\work-practice\target\classes started by 2407009 in C:\Workplace\springboot_project\work-practice)
+2024-07-09 15:43:36.610 [main] INFO  com.roger.WorkPracticeApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-09 15:43:37.569 [main] WARN  org.springframework.context.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'myBatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2024-07-09 15:43:37.973 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-09 15:43:37.987 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-09 15:43:37.989 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-09 15:43:37.989 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-09 15:43:38.042 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-09 15:43:38.043 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1197 ms
+2024-07-09 15:43:38.522 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-07-09 15:43:39.056 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-09 15:43:39.082 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-09 15:43:39.092 [main] INFO  com.roger.WorkPracticeApplication - Started WorkPracticeApplication in 2.888 seconds (process running for 3.646)
+2024-07-09 15:43:42.674 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-09 15:43:42.674 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-09 15:43:42.677 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-07-09 15:43:42.878 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-09 15:43:43.087 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@735fac2d
+2024-07-09 15:43:43.089 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-09 15:43:43.314 [http-nio-8080-exec-2] INFO  com.roger.config.Log4j2Config$$SpringCGLIB$$0 - 新增會員成功
+2024-07-09 15:55:07.221 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-09 15:55:07.256 [main] INFO  com.roger.WorkPracticeApplication - Starting WorkPracticeApplication using Java 21.0.3 with PID 25876 (C:\Workplace\springboot_project\work-practice\target\classes started by 2407009 in C:\Workplace\springboot_project\work-practice)
+2024-07-09 15:55:07.260 [main] INFO  com.roger.WorkPracticeApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-09 15:55:08.418 [main] WARN  org.springframework.context.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'myBatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2024-07-09 15:55:08.881 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-09 15:55:08.893 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-09 15:55:08.897 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-09 15:55:08.898 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-09 15:55:08.979 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-09 15:55:08.981 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1446 ms
+2024-07-09 15:55:09.706 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-07-09 15:55:10.497 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-09 15:55:10.560 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-09 15:55:10.572 [main] INFO  com.roger.WorkPracticeApplication - Started WorkPracticeApplication in 3.726 seconds (process running for 4.52)
+2024-07-09 15:55:56.744 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-09 15:55:56.744 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-09 15:55:56.746 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-07-09 15:55:56.799 [http-nio-8080-exec-2] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.roger.user.pojo.User com.roger.user.controller.UserController.searchUserWithDepartment(com.roger.user.dto.UserDto)]
+2024-07-09 15:56:29.304 [http-nio-8080-exec-4] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.roger.user.pojo.User com.roger.user.controller.UserController.searchUserWithDepartment(com.roger.user.dto.UserDto): [Field error in object 'userDto' on field 'password': rejected value [null]; codes [NotBlank.userDto.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDto.password,password]; arguments []; default message [password]]; default message [不得空白]] ]
+2024-07-09 15:56:30.782 [http-nio-8080-exec-6] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.roger.user.pojo.User com.roger.user.controller.UserController.searchUserWithDepartment(com.roger.user.dto.UserDto): [Field error in object 'userDto' on field 'password': rejected value [null]; codes [NotBlank.userDto.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDto.password,password]; arguments []; default message [password]]; default message [不得空白]] ]
+2024-07-09 15:56:31.604 [http-nio-8080-exec-8] WARN  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.roger.user.pojo.User com.roger.user.controller.UserController.searchUserWithDepartment(com.roger.user.dto.UserDto): [Field error in object 'userDto' on field 'password': rejected value [null]; codes [NotBlank.userDto.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDto.password,password]; arguments []; default message [password]]; default message [不得空白]] ]
+2024-07-09 15:57:01.573 [http-nio-8080-exec-10] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-09 15:57:01.725 [http-nio-8080-exec-10] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3e2ffb3f
+2024-07-09 15:57:01.726 [http-nio-8080-exec-10] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-09 16:05:55.550 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-09 16:05:55.583 [main] INFO  com.roger.WorkPracticeApplication - Starting WorkPracticeApplication using Java 21.0.3 with PID 22316 (C:\Workplace\springboot_project\work-practice\target\classes started by 2407009 in C:\Workplace\springboot_project\work-practice)
+2024-07-09 16:05:55.588 [main] INFO  com.roger.WorkPracticeApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-09 16:05:56.580 [main] WARN  org.springframework.context.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'myBatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2024-07-09 16:05:57.002 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-09 16:05:57.013 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-09 16:05:57.016 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-09 16:05:57.016 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-09 16:05:57.076 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-09 16:05:57.077 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1258 ms
+2024-07-09 16:05:57.611 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-07-09 16:05:58.135 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-09 16:05:58.163 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-09 16:05:58.172 [main] INFO  com.roger.WorkPracticeApplication - Started WorkPracticeApplication in 2.992 seconds (process running for 3.779)
+2024-07-09 16:07:32.070 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-09 16:07:32.108 [main] INFO  com.roger.WorkPracticeApplication - Starting WorkPracticeApplication using Java 21.0.3 with PID 26628 (C:\Workplace\springboot_project\work-practice\target\classes started by 2407009 in C:\Workplace\springboot_project\work-practice)
+2024-07-09 16:07:32.112 [main] INFO  com.roger.WorkPracticeApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-09 16:07:33.153 [main] WARN  org.springframework.context.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'myBatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2024-07-09 16:07:33.583 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-09 16:07:33.593 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-09 16:07:33.594 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-09 16:07:33.595 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-09 16:07:33.654 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-09 16:07:33.655 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1295 ms
+2024-07-09 16:07:34.159 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-07-09 16:07:34.724 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-09 16:07:34.750 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-09 16:07:34.762 [main] INFO  com.roger.WorkPracticeApplication - Started WorkPracticeApplication in 3.065 seconds (process running for 3.872)
+2024-07-09 16:07:43.650 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-09 16:07:43.650 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-09 16:07:43.653 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-07-09 16:07:43.938 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-09 16:07:44.166 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4b3e5ef3
+2024-07-09 16:07:44.170 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-09 16:08:30.814 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-09 16:08:30.847 [main] INFO  com.roger.WorkPracticeApplication - Starting WorkPracticeApplication using Java 21.0.3 with PID 21724 (C:\Workplace\springboot_project\work-practice\target\classes started by 2407009 in C:\Workplace\springboot_project\work-practice)
+2024-07-09 16:08:30.852 [main] INFO  com.roger.WorkPracticeApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-09 16:08:31.860 [main] WARN  org.springframework.context.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'myBatisConfig' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2024-07-09 16:08:32.303 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-09 16:08:32.313 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-09 16:08:32.315 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-09 16:08:32.316 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-09 16:08:32.369 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-09 16:08:32.371 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1270 ms
+2024-07-09 16:08:32.914 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-07-09 16:08:33.467 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-09 16:08:33.492 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-09 16:08:33.504 [main] INFO  com.roger.WorkPracticeApplication - Started WorkPracticeApplication in 3.066 seconds (process running for 3.841)
+2024-07-09 16:08:45.149 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-09 16:08:45.150 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-09 16:08:45.151 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-07-09 16:08:45.329 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-09 16:08:45.503 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@760152b6
+2024-07-09 16:08:45.505 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.

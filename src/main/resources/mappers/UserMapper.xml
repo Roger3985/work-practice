@@ -37,24 +37,6 @@
         WHERE id = #{id}
     </update>
 
-    <!-- 透過傳入的條件查找使用者(交集)，使用 resultType -->
-     <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
-        SELECT *
-        FROM "user"
-        <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
-        <where>
-            <if test="username != null and username != ''">
-                AND username = #{username}
-            </if>
-            <if test="nickname != null and nickname != ''">
-                AND nickname = #{nickname}
-            </if>
-            <if test="email != null and email != ''">
-                AND email = #{email}
-            </if>
-        </where>
-    </select>
-
     <!-- 透過傳入的條件查找使用者(交集)，使用 resultMap -->
     <resultMap id="userWithDepartmentMap" type="com.roger.user.pojo.User">
         <!-- 映射 User 類的屬性 -->
@@ -79,8 +61,38 @@
         </association>
     </resultMap>
 
-    <!-- 透過傳入的條件查找使用者(聯集)，使用 resultType -->
-    <select id="findByUserQueryUnion" resultType="com.roger.user.pojo.User">
+    <!--
+        透過傳入的條件查找使用者(交集)，使用 resultType
+        <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
+    -->
+    <!--
+        透過傳入的條件查找使用者(交集)，使用 resultMap
+    -->
+    <select id="findByUserQueryIntersection" resultMap="userWithDepartmentMap">
+        SELECT *
+        FROM "user"
+        <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
+        <where>
+            <if test="username != null and username != ''">
+                AND username = #{username}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND nickname = #{nickname}
+            </if>
+            <if test="email != null and email != ''">
+                AND email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <!--
+        透過傳入的條件查找使用者(聯集)，使用 resultType
+        <select id="findByUserQueryUnion" resultType="com.roger.user.pojo.User">
+    -->
+    <!--
+        透過傳入的條件查找使用者(聯集)，使用 resultMap
+    -->
+    <select id="findByUserQueryUnion" resultMap="userWithDepartmentMap">
         SELECT *
         FROM "user"
         <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
@@ -101,10 +113,8 @@
         透過使用者姓名查找使用者 使用 resultType
         <select id="findByUserName" resultType="com.roger.user.pojo.User">
     -->
-
     <!--
-        根據使用者名稱查找會員訊息，包含關聯的部門訊息
-        透過使用者姓名查找使用者 使用 resultMap
+        根據使用者名稱查找會員訊息，包含關聯的部門訊息，使用 resultMap
     -->
     <select id="findByUserName" resultMap="userWithDepartmentMap">
         SELECT u.id, u.username, u.password, u.nickname, u.email,

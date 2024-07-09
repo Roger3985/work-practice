@@ -37,8 +37,7 @@ public class MasterServiceImpl implements MasterService {
      * 交互 userService and DepartmentService
      */
     @Override
-    // @Transactional(propagation = Propagation.NOT_SUPPORTED) 有交易的情況下，還能各自獨立交易 作法一
-    // @Transactional(propagation = Propagation.REQUIRED)
+    // @Transactional(propagation = Propagation.REQUIRED) 有交易的情況下，還能各自獨立交易 作法一
     @Transactional
     public Result UserWithDepartment(UserDto userDto) {
         // 添加部門的相關邏輯
@@ -54,6 +53,17 @@ public class MasterServiceImpl implements MasterService {
         }
         logger.info("新增會員成功");
         return Result.success("新增會員成功，加入" + department.getName() + "部門");
+    }
+
+    /**
+     * 查詢員工與所在部門相關訊息
+     */
+    @Override
+    public UserDto findByUserNameWithDepartment(UserDto userDto) {
+        User user = userService.findByUserName(userDto.getUsername());
+        userDto.setUsername(user.getUsername());
+        userDto.setDepartment(user.getDepartment());
+        return userDto;
     }
 }
 

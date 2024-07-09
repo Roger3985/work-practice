@@ -37,4 +37,21 @@ public class MasterController {
     public Result register(@Valid @RequestBody UserDto userDto) {
         return masterService.UserWithDepartment(userDto);
     }
+
+    /**
+     * 查詢員工與所在部門相關訊息 (查)
+     */
+    @Operation(
+            summary = "查詢員工與所在部門相關訊息 (查)",
+            description = "透過此路徑查詢員工與所在部門相關訊息"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "狀態碼正常", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))),
+            @ApiResponse(responseCode = "401", description = "沒有權限", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))),
+            @ApiResponse(responseCode = "404", description = "找不到路徑", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class)))
+    })
+    @GetMapping("/searchUserWithDepartment")
+    public UserDto searchUserWithDepartment(@Valid @RequestBody UserDto userDto) {
+        return masterService.findByUserNameWithDepartment(userDto);
+    }
 }
