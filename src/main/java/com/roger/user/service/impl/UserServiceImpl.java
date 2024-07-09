@@ -1,6 +1,5 @@
 package com.roger.user.service.impl;
 
-import com.roger.department.pojo.Department;
 import com.roger.department.service.DepartmentService;
 import com.roger.user.dto.UserDto;
 import com.roger.user.mapper.UserMapper;
@@ -11,7 +10,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -104,8 +102,9 @@ public class UserServiceImpl implements UserService {
         }
         // Passwordencoder 加密
         String hashPassword = passwordEncoder.encode(userDto.getPassword());
+
         // 添加新會員
-        userMapper.addUser(userDto.getUsername(), hashPassword, userDto.getId());
+        userMapper.addUser(new User(userDto.getUsername(), hashPassword, userDto.getDepartment()));
         // int i = 1 / 0; // simulate an exception
         return user;
     }

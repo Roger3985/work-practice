@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -45,10 +44,7 @@ public class MasterServiceImpl implements MasterService {
         // 添加部門的相關邏輯
         Department department = departmentService.addDepartment(userDto);
 
-        // 放入 id
-        System.out.println("department: " + department.getId());
-        userDto.setId(department.getId());
-
+        userDto.setDepartment(department);
         // 添加使用者的相關邏輯
         User user = userService.register(userDto);
         // 返回錯誤結果

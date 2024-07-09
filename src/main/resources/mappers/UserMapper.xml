@@ -17,7 +17,7 @@
     <!-- 新增使用者 -->
     <insert id="addUser" parameterType="com.roger.user.pojo.User" useGeneratedKeys="true">
         INSERT INTO "user"(username, password, create_time, update_time, department_id)
-        VALUES (#{username}, #{password}, now(), now(), #{department_id})
+        VALUES (#{username}, #{password}, now(), now(), #{department.id})
     </insert>
 
     <!-- 刪除使用者 -->
@@ -37,8 +37,8 @@
         WHERE id = #{id}
     </update>
 
-    <!-- 透過傳入的條件查找使用者(交集) -->
-    <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
+    <!-- 透過傳入的條件查找使用者(交集)，使用 resultType -->
+     <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"
         <!-- where 能動態處理條件的連接詞(OR or AND) 假如判讀為第一個就會不加入連接詞 -->
@@ -55,7 +55,31 @@
         </where>
     </select>
 
-    <!-- 透過傳入的條件查找使用者(聯集) -->
+    <!-- 透過傳入的條件查找使用者(交集)，使用 resultMap -->
+    <resultMap id="userWithDepartmentMap" type="com.roger.user.pojo.User">
+        <!-- 映射 User 類的屬性 -->
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+        <result column="userPic" property="userPic"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+
+        <!-- 關聯查詢部門的信息，多對一關聯 -->
+        <association property="department" javaType="com.roger.department.pojo.Department">
+            <!--
+                在 <association> 元素中，<id> 元素的 column 屬性應該指向 user 表中的外鍵列 department_id
+                ，而 property 屬性則指向 Department 對象中的 id 屬性
+             -->
+            <id column="department_id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="description" property="description"/>
+        </association>
+    </resultMap>
+
+    <!-- 透過傳入的條件查找使用者(聯集)，使用 resultType -->
     <select id="findByUserQueryUnion" resultType="com.roger.user.pojo.User">
         SELECT *
         FROM "user"
@@ -72,10 +96,22 @@
             </if>
         </where>
     </select>
-    
-    <select id="findByUserName" resultType="com.roger.user.pojo.User">
-        SELECT *
-        FROM "user"
-        WHERE username = #{username}
+
+    <!--
+        透過使用者姓名查找使用者 使用 resultType
+        <select id="findByUserName" resultType="com.roger.user.pojo.User">
+    -->
+
+    <!--
+        根據使用者名稱查找會員訊息，包含關聯的部門訊息
+        透過使用者姓名查找使用者 使用 resultMap
+    -->
+    <select id="findByUserName" resultMap="userWithDepartmentMap">
+        SELECT u.id, u.username, u.password, u.nickname, u.email,
+               u.user_pic, u.create_Time, u.update_Time, u.department_id,
+               d.id, d.name, d.description
+        FROM "user" u
+        LEFT JOIN department d ON u.department_id = d.id
+        WHERE u.username = #{username}
     </select>
 </mapper>

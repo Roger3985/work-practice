@@ -13,7 +13,7 @@ public interface UserMapper {
     /**
      * 註冊
      */
-    void addUser(String username, String password, Integer department_id);
+    void addUser(User user);
 
     /**
      * 刪除會員

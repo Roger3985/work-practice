@@ -1,5 +1,6 @@
 package com.roger.user.dto;
 
+import com.roger.department.pojo.Department;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,6 +38,11 @@ public class UserDto {
     @Getter
     @Schema(description = "The description of the department", example = "this is a software department")
     private String description;
+
+    @Setter
+    @Getter
+    @Schema(description = "department")
+    private Department department;
 
     /*
         (1) 必須以一個以上的文字&數字開頭

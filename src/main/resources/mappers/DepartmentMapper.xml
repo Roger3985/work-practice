@@ -10,8 +10,19 @@
         VALUES (#{name})
     </insert>
 
-    <!-- 透過部門名稱查找部門 -->
-    <select id="findByDepartmentName" resultType="com.roger.department.pojo.Department">
+    <!-- 透過部門名稱查找部門，使用 resultType -->
+    <!-- <select id="findByDepartmentName" resultType="com.roger.department.pojo.Department">
+        SELECT * FROM department
+        WHERE name=#{name}
+    </select> -->
+
+    <!-- 使用部門名稱查找部門，使用 resultMap -->
+    <resultMap id="departmentMap" type="com.roger.department.pojo.Department">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+    </resultMap>
+    <select id="findByDepartmentName" resultMap="departmentMap">
         SELECT * FROM department
         WHERE name=#{name}
     </select>

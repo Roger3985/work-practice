@@ -1,5 +1,6 @@
 package com.roger.user.pojo;
 
+import com.roger.department.pojo.Department;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,8 +36,14 @@ public class User {
     @Schema(description = "The updateTime of the user")
     private LocalDateTime updateTime;
 
-    @Schema(description = "The ID associated with the department table ", example = "1")
-    private Integer department_id;
+    @Schema(description = "多對一關聯的部門屬性")
+    private Department department; // 多對一關聯的部門屬性
+
+    public User(String username, String password, Department department) {
+        this.username = username;
+        this.password = password;
+        this.department = department;
+    }
 
     public User(String username, String nickname, String email) {
         this.username = username;
