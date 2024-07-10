@@ -109,25 +109,26 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    /* @Override
-    public User register(UserDto userDto) {
-        return transactionTemplate.execute(status -> {
-            try {
-                // MyBatis 操作，這裡示範使用 UserMapper
-                User user = userMapper.findByUserName(userDto.getUsername());
-                if (user != null) {
-                    return user; // 已存在的用戶返回
-                }
-                String hashedPassword = passwordEncoder.encode(userDto.getPassword());
-                userMapper.addUser(userDto.getUsername(), hashedPassword, userDto.getId());
-                int i = 1 / 0; // simulate an exception
-                return userMapper.findByUserName(userDto.getUsername()); // 返回新創建的用戶
-            } catch (Exception e) {
-                status.setRollbackOnly(); // 發生異常時回滾事務
-                throw new RuntimeException("Failed to register user", e);
-            }
-        });
-    } */
+//    @Override
+//    public User register(UserDto userDto) {
+//
+//        return transactionTemplate.execute(status -> {
+//            try {
+//                // MyBatis 操作，這裡示範使用 UserMapper
+//                User user = userMapper.findByUserName(userDto.getUsername());
+//                if (user != null) {
+//                    return user; // 已存在的用戶返回
+//                }
+//                String hashedPassword = passwordEncoder.encode(userDto.getPassword());
+//                userMapper.addUser(userDto.getUsername(), hashedPassword, userDto.getId());
+//                int i = 1 / 0; // simulate an exception
+//                return userMapper.findByUserName(userDto.getUsername()); // 返回新創建的用戶
+//            } catch (Exception e) {
+//                status.setRollbackOnly(); // 發生異常時回滾事務
+//                throw new RuntimeException("Failed to register user", e);
+//            }
+//        });
+//    }
 
     /**
      * 刪除 user

@@ -11,13 +11,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "controller block")
 @RestController
 @RequestMapping("/master")
 public class MasterController {
-
+    @Value("${spring.datasource.password}")
+    private String password;
     @Autowired
     MasterService masterService;
 

@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
     <Appenders>
+        <!-- Console Appender 用於將日誌輸出到控制台 -->
+        <!--
+            target="SYSTEM_OUT" 表示將日誌輸出到系統的標準輸出，即控制台。
+            這使得您可以在控制台上看到日誌消息。
+        -->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!-- ThresholdFilter 用於保證 Console 只顯示 WARN 級別及以上的日誌 -->
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- PatternLayout 用於定義日誌消息的格式，並使用 ANSI 運算碼來設置顏色 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %highlight{%level: %msg}{FATAL=red bold blink, ERROR=red bold, WARN=yellow bold, INFO=green, DEBUG=cyan, TRACE=blue} %n"/>
         </Console>
 
-        <File name="File" fileName="src/main/resources/logs/app.log">
+        <!-- RollingFile Appender 用於將 INFO 級別的日誌記錄到文件，並每小時輪轉一次 -->
+        <RollingFile name="RollingFileINFO" fileName="src/main/resources/logs/app-info.log"
+                     filePattern="src/main/resources/logs/app-info-%d{yyyy-MM-dd-HH}.log.gz">
+            <!-- ThresholdFilter 用於過濾低於 INFO 級別的日誌 -->
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- PatternLayout 用於定義日誌消息的格式 -->
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </File>
+            <!-- Policies 定義輪轉策略 -->
+            <Policies>
+                <!-- TimeBasedTriggeringPolicy 定義基於時間的輪轉策略，interval="1" 表示每小時輪轉一次 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy 定義輪轉策略，max="2" 表示最多保留兩個文件 -->
+            <DefaultRolloverStrategy max="2"/>
+        </RollingFile>
+
+        <!-- RollingFile Appender 用於將 WARN 級別的日誌記錄到文件，並每小時輪轉一次 -->
+        <RollingFile name="RollingFileWARN" fileName="src/main/resources/logs/app-warn.log"
+                     filePattern="src/main/resources/logs/app-warn-%d{yyyy-MM-dd-HH}.log.gz">
+            <!--
+                屬性：
+                    level="WARN"：指定過濾器應運行的日誌等級。在本例中，它設定為 WARN，這表示過濾器將接受等級 WARN 或更高等級 ( WARN, ERROR, FATAL) 的日誌訊息。
+                    onMatch="ACCEPT"：定義當日誌訊息與指定等級相符時要採取的操作（在本例中為 WARN）。
+                    ACCEPT：表示應該接受符合指定等級的日誌訊息（允許通過過濾器）。
+                    onMismatch="DENY"：指定當日誌訊息不符合指定等級時要採取的動作。
+                    DENY：表示不符合指定等級的日誌訊息應被拒絕（過濾掉）。
+            -->
+            <!-- ThresholdFilter 用於過濾低於 WARN 級別的日誌 -->
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- PatternLayout 用於定義日誌消息的格式 -->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!-- Policies 定義輪轉策略 -->
+            <Policies>
+                <!-- TimeBasedTriggeringPolicy 定義基於時間的輪轉策略，interval="1" 表示每小時輪轉一次 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy 定義輪轉策略，max="2" 表示最多保留兩個文件 -->
+            <DefaultRolloverStrategy max="2"/>
+        </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="DEBUG">
+            <AppenderRef ref="RollingFileINFO"/>
+            <AppenderRef ref="RollingFileWARN"/>
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="File"/>
         </Root>
     </Loggers>
 </Configuration>

@@ -8,7 +8,10 @@ import com.roger.user.mapper.UserMapper;
 import com.roger.user.pojo.Result;
 import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.Chlid;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
+//@Log4j2
 public class MasterServiceImpl implements MasterService {
     @Autowired
     private UserMapper userMapper;
@@ -30,8 +34,12 @@ public class MasterServiceImpl implements MasterService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private Logger logger;
+    /*
+    * @Autowired
+    * private Logger logger;
+    */
+
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * 交互 userService and DepartmentService
@@ -48,9 +56,10 @@ public class MasterServiceImpl implements MasterService {
         User user = userService.register(userDto);
         // 返回錯誤結果
         if (user != null) {
-            logger.error("添加會員失敗");
+            logger.debug("添加會員失敗");
             return Result.error("該會員名稱已經被註冊");
         }
+
         logger.info("新增會員成功");
         return Result.success("新增會員成功，加入" + department.getName() + "部門");
     }
