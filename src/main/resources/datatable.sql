@@ -56,4 +56,8 @@ CREATE TABLE article (
     CONSTRAINT fk_article_user FOREIGN KEY (create_user) REFERENCES "user"(id)
 );
 
+-- 刪除 "user" 資料表
+DROP TABLE IF EXISTS "user";
 
+-- 刪除 "department" 資料表
+DROP TABLE IF EXISTS department;

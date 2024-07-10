@@ -92,8 +92,8 @@ public class UserServiceImpl implements UserService {
      * 註冊會員
      */
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW) // 有交易的情況下，還能各自獨立交易 作法二
-//    @Transactional
+    // @Transactional(propagation = Propagation.REQUIRES_NEW) // 有交易的情況下，還能各自獨立交易 作法二
+    @Transactional
     public User register(UserDto userDto) {
         // 檢查會員是否存在
         User user = userMapper.findByUserName(userDto.getUsername());
