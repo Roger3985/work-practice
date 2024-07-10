@@ -29,9 +29,9 @@ springdoc:
     path: /swagger-ui.html # Swagger UI 界面的路徑，預設的
 
 # 配置 Log4j2 Logging Configuration
-#logging:
+logging:
 #  level:
 #    root: info # 根據日誌的日誌級別
-#  file:
-#    name: myApp # 日誌文件名稱和路徑，相對於應用程式運行目錄
-#    config: classpath:log4j2-spring.xml # Log4j2 的配置文件位置，使用 classpath 資源
+  file:
+    name: myApp # 日誌文件名稱和路徑，相對於應用程式運行目錄
+    config: classpath:log4j2-spring.xml # Log4j2 的配置文件位置，使用 classpath 資源
