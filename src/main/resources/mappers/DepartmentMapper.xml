@@ -5,7 +5,7 @@
 <!-- namespace = 對應介面的全限定符 -->
 <mapper namespace="com.roger.department.mapper.DepartmentMapper">
     <!-- 透過部門名稱新增部門 -->
-    <insert id="addDepartment" parameterType="com.roger.department.pojo.Department" useGeneratedKeys="true">
+    <insert id="addDepartment" useGeneratedKeys="true">
         INSERT INTO department(name)
         VALUES (#{name})
     </insert>
