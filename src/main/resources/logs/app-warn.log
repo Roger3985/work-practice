@@ -1,1 +1,3 @@
-2024-07-10 14:12:24.691 [http-nio-8080-exec-1] ERROR com.roger.exception.GlobalExceptionHandler - java.lang.ArithmeticException: / by zero
+2024-07-11 09:53:04.897 [http-nio-8080-exec-2] WARN  com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-11 09:53:04.898 [http-nio-8080-exec-2] ERROR com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-11 09:53:04.898 [http-nio-8080-exec-2] FATAL com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗

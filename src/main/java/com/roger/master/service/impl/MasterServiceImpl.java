@@ -75,6 +75,7 @@ public class MasterServiceImpl implements MasterService {
         User user = userService.findByUserName(userDto.getUsername());
         userDto.setUsername(user.getUsername());
         userDto.setDepartment(user.getDepartment());
+        int i = 1 / 0;
         return userDto;
     }
 }
