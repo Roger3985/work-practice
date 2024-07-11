@@ -56,10 +56,14 @@ public class MasterServiceImpl implements MasterService {
         User user = userService.register(userDto);
         // 返回錯誤結果
         if (user != null) {
+            logger.warn("添加會員失敗");
             logger.error("添加會員失敗");
+            logger.fatal("添加會員失敗");
             return Result.error("該會員名稱已經被註冊");
         }
 
+        logger.trace("新增會員成功");
+        logger.debug("新增會員成功");
         logger.info("新增會員成功");
         return Result.success("新增會員成功，加入" + department.getName() + "部門");
     }

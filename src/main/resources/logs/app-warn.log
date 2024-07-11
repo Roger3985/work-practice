@@ -1,1 +1,1 @@
-2024-07-10 14:12:24.691 [http-nio-8080-exec-1] ERROR com.roger.exception.GlobalExceptionHandler - java.lang.ArithmeticException: / by zero
+2024-07-11 06:32:07.475 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54m44s16ms189µs200ns).
