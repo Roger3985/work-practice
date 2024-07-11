@@ -24,6 +24,8 @@
             <Policies>
                 <!-- TimeBasedTriggeringPolicy 定義基於時間的輪轉策略，interval="1" 表示每小時輪轉一次 -->
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- SizeBasedTriggeringPolicy 用於設置檔案大小 -->
+                <SizeBasedTriggeringPolicy size="25MB"/>
             </Policies>
             <!-- DefaultRolloverStrategy 定義輪轉策略，max="2" 表示最多保留兩個文件 -->
             <DefaultRolloverStrategy max="2"/>
@@ -48,16 +50,22 @@
             <Policies>
                 <!-- TimeBasedTriggeringPolicy 定義基於時間的輪轉策略，interval="1" 表示每小時輪轉一次 -->
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- SizeBasedTriggeringPolicy 用於設置檔案大小 -->
+                <SizeBasedTriggeringPolicy size="25MB"/>
             </Policies>
             <!-- DefaultRolloverStrategy 定義輪轉策略，max="2" 表示最多保留兩個文件 -->
             <DefaultRolloverStrategy max="2"/>
         </RollingFile>
     </Appenders>
     <Loggers>
+        <!-- Root logger configuration -->
         <Root level="INFO">
             <AppenderRef ref="RollingFileINFO"/>
+        </Root>
+        <!-- Logger for a specific package with WARN level -->
+        <Logger name="com.roger.master.service.impl.MasterServiceImpl" level="WARN" additivity="false">
             <AppenderRef ref="RollingFileWARN"/>
             <AppenderRef ref="Console"/>
-        </Root>
+        </Logger>
     </Loggers>
 </Configuration>

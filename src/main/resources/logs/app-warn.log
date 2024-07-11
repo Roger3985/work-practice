@@ -1,1 +1,0 @@
-2024-07-10 14:12:24.691 [http-nio-8080-exec-1] ERROR com.roger.exception.GlobalExceptionHandler - java.lang.ArithmeticException: / by zero

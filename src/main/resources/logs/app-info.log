@@ -1,0 +1,17 @@
+2024-07-10 14:12:06.500 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-10 14:12:06.569 [main] INFO  com.roger.WorkPracticeApplication - Starting WorkPracticeApplication using Java 21.0.3 with PID 16908 (C:\Workplace\springboot_project\work-practice\target\classes started by 2407009 in C:\Workplace\springboot_project\work-practice)
+2024-07-10 14:12:06.574 [main] INFO  com.roger.WorkPracticeApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-10 14:12:09.353 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-10 14:12:09.377 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-10 14:12:09.383 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-10 14:12:09.384 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-10 14:12:09.532 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-10 14:12:09.536 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2568 ms
+2024-07-10 14:12:10.401 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-07-10 14:12:11.811 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-10 14:12:11.868 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-10 14:12:11.887 [main] INFO  com.roger.WorkPracticeApplication - Started WorkPracticeApplication in 5.965 seconds (process running for 7.564)
+2024-07-10 14:12:24.499 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-10 14:12:24.499 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-10 14:12:24.501 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-07-10 14:12:24.691 [http-nio-8080-exec-1] ERROR com.roger.exception.GlobalExceptionHandler - java.lang.ArithmeticException: / by zero

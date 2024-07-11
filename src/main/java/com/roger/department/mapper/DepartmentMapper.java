@@ -16,5 +16,5 @@ public interface DepartmentMapper {
     /**
      * 新增部門
      */
-    void addDepartment(String name);
+     void addDepartment(String name);
 }

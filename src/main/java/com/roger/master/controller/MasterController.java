@@ -54,7 +54,6 @@ public class MasterController {
     })
     @GetMapping("/searchUserWithDepartment")
     public UserDto searchUserWithDepartment(@Valid @RequestBody UserDto userDto) {
-        int i = 1 / 0;
         return masterService.findByUserNameWithDepartment(userDto);
     }
 }

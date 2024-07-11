@@ -21,6 +21,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public Department findByDepartmentName(String name) {
+        // int i = 1 / 0;
         return departmentMapper.findByDepartmentName(name);
     }
 
@@ -40,6 +41,13 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department newDepartment = new Department();
         newDepartment.setName(userDto.getName());
         departmentMapper.addDepartment(newDepartment.getName());
+
+        // 檢查新部門的 id 是否已經被設置
+        if (newDepartment.getId() != null) {
+            System.out.println("New department ID: " + newDepartment.getId());
+        } else {
+            System.err.println("Failed to retrieve the generated key for the new department.");
+        }
         return newDepartment;
     }
 }
