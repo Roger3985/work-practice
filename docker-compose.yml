@@ -10,3 +10,14 @@ services:
       POSTGRES_PASSWORD: mysecretpassword
     ports:
       - "5433:5432" # 將宿主機的5433端口映射到容器的5432端口
+  app:
+    image:
+    container_name: springproject
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: mysecretpassword
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
