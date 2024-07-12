@@ -39,14 +39,14 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         // 部門不存在，創建新部門
         Department newDepartment = new Department();
+        departmentMapper.addDepartment(userDto);
         newDepartment.setName(userDto.getName());
-        departmentMapper.addDepartment(newDepartment.getName());
-        System.out.println("new department" + newDepartment);
-        Integer generatedId = newDepartment.getId();
+        Integer generatedId = userDto.getId();
+        newDepartment.setId(generatedId);
 
         // 檢查新部門的 id 是否已經被設置
         if (generatedId != null) {
-            System.out.println("New department ID: " + newDepartment.getId());
+            System.out.println("New department ID: " + generatedId);
         } else {
             System.err.println("Failed to retrieve the generated key for the new department.");
         }

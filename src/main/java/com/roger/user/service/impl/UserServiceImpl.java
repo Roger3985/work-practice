@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
     public Result deleteUser(UserDto userDto) {
         // 檢查該會員是否存在
         User user = userMapper.findByUserName(userDto.getUsername());
-        int i = 1 / 0; // simulate an exception
+        // int i = 1 / 0; // simulate an exception
         if (user != null && passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
             userMapper.deleteUser(user);
             return Result.success("該會員已經被刪除");

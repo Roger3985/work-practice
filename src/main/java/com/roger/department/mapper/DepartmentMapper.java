@@ -1,6 +1,7 @@
 package com.roger.department.mapper;
 
 import com.roger.department.pojo.Department;
+import com.roger.user.dto.UserDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,5 +17,5 @@ public interface DepartmentMapper {
     /**
      * 新增部門
      */
-     void addDepartment(String name);
+     void addDepartment(UserDto userDto);
 }

@@ -20,7 +20,6 @@ public class MyBatisConfig {
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
         configuration.setLogImpl(StdOutImpl.class); // 使用標準輸出方式 STDOUT_LOGGING
         sessionFactoryBean.setConfiguration(configuration);
-
         // Resource mybatisConfig = new ClassPathResource("mybatis-config.xml");
         // sessionFactoryBean.setConfigLocation(mybatisConfig);
         // 全部的 mappers 設置

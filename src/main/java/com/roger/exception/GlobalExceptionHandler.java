@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 // @ControllerAdvice
 // @ResponseBody // If you want to  responsebody return the error by exceptionHandler need to write this annotation
-@RestControllerAdvice
+@RestControllerAdvice // @ControllerAdvice and @ResponseBody combine
 @Slf4j // use it
 public class GlobalExceptionHandler {
 

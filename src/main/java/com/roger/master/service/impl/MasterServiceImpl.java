@@ -49,8 +49,8 @@ public class MasterServiceImpl implements MasterService {
     public Result UserWithDepartment(UserDto userDto) {
         // 添加部門的相關邏輯
         Department department = departmentService.addDepartment(userDto);
-
         userDto.setDepartment(department);
+
         // 添加使用者的相關邏輯
         User user = userService.register(userDto);
         // 返回錯誤結果
@@ -72,14 +72,12 @@ public class MasterServiceImpl implements MasterService {
      */
     @Override
     public UserDto findByUserNameWithDepartment(UserDto userDto) {
-        try {
-            User user = userService.findByUserName(userDto.getUsername());
-            userDto.setUsername(user.getUsername());
-            userDto.setDepartment(user.getDepartment());
-        } catch (RuntimeException e) {
-            int i = 1 / 0; // // test ArithmeticException
-            // throw new RuntimeException(e); // test RuntimeException
-        }
+
+        User user = userService.findByUserName(userDto.getUsername());
+        userDto.setUsername(user.getUsername());
+        userDto.setDepartment(user.getDepartment());
+        // int i = 1 / 0;
+        // throw new RuntimeException (需要去知道受檢例外跟非受檢例外) 這邊不能 throw new Exception
         return userDto;
     }
 }
