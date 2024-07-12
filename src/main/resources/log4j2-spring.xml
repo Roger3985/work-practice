@@ -64,7 +64,7 @@
             Root logger configuration
             Root usually set level is high than Logger
         -->
-        <Root level="WARN">
+        <Root level="INFO">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFileWARN"/>
         </Root>

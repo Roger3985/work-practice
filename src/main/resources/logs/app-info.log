@@ -1,2 +1,13 @@
-2024-07-12 14:11:54.351 [http-nio-8080-exec-1] INFO  com.roger.master.service.impl.MasterServiceImpl - 新增會員成功
-2024-07-12 14:13:54.195 [http-nio-8080-exec-1] INFO  com.roger.master.service.impl.MasterServiceImpl - 新增會員成功
+2024-07-12 16:01:38.612 [http-nio-8080-exec-2] WARN  com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:01:38.630 [http-nio-8080-exec-2] ERROR com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:01:38.630 [http-nio-8080-exec-2] FATAL com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:01:45.226 [http-nio-8080-exec-3] INFO  com.roger.master.service.impl.MasterServiceImpl - 新增會員成功
+2024-07-12 16:02:50.812 [http-nio-8080-exec-1] WARN  com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:02:50.813 [http-nio-8080-exec-1] ERROR com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:02:50.813 [http-nio-8080-exec-1] FATAL com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:50:48.495 [http-nio-8080-exec-1] WARN  com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:50:48.496 [http-nio-8080-exec-1] ERROR com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:50:48.496 [http-nio-8080-exec-1] FATAL com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:51:21.850 [http-nio-8080-exec-2] WARN  com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:51:21.851 [http-nio-8080-exec-2] ERROR com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 16:51:21.851 [http-nio-8080-exec-2] FATAL com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
