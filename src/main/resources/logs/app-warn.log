@@ -1,3 +1,15 @@
-2024-07-11 09:53:04.897 [http-nio-8080-exec-2] WARN  com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
-2024-07-11 09:53:04.898 [http-nio-8080-exec-2] ERROR com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
-2024-07-11 09:53:04.898 [http-nio-8080-exec-2] FATAL com.roger.master.service.impl.MasterServiceImpl - 添加會員失敗
+2024-07-12 06:59:48.613 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-07-12 06:59:48.630 [main] ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

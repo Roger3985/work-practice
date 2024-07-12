@@ -72,10 +72,14 @@ public class MasterServiceImpl implements MasterService {
      */
     @Override
     public UserDto findByUserNameWithDepartment(UserDto userDto) {
-        User user = userService.findByUserName(userDto.getUsername());
-        userDto.setUsername(user.getUsername());
-        userDto.setDepartment(user.getDepartment());
-        int i = 1 / 0;
+        try {
+            User user = userService.findByUserName(userDto.getUsername());
+            userDto.setUsername(user.getUsername());
+            userDto.setDepartment(user.getDepartment());
+        } catch (RuntimeException e) {
+            int i = 1 / 0; // // test ArithmeticException
+            // throw new RuntimeException(e); // test RuntimeException
+        }
         return userDto;
     }
 }

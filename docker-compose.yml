@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  db:
+    image: postgres:14.12
+    container_name: nice_zhukovsky
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "5433:5432" # 將宿主機的5433端口映射到容器的5432端口

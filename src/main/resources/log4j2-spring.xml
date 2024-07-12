@@ -5,10 +5,12 @@
         <!--
             target="SYSTEM_OUT" 表示將日誌輸出到系統的標準輸出，即控制台。
             這使得您可以在控制台上看到日誌消息。
+            通常 console not to set the filter
         -->
         <Console name="Console" target="SYSTEM_OUT">
             <!-- ThresholdFilter 用於保證 Console 只顯示 WARN 級別及以上的日誌 -->
-<!--            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>-->
+
+            <!-- <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/> -->
             <!-- PatternLayout 用於定義日誌消息的格式，並使用 ANSI 運算碼來設置顏色 -->
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %highlight{%level: %msg}{FATAL=red bold blink, ERROR=red bold, WARN=yellow bold, INFO=green, DEBUG=cyan, TRACE=blue} %n"/>
         </Console>
@@ -58,15 +60,17 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <!-- Root logger configuration -->
-        <Root level="ERROR">
-<!--            <AppenderRef ref="RollingFileINFO"/>-->
+        <!--
+            Root logger configuration
+            Root usually set level is high than Logger
+        -->
+        <Root level="WARN">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFileWARN"/>
         </Root>
-        <!-- Logger for a specific package with WARN level -->
-        <Logger name="com.roger.master.service.impl.MasterServiceImpl" level="DEBUG" additivity="false">
-<!--            <AppenderRef ref="RollingFileWARN"/>-->
-<!--            <AppenderRef ref="Console"/>-->
+        <!-- Logger for a specific package with INFO level -->
+        <Logger name="com.roger.master.service.impl.MasterServiceImpl" level="INFO" additivity="false">
+            <AppenderRef ref="RollingFileINFO"/>
         </Logger>
     </Loggers>
 </Configuration>

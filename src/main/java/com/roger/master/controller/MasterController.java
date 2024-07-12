@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/master")
 public class MasterController {
+
     @Value("${spring.datasource.password}")
     private String password;
+
     @Autowired
     MasterService masterService;
 
