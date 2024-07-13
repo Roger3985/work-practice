@@ -13,7 +13,7 @@ CREATE TABLE "user" (
     password VARCHAR(60),
     nickname VARCHAR(10) DEFAULT '',
     email VARCHAR(128) DEFAULT '',
-    user_pic VARCHAR(128) DEFAULT '',
+    user_pic BYTEA DEFAULT decode('', 'escape'),
     create_time TIMESTAMP NOT NULL,
     update_time TIMESTAMP NOT NULL,
     department_id INT REFERENCES department(id)
@@ -61,3 +61,6 @@ DROP TABLE IF EXISTS "user";
 
 -- 刪除 "department" 資料表
 DROP TABLE IF EXISTS department;
+
+-- 檢查表的型態跟內容
+-- \d+ table name
