@@ -37,8 +37,9 @@ ENTRYPOINT ["java", "SPRING_PROFILES_ACTIVE=dev","-jar", "app.jar"]
 ```
 
 * Go to the spring boot application root directory open the cmd and create jar file using following command
-```mvn clean```
-```mvn package```
+First: ```mvn clean```
+Second: ```mvn package```
+Finally: The .jar file will create on the target package.
    ### Docker Commands
 * Execute the following docker command to create the docker images.<br>
 * ```docker buile -t <imagename> .```
