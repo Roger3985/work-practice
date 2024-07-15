@@ -19,7 +19,7 @@ public class JDBCTest10 {
 
         try {
             // this is like Class.forName(driver), but register is not suggest to use
-            DriverManager.registerDriver(new org.postgresql.Driver());
+            // DriverManager.registerDriver(new org.postgresql.Driver());
             conn = DriverManager.getConnection(url, user, password);
             System.out.println(conn);
             conn.setAutoCommit(false);

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://10.88.0.2:5432/postgres # windows
+    url: jdbc:postgresql://postgres:5432/postgres # windows
 #    url: jdbc:postgresql://10.89.0.2:5432/postgres # mac
     username: postgres
     password: mysecretpassword

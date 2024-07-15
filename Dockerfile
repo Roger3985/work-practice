@@ -10,6 +10,9 @@ COPY target/work-practice-1.0-SNAPSHOT.jar app.jar
 # 應用程式運行時的端口
 EXPOSE 8080
 
+# 運行時環境變數
+# ENV SPRING_PROFILES_ACTIVE=dev
+
 # 設定容器啟動時執行的命令
 ENTRYPOINT ["java", "SPRING_PROFILES_ACTIVE=dev","-jar", "app.jar"]
 
