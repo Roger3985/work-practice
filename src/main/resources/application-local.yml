@@ -35,3 +35,6 @@ logging:
   file:
     name: myApp # 日誌文件名稱和路徑，相對於應用程式運行目錄
     config: classpath:log4j2-spring.xml # Log4j2 的配置文件位置，使用 classpath 資源
+
+zk:
+  homepage: hello.zul
