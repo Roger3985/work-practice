@@ -1,14 +1,11 @@
+server:
+  port: 8080
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: mysecretpassword
     driver-class-name: org.postgresql.Driver
-  mvc:
-    view:
-      prefix: /zul
-      suffix: .zul
-
 
 #  thymeleaf:
 #    prefix: classpath:/templates/
@@ -46,5 +43,6 @@ zk:
   homepage: demo
   zul-view-resolver-prefix: /zul
   zul-view-resolver-suffix: .zul
+  zul-view-resolver-enabled: true
   richlet-filter-mapping: /richlet/*
   resource-uri: /zkres

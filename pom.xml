@@ -160,7 +160,6 @@
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zkbind</artifactId>
       <version>${zk.version}</version>
-      <scope>provided</scope>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>
