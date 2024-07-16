@@ -52,7 +52,7 @@
         <!-- 關聯查詢部門的信息，多對一關聯 -->
         <association property="department" javaType="com.roger.department.pojo.Department">
             <!--
-                在 <association> 元素中，<id> 元素的 column 屬性應該指向 user 表中的外鍵列 department_id
+                在 <association> 元素中，<id> 元素的 column 屬性應該指向 userZKZK 表中的外鍵列 department_id
                 ，而 property 屬性則指向 Department 對象中的 id 屬性
              -->
             <id column="department_id" property="id"/>
@@ -63,7 +63,7 @@
 
     <!--
         透過傳入的條件查找使用者(交集)，使用 resultType
-        <select id="findByUserQueryIntersection" resultType="com.roger.user.pojo.User">
+        <select id="findByUserQueryIntersection" resultType="com.roger.userZKZK.pojo.User">
     -->
     <!--
         透過傳入的條件查找使用者(交集)，使用 resultMap
@@ -87,7 +87,7 @@
 
     <!--
         透過傳入的條件查找使用者(聯集)，使用 resultType
-        <select id="findByUserQueryUnion" resultType="com.roger.user.pojo.User">
+        <select id="findByUserQueryUnion" resultType="com.roger.userZKZK.pojo.User">
     -->
     <!--
         透過傳入的條件查找使用者(聯集)，使用 resultMap
@@ -111,7 +111,7 @@
 
     <!--
         透過使用者姓名查找使用者 使用 resultType
-        <select id="findByUserName" resultType="com.roger.user.pojo.User">
+        <select id="findByUserName" resultType="com.roger.userZKZK.pojo.User">
     -->
     <!--
         根據使用者名稱查找會員訊息，包含關聯的部門訊息，使用 resultMap

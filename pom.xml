@@ -158,8 +158,24 @@
     </dependency>
     <dependency>
       <groupId>org.zkoss.zk</groupId>
+      <artifactId>zk</artifactId>
+      <version>${zk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.zkoss.zk</groupId>
       <artifactId>zkplus</artifactId>
       <version>${zk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.zkoss.zk</groupId>
+      <artifactId>zkbind</artifactId>
+      <version>${zk.version}</version>
+      <exclusions>
+      <exclusion>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+      </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>jakarta.servlet</groupId>
@@ -167,22 +183,6 @@
       <version>6.0.0</version>
       <scope>provided</scope>
     </dependency>
-    <!--    <dependency>-->
-    <!--      <groupId>org.zkoss.zk</groupId>-->
-    <!--      <artifactId>zk</artifactId>-->
-    <!--      <version>${zk.version}</version>-->
-    <!--    </dependency>-->
-    <!--    <dependency>-->
-    <!--      <groupId>org.zkoss.zk</groupId>-->
-    <!--      <artifactId>zkbind</artifactId>-->
-    <!--      <version>${zk.version}</version>-->
-    <!--      <exclusions>-->
-    <!--        <exclusion>-->
-    <!--          <groupId>org.slf4j</groupId>-->
-    <!--          <artifactId>slf4j-jdk14</artifactId>-->
-    <!--        </exclusion>-->
-    <!--      </exclusions>-->
-    <!--    </dependency>-->
     <!-- ZK END -->
   </dependencies>
 
