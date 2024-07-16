@@ -1,7 +1,36 @@
-<zk>
-    What's your name: <textbox id="demoInput"/>
-    <button id="demoButton" label="Submit" onClick='demoLabel.setValue("Hello " + demoInput.getValue() + "!")'/>
-    <separator/>
-    <label id="demoLabel"/>
-    <button label="Cause Error" onClick='throw new NullPointerException("Unknown Value")'/>
+<zk xmlns:n="http://www.w3.org/1999/xhtml" n:script="function submitForm() {
+        var username = zk.Widget.$('$usernameBox').getValue();
+        var password = zk.Widget.$('$passwordBox').getValue();
+        var email = zk.Widget.$('$emailBox').getValue();
+
+        // You can now handle the form data, e.g., send it to the server using AJAX
+        console.log('Username:', username);
+        console.log('Password:', password);
+        console.log('Email:', email);
+
+        // Example: Displaying the response
+        var responseLabel = zk.Widget.$('$responseLabel');
+        responseLabel.setValue(&quot;User &quot; + username + &quot; with email &quot; + email + &quot; has been registered.&quot;);
+        }">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="User Register" border="normal" width="400px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.zk.viewmodel.UserViewModel')">
+            <vlayout>
+                <label value="What's your name:"/>
+                <textbox value="@bind(vm.username)" id="usernameBox"/>
+                <label value="Password: "/>
+                <textbox value="@bind(vm.password)" id="passwordBox"/>
+                <button label="Submit" onClick="@command('submit')"/>
+                <separator/>
+                <label value="@bind(vm.response)" id="responseLabel"/>
+            </vlayout>
+        </window>
+    </div>
+
+    <zscript><![CDATA[
+        void submit() {
+            Clients.evalJavaScript("submitForm()");
+        }
+    ]]></zscript>
 </zk>
