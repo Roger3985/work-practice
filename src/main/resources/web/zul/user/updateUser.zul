@@ -27,7 +27,7 @@
                 <button label="Submit" onClick="@command('updateUser')"/>
                 <separator/>
                 <label value="@bind(vm.response)" id="responseLabel"/>
-                <button label="Go Back to Register Page" onClick="@command('registerPage')"/>
+                <button label="Go Back to index Page" onClick="@command('indexPage')"/>
             </vlayout>
         </window>
     </div>

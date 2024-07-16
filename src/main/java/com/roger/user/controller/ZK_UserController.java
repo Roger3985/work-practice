@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/zk")
 public class ZK_UserController {
 
+    @GetMapping("/registerUser")
+    public String register() {
+        return "user/registerUser";
+    }
+
     @GetMapping("/deleteUser")
     public String deleteUser() {
         return "user/deleteUser";

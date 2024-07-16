@@ -19,12 +19,10 @@
                 <textbox value="@bind(vm.username)" id="usernameBox"/>
                 <label value="Password: "/>
                 <textbox value="@bind(vm.password)" id="passwordBox"/>
-                <button label="Submit" onClick="@command('register')"/>
+                <button label="Submit" onClick="@command('registerUser')"/>
                 <separator/>
                 <label value="@bind(vm.response)" id="responseLabel"/>
-                <button label="Go to Delete Page" onClick="@command('deletePage')"/>
-                <button label="Go to Update Page" onClick="@command('updatePage')"/>
-                <button label="Go to Search Page" onClick="@command('searchPage')"/>
+                <button label="Go Back to index Page" onClick="@command('indexPage')"/>
             </vlayout>
         </window>
     </div>
