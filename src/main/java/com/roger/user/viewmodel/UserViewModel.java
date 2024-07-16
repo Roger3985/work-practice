@@ -20,16 +20,23 @@ public class UserViewModel {
     @WireVariable
     private PasswordEncoder passwordEncoder;
 
-    @WireVariable
-    private User user;
-
     private String username;
     private String password;
     private String response;
+    private String nickname;
+    private String email;
+
+    /**
+     * Go to register Page
+     */
+    public void registerPage() {
+        Executions.sendRedirect("/");
+    }
 
     @Command
     @NotifyChange("response")
     public void register() {
+        User user = new User();
         user.setUsername(username);
         password = passwordEncoder.encode(password);
         user.setPassword(password);
@@ -47,9 +54,15 @@ public class UserViewModel {
     @Command
     @NotifyChange("response")
     public void deleteUser() {
+
+        User user = new User();
         user = userMapper.findByUserName(username);
-        userMapper.deleteUser(user);
-        response = "User " + username + " is delete success";
+        if (user != null) {
+            userMapper.deleteUser(user);
+            response = "User " + username + " is delete success";
+        } else {
+            response = "Can not delete, Because user is no existed";
+        }
     }
 
     /**
@@ -59,6 +72,25 @@ public class UserViewModel {
         Executions.sendRedirect("/zk/updateUser");
     }
 
+    @Command
+    @NotifyChange("response")
+    public void updateUser() {
+
+        User user = new User();
+        user = userMapper.findByUserName(username);
+        if (user != null) {
+            user.setUsername(username);
+            password = passwordEncoder.encode(password);
+            user.setPassword(password);
+            user.setNickname(nickname);
+            user.setEmail(email);
+            userMapper.updateUser(user);
+            response = "The " + username + " is update success.";
+        } else {
+            response = "The user is no exist.";
+        }
+    }
+
     /**
      * Go to search Page
      */
@@ -66,9 +98,18 @@ public class UserViewModel {
         Executions.sendRedirect("/zk/searchUser");
     }
 
+    @Command
+    @NotifyChange("response")
+    public void searchUser() {
 
-
-
+        User user = new User();
+        user = userMapper.findByUserName(username);
+        if (user != null) {
+            response = "User finds and the username: " + username;
+        } else {
+            response = "User is not found. Please try again";
+        }
+    }
 
     // Getters and setters for username, password, email, and response
     public String getUsername() {
@@ -85,6 +126,22 @@ public class UserViewModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getResponse() {
