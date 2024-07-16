@@ -19,8 +19,8 @@
   <properties>
     <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!--    <zk.version>8.5.0</zk.version>-->
-<!--    <zk-spring.version>3.2.0</zk-spring.version>-->
+    <zk.version>10.0.0-jakarta</zk.version>
+    <zkspringboot.version>3.2.3</zkspringboot.version>
   </properties>
 
   <dependencies>
@@ -112,14 +112,14 @@
     </dependency>
 
     <!-- thymeleaf -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>nz.net.ultraq.thymeleaf</groupId>
-      <artifactId>thymeleaf-layout-dialect</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>nz.net.ultraq.thymeleaf</groupId>-->
+<!--      <artifactId>thymeleaf-layout-dialect</artifactId>-->
+<!--    </dependency>-->
 
     <!-- Springdoc openAPI -->
     <dependency>
@@ -144,65 +144,46 @@
       <artifactId>spring-boot-starter-log4j2</artifactId>
     </dependency>
 
-    <!--START - zk frameworK-->
+    <!-- ZK START -->
+    <dependency>
+      <groupId>org.zkoss.zkspringboot</groupId>
+      <artifactId>zkspringboot-starter</artifactId>
+      <type>pom</type>
+      <version>${zkspringboot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.zkoss.zk</groupId>
+      <artifactId>zk</artifactId>
+      <version>${zk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.zkoss.zk</groupId>
+      <artifactId>zkbind</artifactId>
+      <version>${zk.version}</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-jdk14</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 <!--    <dependency>-->
-<!--      <groupId>org.zkoss.zkspringboot</groupId>-->
-<!--      <artifactId>zkspringboot-starter</artifactId>-->
-<!--      <type>pom</type>-->
-<!--      <version>${zkspringboot.version}</version>-->
+<!--      <groupId>jakarta.servlet</groupId>-->
+<!--      <artifactId>jakarta.servlet-api</artifactId>-->
+<!--      <version>6.0.0</version>-->
+<!--      <scope>provided</scope>-->
 <!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.zkoss.zk</groupId>-->
-<!--      <artifactId>zul</artifactId>-->
-<!--      <version>${zk.version}</version>-->
-<!--      &lt;!&ndash; <exclusions>-->
-<!--        <exclusion>-->
-<!--          <artifactId>slf4j-jdk14</artifactId>-->
-<!--          <groupId>org.slf4j</groupId>-->
-<!--        </exclusion>-->
-<!--      </exclusions> &ndash;&gt;-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.zkoss.zk</groupId>-->
-<!--      <artifactId>zkspring-core</artifactId>-->
-<!--      <version>${zk-spring.version}</version>-->
-<!--      <exclusions>-->
-<!--        <exclusion>-->
-<!--          <artifactId>servlet-api</artifactId>-->
-<!--          <groupId>javax.servlet</groupId>-->
-<!--        </exclusion>-->
-<!--      </exclusions>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.zkoss.zk</groupId>-->
-<!--      <artifactId>zkplus</artifactId>-->
-<!--      <version>${zk.version}</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.zkoss.zk</groupId>-->
-<!--      <artifactId>zhtml</artifactId>-->
-<!--      <version>${zk.version}</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.zkoss.zk</groupId>-->
-<!--      <artifactId>zkbind</artifactId>-->
-<!--      <version>${zk.version}</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.zkoss.theme</groupId>-->
-<!--      <artifactId>silvertail</artifactId>-->
-<!--      <version>${zk.version}</version>-->
-<!--    </dependency>-->
-<!--    &lt;!&ndash;END - zk framework dependency&ndash;&gt;-->
+    <!-- ZK END -->
   </dependencies>
 
-<!--  <repositories>-->
-<!--    <repository>-->
-<!--      <id>ZK CE</id>-->
-<!--      <name>ZK CE Repository</name>-->
-<!--      <url>https://mavensync.zkoss.org/maven2</url>-->
-<!--    </repository>-->
-<!--  </repositories>-->
+  <repositories>
+    <repository>
+      <id>ZK CE</id>
+      <name>ZK CE Repository</name>
+      <url>https://mavensync.zkoss.org/maven2</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>

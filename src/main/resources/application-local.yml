@@ -4,10 +4,10 @@ spring:
     username: postgres
     password: mysecretpassword
     driver-class-name: org.postgresql.Driver
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: html
-    encoding: UTF-8
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: html
+#    encoding: UTF-8
 
 # mybatis 整合 mybatis 可以拋棄 mybatis-config.xml
 mybatis:
@@ -37,4 +37,8 @@ logging:
     config: classpath:log4j2-spring.xml # Log4j2 的配置文件位置，使用 classpath 資源
 
 zk:
-  homepage: hello.zul
+  homepage: demo
+  zul-view-resolver-prefix: /zul
+  zul-view-resolver-suffix: .zul
+  richlet-filter-mapping: /richlet/*
+  resource-uri: /zkres

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <zk>
     <window title="Hello ZK - Spring Boot!" border="normal">
-        You are using ZK version <label value="${session.web.version}"/>
+        You are using ZK version
     </window>
 </zk>
