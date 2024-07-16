@@ -10,7 +10,9 @@ public class ZKController {
 
     @GetMapping("/hello")
     public String hello() {
-        return null;
+        return "user";
     }
+
+
 
 }
