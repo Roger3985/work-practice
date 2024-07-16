@@ -18,6 +18,7 @@
                 <button label="Submit" onClick="@command('deleteUser')"/>
                 <separator/>
                 <label value="@bind(vm.response)" id="responseLabel"/>
+                <button label="Go Back to Register Page" onClick="@command('registerPage')"/>
             </vlayout>
         </window>
     </div>

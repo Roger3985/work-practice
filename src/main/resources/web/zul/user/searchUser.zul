@@ -6,7 +6,7 @@
 
         // Example: Displaying the response
         var responseLabel = zk.Widget.$('$responseLabel');
-        responseLabel.setValue(&quot;User &quot; + username + &quot; + &quot; has been deleted.&quot;);
+        responseLabel.setValue(&quot;User &quot; + username + &quot; + &quot; has been searched.&quot;);
         }">
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
         <window title="User Search" border="normal" width="400px"
@@ -15,9 +15,10 @@
             <vlayout>
                 <label value="What's your name:"/>
                 <textbox value="@bind(vm.username)" id="usernameBox"/>
-                <button label="Submit" onClick="@command('deleteUser')"/>
+                <button label="Submit" onClick="@command('searchUser')"/>
                 <separator/>
                 <label value="@bind(vm.response)" id="responseLabel"/>
+                <button label="Go Back to Register Page" onClick="@command('registerPage')"/>
             </vlayout>
         </window>
     </div>
