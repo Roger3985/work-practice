@@ -4,6 +4,12 @@ spring:
     username: postgres
     password: mysecretpassword
     driver-class-name: org.postgresql.Driver
+  mvc:
+    view:
+      suffix: .zul
+    view-name-suffix: -zul
+
+
 #  thymeleaf:
 #    prefix: classpath:/templates/
 #    suffix: html
