@@ -1,22 +1,24 @@
 <zk>
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <window title="All Users" border="normal" width="600px"
+        <window title="All Users" border="normal" width="800px"
                 apply="org.zkoss.bind.BindComposer"
                 viewModel="@id('vm') @init('com.roger.user.viewmodel.UserListViewModel')">
-            <vlayout>
-                <listbox model="@load(vm.users)" onSelect="@command('editUser', user=vm.selectedUser)">
-                    <listhead>
-                        <listheader label="Username"/>
-                        <listheader label="Nickname"/>
-                    </listhead>
-                    <template name="model" var="user">
-                        <listitem>
-                            <listcell label="@load(user.username)"/>
-                            <listcell label="@load(user.nickname)"/>
-                        </listitem>
-                    </template>
-                </listbox>
-            </vlayout>
+            <grid model="@load(vm.users)">
+                <columns>
+                    <column label="Username"/>
+                    <column label="Nickname"/>
+                    <column label="Email"/>
+                    <column label="Actions"/>
+                </columns>
+                <template name="model" var="user">
+                    <row>
+                        <label value="@load(user.username)"/>
+                        <label value="@load(user.nickname)"/>
+                        <label value="@load(user.email)"/>
+                        <button label="Edit" onClick="@command('editUser', user=user)"/>
+                    </row>
+                </template>
+            </grid>
         </window>
     </div>
 </zk>

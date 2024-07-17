@@ -1,0 +1,13 @@
+<zk>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="User Details" border="normal" width="400px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.UserDetailViewModel')">
+            <vlayout>
+                <label value="User Details"/>
+                <label value="Username: @bind(vm.user.username)"/>
+                <label value="Nickname: @bind(vm.user.nickname)"/>
+            </vlayout>
+        </window>
+    </div>
+</zk>

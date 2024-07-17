@@ -1,5 +1,6 @@
 package com.roger.user.viewmodel;
 
+import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
 import com.roger.user.dto.UserDto;
 import org.zkoss.bind.annotation.BindingParam;
@@ -9,6 +10,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +21,8 @@ public class UserListViewModel {
     @WireVariable
     private UserService userService;
 
-    private List<UserDto> users;
-    private UserDto selectedUser;
+    private List<UserDto> users = new ArrayList<>();
+    private UserDto selectedUser = new UserDto();
 
     @Init
     public void init() {
@@ -29,6 +31,7 @@ public class UserListViewModel {
 
     @Command
     public void editUser(@BindingParam("user") UserDto user) {
+        System.out.println("user:" + user.getUsername());
         Map<String, Object> args = new HashMap<>();
         args.put("user", user);
         // 將選擇的會員傳遞到編輯頁面，使用正確的ZUL文件路徑
