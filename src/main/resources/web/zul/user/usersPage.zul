@@ -1,0 +1,22 @@
+<zk>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="All Users" border="normal" width="600px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.UserListViewModel')">
+            <vlayout>
+                <listbox model="@load(vm.users)" onSelect="@command('editUser', user=vm.selectedUser)">
+                    <listhead>
+                        <listheader label="Username"/>
+                        <listheader label="Email"/>
+                    </listhead>
+                    <template name="model" var="user">
+                        <listitem>
+                            <listcell label="@load(user.username)"/>
+                            <listcell label="@load(user.email)"/>
+                        </listitem>
+                    </template>
+                </listbox>
+            </vlayout>
+        </window>
+    </div>
+</zk>
