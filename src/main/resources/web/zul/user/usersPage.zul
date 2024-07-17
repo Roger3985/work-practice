@@ -7,12 +7,12 @@
                 <listbox model="@load(vm.users)" onSelect="@command('editUser', user=vm.selectedUser)">
                     <listhead>
                         <listheader label="Username"/>
-                        <listheader label="Email"/>
+                        <listheader label="Nickname"/>
                     </listhead>
                     <template name="model" var="user">
                         <listitem>
                             <listcell label="@load(user.username)"/>
-                            <listcell label="@load(user.email)"/>
+                            <listcell label="@load(user.nickname)"/>
                         </listitem>
                     </template>
                 </listbox>

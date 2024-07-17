@@ -31,8 +31,8 @@ public class UserListViewModel {
     public void editUser(@BindingParam("user") UserDto user) {
         Map<String, Object> args = new HashMap<>();
         args.put("user", user);
-        // 將選擇的會員傳遞到編輯頁面
-        Executions.createComponents("/user/editUserPage.zul", null, args);
+        // 將選擇的會員傳遞到編輯頁面，使用正確的ZUL文件路徑
+        Executions.createComponents("~./zul/user/editUserPage.zul", null, args);
     }
 
     public List<UserDto> getUsers() {

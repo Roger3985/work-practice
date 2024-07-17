@@ -28,8 +28,13 @@ public class ZK_UserController {
         return "user/searchUser";
     }
 
-    @GetMapping("/allUser")
-    public String allUser() {
+    @GetMapping("/usersPage")
+    public String usersPage() {
         return "user/usersPage";
+    }
+
+    @GetMapping("/editUser")
+    public String editUser() {
+        return "user/editUser";
     }
 }
