@@ -29,6 +29,10 @@ public class UserListViewModel {
         users = userService.findAllUsers();
     }
 
+    /**
+     * 編輯使用者並且帶參數過去
+     * @param user 使用者
+     */
     @Command
     public void editUser(@BindingParam("user") UserDto user) {
         System.out.println("user:" + user.getUsername());
@@ -36,6 +40,18 @@ public class UserListViewModel {
         args.put("user", user);
         // 將選擇的會員傳遞到編輯頁面，使用正確的ZUL文件路徑
         Executions.createComponents("~./zul/user/editUserPage.zul", null, args);
+    }
+
+    /**
+     * 查看使用者詳細資訊並且帶參數過去
+     * @param user 使用者
+     */
+    @Command
+    public void userDetail(@BindingParam("user") UserDto user) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("user", user);
+        // 將選擇的會員傳遞到詳細頁面，使用正確的zul文件路徑
+        Executions.createComponents("~./zul/user/userDetailPage.zul", null, args);
     }
 
     public List<UserDto> getUsers() {
