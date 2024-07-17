@@ -7,7 +7,7 @@ use workpractice_event;
 
 
 -- 會員表，並與部門表關聯
-CREATE TABLE "userZKZK" (
+CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(60),
@@ -19,7 +19,7 @@ CREATE TABLE "userZKZK" (
     department_id INT REFERENCES department(id)
 );
 
-COMMENT ON TABLE "userZKZK" IS '會員表';
+COMMENT ON TABLE "user" IS '會員表';
 
 -- 創建部門表
 CREATE TABLE department (
@@ -57,7 +57,7 @@ CREATE TABLE article (
 );
 
 -- 刪除 "userZKZK" 資料表
-DROP TABLE IF EXISTS "userZKZK";
+DROP TABLE IF EXISTS "user";
 
 -- 刪除 "department" 資料表
 DROP TABLE IF EXISTS department;

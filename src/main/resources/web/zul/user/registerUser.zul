@@ -1,35 +1,18 @@
-<zk xmlns:n="http://www.w3.org/1999/xhtml" n:script="function submitForm() {
-        var username = zk.Widget.$('$usernameBox').getValue();
-        var password = zk.Widget.$('$passwordBox').getValue();
-
-        // You can now handle the form data, e.g., send it to the server using AJAX
-        console.log('Username:', username);
-        console.log('Password:', password);
-
-        // Example: Displaying the response
-        var responseLabel = zk.Widget.$('$responseLabel');
-        responseLabel.setValue(&quot;User &quot; + username + &quot; + &quot; has been registered.&quot;);
-        }">
+<zk>
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
         <window title="User Register" border="normal" width="400px"
                 apply="org.zkoss.bind.BindComposer"
                 viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel')">
             <vlayout>
                 <label value="What's your name:"/>
-                <textbox value="@bind(vm.username)" id="usernameBox"/>
+                <textbox value="@bind(vm.userDto.username)" id="usernameBox"/>
                 <label value="Password: "/>
-                <textbox value="@bind(vm.password)" id="passwordBox"/>
+                <textbox value="@bind(vm.userDto.password)" id="passwordBox"/>
                 <button label="Submit" onClick="@command('registerUser')"/>
                 <separator/>
-                <label value="@bind(vm.response)" id="responseLabel"/>
+                <label value="@load(vm.result)" id="resultLabel"/>
                 <button label="Go Back to index Page" onClick="@command('indexPage')"/>
             </vlayout>
         </window>
     </div>
-
-    <zscript><![CDATA[
-        void submit() {
-            Clients.evalJavaScript("submitForm()");
-        }
-    ]]></zscript>
 </zk>
