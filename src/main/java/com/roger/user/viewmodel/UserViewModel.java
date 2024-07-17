@@ -1,12 +1,11 @@
 package com.roger.user.viewmodel;
 
+import com.roger.department.service.DepartmentService;
 import com.roger.master.service.MasterService;
 import com.roger.user.dto.UserDto;
 import com.roger.user.pojo.Result;
 import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
@@ -14,8 +13,6 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
-@Getter
-@Setter
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class UserViewModel {
 
@@ -23,13 +20,11 @@ public class UserViewModel {
     private UserService userService;
 
     @WireVariable
-    private MasterService masterService;
-
-    @WireVariable
     private PasswordEncoder passwordEncoder;
 
-    private UserDto userDto;
-    private Result result;
+    private UserDto userDto = new UserDto();
+
+    private Result result = new Result();
 
     /**
      * Go to Index Page
@@ -49,13 +44,8 @@ public class UserViewModel {
 
     @Command
     @NotifyChange("result")
-    public Result registerUser() {
-        try {
-            result = masterService.UserWithDepartment(userDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    public void registerUser() {
+        result = userService.register_zk(userDto);
     }
 
     /**
@@ -71,13 +61,8 @@ public class UserViewModel {
      */
     @Command
     @NotifyChange("result")
-    public Result deleteUser() {
-        try {
-            result = userService.deleteUser(userDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    public void deleteUser() {
+        result = userService.deleteUser(userDto);
     }
 
     /**
@@ -115,5 +100,20 @@ public class UserViewModel {
         result = userService.findUserUnion(user);
     }
 
+    public UserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
 }
 

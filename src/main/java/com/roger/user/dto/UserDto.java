@@ -20,29 +20,22 @@ public class UserDto {
     @Schema(description = "The password of the user", example = "123456")
     private String password;
 
+
     @Pattern(regexp = "^\\w{5,16}$")
     @Schema(description = "The nickname of the user", example = "roger1")
     private String nickname;
 
-    @Setter
-    @Getter
     @Schema(description = "The id of the department", example = "1")
     private Integer id;
 
-    @Setter
-    @Getter
     @Schema(description = "The name of the department", example = "software")
     private String name;
 
-    @Setter
-    @Getter
     @Schema(description = "The description of the department", example = "this is a software department")
     private String description;
 
-    @Setter
-    @Getter
     @Schema(description = "department")
-    private Department department;
+    private Department department = new Department();
 
     /*
         (1) 必須以一個以上的文字&數字開頭
@@ -124,5 +117,35 @@ public class UserDto {
         this.email = email;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

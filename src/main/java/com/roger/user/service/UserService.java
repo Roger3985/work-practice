@@ -26,6 +26,11 @@ public interface UserService {
     User register(UserDto userDto);
 
     /**
+     * 註冊會員(ZK)
+     */
+    Result register_zk(UserDto userDto);
+
+    /**
      * 刪除會員資料
      */
     Result deleteUser(UserDto userDto);
