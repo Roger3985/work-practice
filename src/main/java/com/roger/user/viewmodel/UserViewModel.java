@@ -52,11 +52,10 @@ public class UserViewModel {
     public Result registerUser() {
         try {
             result = masterService.UserWithDepartment(userDto);
-            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result = new Result();
+        return result;
     }
 
     /**
@@ -75,11 +74,10 @@ public class UserViewModel {
     public Result deleteUser() {
         try {
             result = userService.deleteUser(userDto);
-            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result = new Result();
+        return result;
     }
 
     /**
@@ -117,8 +115,5 @@ public class UserViewModel {
         result = userService.findUserUnion(user);
     }
 
-    public UserService getUserService() {
-        return userService;
-    }
 }
 

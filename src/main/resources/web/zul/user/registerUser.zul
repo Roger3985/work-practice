@@ -5,9 +5,9 @@
                 viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel')">
             <vlayout>
                 <label value="What's your name:"/>
-                <textbox value="@bind(vm.userDto.username)" id="usernameBox"/>
+                <textbox value="@load(vm.userDto.username)" id="usernameBox"/>
                 <label value="Password: "/>
-                <textbox value="@bind(vm.userDto.password)" id="passwordBox"/>
+                <textbox value="@load(vm.userDto.password)" id="passwordBox"/>
                 <button label="Submit" onClick="@command('registerUser')"/>
                 <separator/>
                 <label value="@load(vm.result)" id="resultLabel"/>

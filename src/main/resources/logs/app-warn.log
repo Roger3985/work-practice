@@ -1,2 +1,1 @@
-2024-07-17 12:03:47.778 [main] ERROR org.zkoss.zk.ui.sys.ConfigParser - Unknown element: variable-resolver, at [null:file:/Users/sunzhengchang/work-practice/target/classes/metainfo/zk/zk.xml:11:24]
-2024-07-17 12:04:21.262 [main] ERROR org.zkoss.zk.ui.sys.ConfigParser - Unknown element: variable-resolver, at [null:file:/Users/sunzhengchang/work-practice/target/classes/metainfo/zk/zk.xml:11:24]
+2024-07-17 13:27:28.856 [http-nio-8080-exec-2] WARN  org.zkoss.zk.ui.metainfo.Parser - 5:87: If the attribute of viewModel is being used, then "org.zkoss.bind.BindComposer" will be applied automatically. Notice that if you want to use another Composer, you will need to apply the "org.zkoss.bind.BindComposer" yourself.
