@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Tag(name = "service block")
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -106,6 +106,25 @@ public class UserServiceImpl implements UserService {
         // 添加新會員
         userMapper.addUser(new User(userDto.getUsername(), hashPassword, userDto.getDepartment()));
         return user;
+    }
+
+    /**
+     * 註冊會員(ZK)
+     */
+    @Override
+    @Transactional
+    public Result register_zk(UserDto userDto) {
+        // 檢查會員是否存在
+        User user = userMapper.findByUserName(userDto.getUsername());
+        if (user != null) {
+            return Result.error("該會員名稱已經被註冊");
+        }
+        // Passwordencoder 加密
+        String hashPassword = passwordEncoder.encode(userDto.getPassword());
+
+        // 添加新會員
+        userMapper.addUser(new User(userDto.getUsername(), hashPassword, userDto.getDepartment()));
+        return Result.success("新增會員成功，歡迎: " + userDto.getUsername());
     }
 
 //    @Override

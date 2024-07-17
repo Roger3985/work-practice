@@ -6,6 +6,7 @@ import com.roger.user.pojo.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 public interface UserService {
 
@@ -23,6 +24,11 @@ public interface UserService {
      * 註冊會員
      */
     User register(UserDto userDto);
+
+    /**
+     * 註冊會員(ZK)
+     */
+    Result register_zk(UserDto userDto);
 
     /**
      * 刪除會員資料
