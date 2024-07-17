@@ -7,6 +7,11 @@
 <!--        <listener-class>org.zkoss.zkmax.au.websocket.WebSocketWebAppInit</listener-class>-->
 <!--    </listener>-->
 
+    <!-- Enable ZK and Spring integration -->
+    <variable-resolver>
+        org.zkoss.zkplus.spring.DelegatingVariableResolver.class
+    </variable-resolver>
+
     <richlet>
         <richlet-name>ExampleRichlet</richlet-name><!-- your preferred name -->
         <richlet-class>org.zkoss.zkspringboot.demo.richlet.ExampleRichlet</richlet-class><!-- your class name, of course -->

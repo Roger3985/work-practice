@@ -5,7 +5,6 @@ import com.roger.user.dto.UserDto;
 import com.roger.user.pojo.Result;
 import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
-import com.roger.user.service.impl.UserServiceImpl;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
