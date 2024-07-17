@@ -230,4 +230,33 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.findByUserName(username);
         return user;
     }
+
+    /**
+     * 全部的會員
+     */
+    @Override
+    public List<UserDto> findAllUsers() {
+        // 查詢所有會員訊息
+        List<User> users = userMapper.findAll();
+
+        // 將所有物件轉換為 UserDto 物件
+        List<UserDto> userDtos = users.stream()
+                .map(user -> mapToDto(user))
+                .collect(Collectors.toList());
+
+        return userDtos;
+    }
+
+    /**
+     * map to dto
+     */
+    private UserDto mapToDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setUsername(user.getUsername());
+        userDto.setEmail(user.getEmail());
+        return userDto;
+    }
+
+
 }

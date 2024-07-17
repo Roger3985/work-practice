@@ -124,4 +124,9 @@
         LEFT JOIN department d ON u.department_id = d.id
         WHERE u.username = #{username}
     </select>
+
+    <select id="findAll" resultType="com.roger.user.pojo.User">
+        SELECT *
+        FROM "user";
+    </select>
 </mapper>

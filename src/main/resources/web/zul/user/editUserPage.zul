@@ -1,0 +1,14 @@
+<zk>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="Edit User" border="normal" width="400px"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.EditUserViewModel')">
+            <vlayout>
+                <label value="Username:"/>
+                <textbox value="@bind(vm.user.username)"/>
+                <label value="Email:"/>
+                <textbox value="@bind(vm.user.email)"/>
+                <button label="Save" onClick="@command('saveUser')"/>
+            </vlayout>
+        </window>
+    </div>
+</zk>

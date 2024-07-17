@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -57,4 +59,8 @@ public interface UserService {
      */
     User findByUserName(String username);
 
+    /**
+     * 全部的會員
+     */
+    List<UserDto> findAllUsers();
 }
