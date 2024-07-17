@@ -254,9 +254,8 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
+        userDto.setNickname(user.getNickname());
         userDto.setEmail(user.getEmail());
         return userDto;
     }
-
-
 }
