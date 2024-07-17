@@ -40,7 +40,7 @@ logging:
     config: classpath:log4j2-spring.xml # Log4j2 的配置文件位置，使用 classpath 資源
 
 zk:
-  homepage: demo
+  homepage: index
   zul-view-resolver-prefix: /zul
   zul-view-resolver-suffix: .zul
   zul-view-resolver-enabled: true

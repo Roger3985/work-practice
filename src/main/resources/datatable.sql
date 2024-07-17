@@ -7,7 +7,7 @@ use workpractice_event;
 
 
 -- 會員表，並與部門表關聯
-CREATE TABLE "user" (
+CREATE TABLE "userZKZK" (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(60),
@@ -19,7 +19,7 @@ CREATE TABLE "user" (
     department_id INT REFERENCES department(id)
 );
 
-COMMENT ON TABLE "user" IS '會員表';
+COMMENT ON TABLE "userZKZK" IS '會員表';
 
 -- 創建部門表
 CREATE TABLE department (
@@ -36,7 +36,7 @@ CREATE TABLE category (
     create_user INT NOT NULL,
     create_time TIMESTAMP NOT NULL,
     update_time TIMESTAMP NOT NULL,
-    CONSTRAINT fk_category_user FOREIGN KEY (create_user) REFERENCES "user"(id)
+    CONSTRAINT fk_category_user FOREIGN KEY (create_user) REFERENCES "userZKZK"(id)
 );
 
 COMMENT ON TABLE category IS '分類表';
@@ -53,11 +53,11 @@ CREATE TABLE article (
     create_time TIMESTAMP NOT NULL,
     update_time TIMESTAMP NOT NULL,
     CONSTRAINT fk_article_category FOREIGN KEY (category_id) REFERENCES category(id),
-    CONSTRAINT fk_article_user FOREIGN KEY (create_user) REFERENCES "user"(id)
+    CONSTRAINT fk_article_user FOREIGN KEY (create_user) REFERENCES "userZKZK"(id)
 );
 
--- 刪除 "user" 資料表
-DROP TABLE IF EXISTS "user";
+-- 刪除 "userZKZK" 資料表
+DROP TABLE IF EXISTS "userZKZK";
 
 -- 刪除 "department" 資料表
 DROP TABLE IF EXISTS department;

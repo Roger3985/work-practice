@@ -1,0 +1,40 @@
+<zk xmlns:n="http://www.w3.org/1999/xhtml" n:script="function submitForm() {
+        var username = zk.Widget.$('$usernameBox').getValue();
+        var password = zk.Widget.$('$passwordBox').getValue();
+        var nickname = zk.Widget.$('$nicknameBox').getValue();
+        var email = zk.Widget.$('$emailBox').getValue();
+
+        // You can now handle the form data, e.g., send it to the server using AJAX
+        console.log('Username:', username);
+
+        // Example: Displaying the response
+        var responseLabel = zk.Widget.$('$responseLabel');
+        responseLabel.setValue(&quot;User &quot; + username + &quot; + &quot; has been .&quot;);
+        }">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="User Update" border="normal" width="400px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel')">
+            <vlayout>
+                <label value="What's your name:"/>
+                <textbox value="@bind(vm.username)" id="usernameBox"/>
+                <label value="What's your password:"/>
+                <textbox value="@bind(vm.password)" id="passwordBox"/>
+                <label value="What's your nickname:"/>
+                <textbox value="@bind(vm.nickname)" id="nicknameBox"/>
+                <label value="What's your email:"/>
+                <textbox value="@bind(vm.email)" id="emailBox"/>
+                <button label="Submit" onClick="@command('updateUser')"/>
+                <separator/>
+                <label value="@bind(vm.response)" id="responseLabel"/>
+                <button label="Go Back to index Page" onClick="@command('indexPage')"/>
+            </vlayout>
+        </window>
+    </div>
+
+    <zscript><![CDATA[
+        void submit() {
+            Clients.evalJavaScript("submitForm()");
+        }
+    ]]></zscript>
+</zk>
