@@ -50,9 +50,10 @@ public class UserListViewModel {
     /**
      * 翻頁
      */
+    @Command
     public void navigatePage(@BindingParam("page") int page) {
         // 如果目標頁碼大於0且小於等於總頁數，則進行頁碼切換
-        if (page > 0 && page <= getTotalPages()) {
+        if (page > 0 && page <= totalPage()) {
             // 設置當前頁碼為使用者點擊的目標頁碼
             pageNumber = page;
             // 加載對應頁碼的使用者數據
@@ -63,7 +64,7 @@ public class UserListViewModel {
     /**
      * 獲取總頁數
      */
-    private int getTotalPages() {
+    private int totalPage() {
         return (int) Math.ceil((double) totalUserCount / pageSize);
     }
 

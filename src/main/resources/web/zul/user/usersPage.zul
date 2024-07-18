@@ -32,7 +32,7 @@
                 <!-- 分頁控制區域 -->
                 <hlayout>
                     <button label="Previous" onClick="@command('navigatePage', page=vm.pageNumber - 1)" disabled="(vm.pageNumber == 1)"/>
-                    <button label="Page @load(vm.pageNumber) of @load(vm.totalPage)"/>
+                    <label value="Page ${vm.pageNumber} of ${vm.totalPage}"/>
                     <button label="Next" onClick="@command('navigatePage', page=vm.pageNumber + 1)" disabled="(vm.pageNumber == vm.totalPage)"/>
                 </hlayout>
             </vlayout>
