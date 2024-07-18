@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -24,12 +23,6 @@ public class EditUserViewModel {
      */
     @Wire("#editUserWin")
     private Window editUserWin;
-
-    /**
-     * 自動綁定 ID 為 userListWin 的組件
-     */
-    @Wire("#userListWin")
-    private Window userListWin;
 
     /**
      * 自動注入Spring管理的UserService bean
