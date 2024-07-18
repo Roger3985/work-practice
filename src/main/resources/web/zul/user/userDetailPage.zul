@@ -1,14 +1,22 @@
 <zk>
+    <!-- mode="modal" 點擊 editUserPage.zul 後會出現彈窗效果 -->
     <window id="userDetailWin" title="User Details" border="normal" width="400px" mode="modal"
             apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.roger.user.viewmodel.UserDetailViewModel')">
         <vlayout>
-            <label value="User Details"/>
-            <label value="Username:"/>
-            <label value="@bind(vm.user.username)"/>
-            <label value="Nickname:"/>
-            <label value="@bind(vm.user.nickname)"/>
-            <button label="✖️ Close" onClick="@command('closeDialog', window=userDetailWin)"/>
+            <hbox>
+                <label value="Username: "/>
+                <label value="@bind(vm.user.username)"/>
+            </hbox>
+            <hbox>
+                <label value="Nickname: "/>
+                <label value="@bind(vm.user.nickname)"/>
+            </hbox>
+            <hbox>
+                <label value="Email: "/>
+                <label value="@bind(vm.user.email)"/>
+            </hbox>
+            <button label="✖️ Close" onClick="@command('closeDialog')"/>
         </vlayout>
     </window>
 </zk>

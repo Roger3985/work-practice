@@ -6,7 +6,7 @@
             <vlayout>
                 <label value="What's your name:"/>
                 <textbox value="@bind(vm.userDto.username)" id="usernameBox"/>
-                <label value="What's your password:"/>
+                <label value="What's your password: (一定要輸入，確保你是本人才能刪除此使用者)"/>
                 <textbox value="@bind(vm.userDto.password)" id="passwordBox"/>
                 <button label="Submit" onClick="@command('deleteUser')"/>
                 <separator/>

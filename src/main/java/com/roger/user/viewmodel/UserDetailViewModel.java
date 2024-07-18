@@ -1,9 +1,7 @@
 package com.roger.user.viewmodel;
 
 import com.roger.user.dto.UserDto;
-import org.zkoss.bind.annotation.ContextParam;
-import org.zkoss.bind.annotation.ContextType;
-import org.zkoss.bind.annotation.ExecutionArgParam;
+import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
@@ -26,14 +24,15 @@ public class UserDetailViewModel {
      * 初始化方法，從參數中取得使用者資訊
      * @param user 使用者
      */
-    public void Init(@ExecutionArgParam("user") UserDto user) {
-        // 獲取傳遞的會員參數
+    @Init
+    public void init(@ExecutionArgParam("user") UserDto user) {
         this.user = user;
     }
 
     /**
      * 在元件初始化和綁定完成後調用的方法
      */
+    @AfterCompose
     public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
         // 確保所有帶有 @Wire 註解的元件被正確綁定
         Selectors.wireComponents(view, this, false);

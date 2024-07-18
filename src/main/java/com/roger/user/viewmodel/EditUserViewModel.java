@@ -35,11 +35,11 @@ public class EditUserViewModel {
     private UserDto user = new UserDto();
 
     /**
-     * 在ViewModel初始化時調用，接收傳遞過來的使用者資料
+     * 在 ViewModel 初始化時調用，接收傳遞過來的使用者資料
      * @param user 使用者
      */
     @Init
-    public void Init(@ExecutionArgParam("user") UserDto user) {
+    public void init(@ExecutionArgParam("user") UserDto user) {
         this.user = user;
     }
 
@@ -47,6 +47,7 @@ public class EditUserViewModel {
      * 保存使用者資料的方法
      */
     @Command
+    @NotifyChange("users")
     public void saveUser() {
 
         // 更新會員
@@ -56,10 +57,12 @@ public class EditUserViewModel {
         List<UserDto> users = userService.findAllUsers();
 
         // 將更新後的會員列表傳遞到會員列表頁面
-        Executions.getCurrent().getDesktop().setAttribute("users", users);
+        // Executions.getCurrent().getDesktop().setAttribute("users", users);
 
         // 保存後跳轉會員詳情頁面或包含頁面
-        Executions.sendRedirect("~./zul/user/usersPage.zul");
+        // Executions.sendRedirect("~./zul/user/usersPage.zul");
+
+        closeDialog();
     }
 
     /**

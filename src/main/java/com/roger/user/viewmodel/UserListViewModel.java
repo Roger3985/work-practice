@@ -30,6 +30,14 @@ public class UserListViewModel {
     }
 
     /**
+     * Go Back to index Page
+     */
+    @Command
+    public void indexPage() {
+        Executions.sendRedirect("/");
+    }
+
+    /**
      * 編輯使用者並且帶參數過去
      * @param user 使用者
      */
@@ -48,6 +56,7 @@ public class UserListViewModel {
      */
     @Command
     public void userDetail(@BindingParam("user") UserDto user) {
+        System.out.println("user: " + user.getUsername());
         Map<String, Object> args = new HashMap<>();
         args.put("user", user);
         // 將選擇的會員傳遞到詳細頁面，使用正確的zul文件路徑
