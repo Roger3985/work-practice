@@ -3,26 +3,30 @@
         <window title="All Users" border="normal" width="800px"
                 apply="org.zkoss.bind.BindComposer"
                 viewModel="@id('vm') @init('com.roger.user.viewmodel.UserListViewModel')">
-            <grid model="@load(vm.users)">
-                <columns>
-                    <column label="Username"/>
-                    <column label="Password"/>
-                    <column label="Nickname"/>
-                    <column label="Email"/>
-                    <column label="Actions"/>
-                    <column label="Actions"/>
-                </columns>
-                <template name="model" var="user">
-                    <row>
-                        <label value="@load(user.username)"/>
-                        <label value="************"/>
-                        <label value="@load(user.nickname)"/>
-                        <label value="@load(user.email)"/>
-                        <button label="Edit" onClick="@command('editUser', user=user)"/>
-                        <button label="Details" onClick="@command('userDetail', user=user)"/>
-                    </row>
-                </template>
-            </grid>
+            <vlayout>
+                <grid model="@load(vm.users)">
+                    <columns>
+                        <column label="Username"/>
+                        <column label="Password"/>
+                        <column label="Nickname"/>
+                        <column label="Email"/>
+                        <column label="Actions"/>
+                        <column label="Actions"/>
+                    </columns>
+                    <template name="model" var="user">
+                        <row>
+                            <label value="@load(user.username)"/>
+                            <label value="************"/>
+                            <label value="@load(user.nickname)"/>
+                            <label value="@load(user.email)"/>
+                            <button label="Edit" onClick="@command('editUser', user=user)"/>
+                            <button label="Details" onClick="@command('userDetail', user=user)"/>
+                        </row>
+                    </template>
+                </grid>
+                <space height="10px"/>
+                <button label="Go Back to index Page" onClick="@command('indexPage')"/>
+            </vlayout>
         </window>
     </div>
 </zk>

@@ -177,7 +177,9 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             // 修改會員資料
             user.setUsername(userDto.getUsername());
-            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            if (userDto.getPassword() != null) {
+                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            }
             user.setNickname(userDto.getNickname());
             user.setEmail(userDto.getEmail());
             userMapper.updateUser(user);
