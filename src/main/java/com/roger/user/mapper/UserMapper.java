@@ -1,5 +1,6 @@
 package com.roger.user.mapper;
 
+import com.roger.user.dto.UserDto;
 import com.roger.user.pojo.User;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.ibatis.annotations.*;
@@ -44,4 +45,14 @@ public interface UserMapper {
      * 查詢全部的會員
      */
     List<User> findAll();
+
+    /**
+     * 透過限制傳入顯示每頁資料
+     */
+    List<User> findUsersByPage(int offset, int pageSize);
+
+    /**
+     * 獲取總資料數量
+     */
+    int countAllUsers();
 }

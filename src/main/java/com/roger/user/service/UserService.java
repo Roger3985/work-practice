@@ -63,4 +63,14 @@ public interface UserService {
      * 全部的會員
      */
     List<UserDto> findAllUsers();
+
+    /**
+     * 透過限制傳入顯示每頁資料
+     */
+    List<UserDto> findUsersByPage(int pageNumber, int pageSize);
+
+    /**
+     * 獲取總資料數量
+     */
+    int countAllUsers();
 }

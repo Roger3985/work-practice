@@ -127,6 +127,20 @@
 
     <select id="findAll" resultType="com.roger.user.pojo.User">
         SELECT *
-        FROM "user";
+        FROM "user"
+    </select>
+
+    <!-- 分頁 -->
+    <select id="findUsersByPage" resultType="com.roger.user.pojo.User">
+        SELECT *
+        FROM "user"
+        LIMIT #{pageSize}
+        OFFSET #{offset}
+    </select>
+
+    <!-- 計算所有使用者的數量 -->
+    <select id="countAllUsers" resultType="int">
+        SELECT count(*)
+        FROM "user"
     </select>
 </mapper>

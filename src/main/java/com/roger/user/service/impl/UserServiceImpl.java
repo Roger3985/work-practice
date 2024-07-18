@@ -234,11 +234,11 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 全部的會員
+     * 全部的使用者
      */
     @Override
     public List<UserDto> findAllUsers() {
-        // 查詢所有會員訊息
+        // 查詢所有使用者訊息
         List<User> users = userMapper.findAll();
 
         // 將所有物件轉換為 UserDto 物件
@@ -247,6 +247,31 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
 
         return userDtos;
+    }
+
+    /**
+     * 透過限制傳入顯示每頁資料
+     */
+    @Override
+    public List<UserDto> findUsersByPage(int pageNumber, int pageSize) {
+        // 查詢分頁中使用者訊息
+        int offset = (pageNumber - 1) * pageSize;
+        List<User> users = userMapper.findUsersByPage(offset, pageSize);
+
+        // 將所有物件轉換為 UserDto 物件
+        List<UserDto> userDtos = users.stream()
+                .map(user -> mapToDto(user))
+                .collect(Collectors.toList());
+
+        return userDtos;
+    }
+
+    /**
+     * 獲取總資料數量
+     */
+    @Override
+    public int countAllUsers() {
+        return userMapper.countAllUsers();
     }
 
     /**

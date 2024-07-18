@@ -24,9 +24,47 @@ public class UserListViewModel {
     private List<UserDto> users = new ArrayList<>();
     private UserDto selectedUser = new UserDto();
 
+    // 分頁相關屬性
+    private int pageSize = 1; // 每頁顯示的數量
+    private int pageNumber = 1; // 當前頁碼
+    private int totalUserCount; // 總會員數量
+    private int totalPage; // 總頁數
+
+    /**
+     * 初始化
+     */
     @Init
     public void init() {
-        users = userService.findAllUsers();
+        loadUsers();
+    }
+
+    /**
+     * 加載會員數量
+     */
+    private void loadUsers() {
+        users = userService.findUsersByPage(pageNumber, pageSize); // 傳入資料限制每頁資料
+        totalUserCount = userService.countAllUsers(); // 獲取總資料數量
+        totalPage = (int) Math.ceil((double) totalUserCount / pageSize); // 計算總頁數
+    }
+
+    /**
+     * 翻頁
+     */
+    public void navigatePage(@BindingParam("page") int page) {
+        // 如果目標頁碼大於0且小於等於總頁數，則進行頁碼切換
+        if (page > 0 && page <= getTotalPages()) {
+            // 設置當前頁碼為使用者點擊的目標頁碼
+            pageNumber = page;
+            // 加載對應頁碼的使用者數據
+            loadUsers();
+        }
+    }
+
+    /**
+     * 獲取總頁數
+     */
+    private int getTotalPages() {
+        return (int) Math.ceil((double) totalUserCount / pageSize);
     }
 
     /**
@@ -98,5 +136,37 @@ public class UserListViewModel {
 
     public void setSelectedUser(UserDto selectedUser) {
         this.selectedUser = selectedUser;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getTotalUserCount() {
+        return totalUserCount;
+    }
+
+    public void setTotalUserCount(int totalUserCount) {
+        this.totalUserCount = totalUserCount;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
     }
 }
