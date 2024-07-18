@@ -481,3 +481,4 @@ org.zkoss.zk.ui.UiException: Page not found: ~./zul/error.zul
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.25.jar:10.1.25]
 	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
 2024-07-18 19:02:48.178 [http-nio-8080-exec-2] WARN  org.zkoss.zk.ui.metainfo.Parser - 5:91: If the attribute of viewModel is being used, then "org.zkoss.bind.BindComposer" will be applied automatically. Notice that if you want to use another Composer, you will need to apply the "org.zkoss.bind.BindComposer" yourself.
+2024-07-18 19:04:41.403 [http-nio-8080-exec-2] WARN  org.zkoss.zk.ui.metainfo.Parser - 5:91: If the attribute of viewModel is being used, then "org.zkoss.bind.BindComposer" will be applied automatically. Notice that if you want to use another Composer, you will need to apply the "org.zkoss.bind.BindComposer" yourself.
