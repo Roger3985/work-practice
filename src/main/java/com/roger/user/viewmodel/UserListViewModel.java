@@ -38,6 +38,27 @@ public class UserListViewModel {
     }
 
     /**
+     * 新增使用者
+     */
+    public void registerUser() {
+        Map<String, Object> args = new HashMap<>();
+        Executions.createComponents("~./zul/user/registerUserPage.zul", null, args);
+    }
+
+    /**
+     * 刪除選擇的使用者
+     * @param user 使用者
+     */
+    @Command
+    public void deleteUser(@BindingParam("user") UserDto user) {
+        System.out.println("user: " + user.getUsername());
+        Map<String, Object> args = new HashMap<>();
+        args.put("user", user);
+        // 將選擇的會員傳遞到刪除頁面，且使用正確的 zul 文件路徑
+        Executions.createComponents("~./zul/user/deleteUserPage.zul", null, args);
+    }
+
+    /**
      * 編輯使用者並且帶參數過去
      * @param user 使用者
      */
@@ -59,7 +80,7 @@ public class UserListViewModel {
         System.out.println("user: " + user.getUsername());
         Map<String, Object> args = new HashMap<>();
         args.put("user", user);
-        // 將選擇的會員傳遞到詳細頁面，使用正確的zul文件路徑
+        // 將選擇的會員傳遞到詳細頁面，且使用正確的 zul 文件路徑
         Executions.createComponents("~./zul/user/userDetailPage.zul", null, args);
     }
 

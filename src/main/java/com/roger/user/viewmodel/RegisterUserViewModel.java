@@ -2,6 +2,8 @@ package com.roger.user.viewmodel;
 
 import com.roger.user.dto.UserDto;
 import com.roger.user.service.UserService;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zkoss.bind.annotation.*;
@@ -10,56 +12,44 @@ import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import java.util.List;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Window;
 
+import java.util.List;
+
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-public class EditUserViewModel {
+public class RegisterUserViewModel {
 
-    private static final Logger logger = LoggerFactory.getLogger(EditUserViewModel.class);
+    private static final Logger logger = LoggerFactory.getLogger(RegisterUserViewModel.class);
 
     /**
-     * 自動綁定 ID 為 editUserWin 的組件
+     * 自動綁定 ID 為 registerUserWin 的組件
      */
-    @Wire("#editUserWin")
-    private Window editUserWin;
+    @Wire("#registerUserWin")
+    private Window registerUserWin;
 
     /**
-     * 自動注入Spring管理的UserService bean
+     * 自動注入 Spring 管理的 UserService bean
      */
     @WireVariable
     private UserService userService;
 
-    private UserDto user = new UserDto();
+    private UserDto user = new UserDto();;
 
     /**
-     * 在 ViewModel 初始化時調用，接收傳遞過來的使用者資料
-     * @param user 使用者
-     */
-    @Init
-    public void init(@ExecutionArgParam("user") UserDto user) {
-        this.user = user;
-    }
-
-    /**
-     * 保存使用者資料的方法
+     * 新增使用者的方法
      */
     @Command
     @NotifyChange("users")
-    public void saveUser() {
+    public void registerUser() {
 
-        // 更新使用者
-        userService.upateUser(user);
+        System.out.println(user.getUsername());
+
+        // 新增使用者
+        userService.register_zk(user);
 
         // 重新加載會員列表
         List<UserDto> users = userService.findAllUsers();
-
-        // 將更新後的會員列表傳遞到會員列表頁面
-        // Executions.getCurrent().getDesktop().setAttribute("users", users);
-
-        // 保存後跳轉會員詳情頁面或包含頁面
-        // Executions.sendRedirect("~./zul/user/usersPage.zul");
 
         closeDialog();
     }
@@ -78,14 +68,13 @@ public class EditUserViewModel {
      */
     @Command
     public void closeDialog() {
-        if (editUserWin != null) {
-            editUserWin.detach(); // 使用 detach() 方法關閉
+        if (registerUserWin != null) {
+            registerUserWin.detach(); // 使用 detach() 方法關閉
         } else {
             Clients.showNotification("Window component is null!", "error", null, "middle_center", 2000);
         }
     }
 
-    // Getter and Setter
     public UserDto getUser() {
         return user;
     }
