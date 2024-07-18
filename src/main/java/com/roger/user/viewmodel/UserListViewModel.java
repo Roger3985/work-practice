@@ -6,6 +6,7 @@ import com.roger.user.dto.UserDto;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -25,7 +26,7 @@ public class UserListViewModel {
     private UserDto selectedUser = new UserDto();
 
     // 分頁相關屬性
-    private int pageSize = 1; // 每頁顯示的數量
+    private int pageSize = 2; // 每頁顯示的數量
     private int pageNumber = 1; // 當前頁碼
     private int totalUserCount; // 總會員數量
     private int totalPage; // 總頁數
@@ -35,12 +36,14 @@ public class UserListViewModel {
      */
     @Init
     public void init() {
+        // users = userService.findAllUsers();
         loadUsers();
     }
 
     /**
      * 加載會員數量
      */
+    @NotifyChange({"pageNumber", "totalPage"})
     private void loadUsers() {
         users = userService.findUsersByPage(pageNumber, pageSize); // 傳入資料限制每頁資料
         totalUserCount = userService.countAllUsers(); // 獲取總資料數量
@@ -51,7 +54,9 @@ public class UserListViewModel {
      * 翻頁
      */
     @Command
+    @NotifyChange({"users", "pageNumber"})
     public void navigatePage(@BindingParam("page") int page) {
+        System.out.println("navigatePage called with page: " + page);
         // 如果目標頁碼大於0且小於等於總頁數，則進行頁碼切換
         if (page > 0 && page <= totalPage()) {
             // 設置當前頁碼為使用者點擊的目標頁碼
@@ -79,6 +84,7 @@ public class UserListViewModel {
     /**
      * 新增使用者
      */
+    @Command
     public void registerUser() {
         Map<String, Object> args = new HashMap<>();
         Executions.createComponents("~./zul/user/registerUserPage.zul", null, args);
@@ -102,6 +108,7 @@ public class UserListViewModel {
      * @param user 使用者
      */
     @Command
+    @NotifyChange({"users", "user"})
     public void editUser(@BindingParam("user") UserDto user) {
         System.out.println("user:" + user.getUsername());
         Map<String, Object> args = new HashMap<>();
@@ -147,14 +154,6 @@ public class UserListViewModel {
         this.pageSize = pageSize;
     }
 
-    public int getPageNumber() {
-        return pageNumber;
-    }
-
-    public void setPageNumber(int pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
     public int getTotalUserCount() {
         return totalUserCount;
     }
@@ -163,10 +162,22 @@ public class UserListViewModel {
         this.totalUserCount = totalUserCount;
     }
 
+    @NotifyChange("pageNumber")
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    @NotifyChange("pageNumber")
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    @NotifyChange("totalPage")
     public int getTotalPage() {
         return totalPage;
     }
 
+    @NotifyChange("totalPage")
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
     }

@@ -5,9 +5,9 @@
             viewModel="@id('vm') @init('com.roger.user.viewmodel.RegisterUserViewModel')">
         <vlayout>
             <label value="Username: "/>
-            <textbox value="@save(vm.user.username, after='registerUser')"/>
+            <textbox value="@save(vm.user.username)"/>
             <label value="Password: "/>
-            <textbox value="@save(vm.user.password, after='registerUser')"/>
+            <textbox value="@save(vm.user.password)"/>
             <button label="Register" onClick="@command('registerUser')"/>
             <button label="✖️ Close" onClick="@command('closeDialog')"/>
         </vlayout>

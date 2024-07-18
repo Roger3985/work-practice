@@ -48,8 +48,8 @@ public class RegisterUserViewModel {
         // 新增使用者
         userService.register_zk(user);
 
-        // 重新加載會員列表
-        List<UserDto> users = userService.findAllUsers();
+        // 顯示添加成功的消息
+        Clients.showNotification("添加成功", "info", null, "middle_center", 2000);
 
         closeDialog();
     }

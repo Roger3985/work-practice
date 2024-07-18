@@ -6,11 +6,11 @@
         <vlayout>
             <hbox>
                 <label value="Username: "/>
-                <label value="@load(vm.user.username) @save(vm.user.username, after='deleteUser')"/>
+                <label value="@load(vm.user.username) @save(vm.user.username, before='deleteUser')"/>
             </hbox>
             <hbox>
                 <label value="Password"/>
-                <textbox value="@load(vm.user.password) @save(vm.user.password, after='deleteUser')" type="password"/>
+                <textbox value="@load(vm.user.password) @save(vm.user.password, before='deleteUser')" type="password"/>
             </hbox>
             <button label="Delete" onClick="@command('deleteUser')"/>
             <button label="✖️ Close" onClick="@command('closeDialog', window=deleteUserWin)"/>

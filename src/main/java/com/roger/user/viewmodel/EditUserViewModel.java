@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import java.util.List;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Window;
 
@@ -26,12 +26,19 @@ public class EditUserViewModel {
     private Window editUserWin;
 
     /**
+     * 自動綁定 ID 為 userListWin 的組件
+     */
+    @Wire("#userListWin")
+    private Window userListWin;
+
+    /**
      * 自動注入Spring管理的UserService bean
      */
     @WireVariable
     private UserService userService;
 
     private UserDto user = new UserDto();
+    private UserDto tempUser = new UserDto(); // 臨時儲存物件
 
     /**
      * 在 ViewModel 初始化時調用，接收傳遞過來的使用者資料
@@ -40,6 +47,11 @@ public class EditUserViewModel {
     @Init
     public void init(@ExecutionArgParam("user") UserDto user) {
         this.user = user;
+        // 初始化臨時物件
+        this.tempUser.setUsername(user.getUsername());
+        this.tempUser.setPassword(user.getPassword());
+        this.tempUser.setNickname(user.getNickname());
+        this.tempUser.setEmail(user.getEmail());
     }
 
     /**
@@ -49,17 +61,17 @@ public class EditUserViewModel {
     @NotifyChange("users")
     public void saveUser() {
 
+        // 將臨時對象的值複製到實際用戶對象
+        user.setUsername(tempUser.getUsername());
+        user.setPassword(tempUser.getPassword());
+        user.setNickname(tempUser.getNickname());
+        user.setEmail(tempUser.getEmail());
+
         // 更新使用者
         userService.upateUser(user);
 
-        // 重新加載會員列表
-        List<UserDto> users = userService.findAllUsers();
-
-        // 將更新後的會員列表傳遞到會員列表頁面
-        // Executions.getCurrent().getDesktop().setAttribute("users", users);
-
-        // 保存後跳轉會員詳情頁面或包含頁面
-        // Executions.sendRedirect("~./zul/user/usersPage.zul");
+        // 顯示保存成功的消息
+        Clients.showNotification("保存成功", "info", null, "middle_center", 2000);
 
         closeDialog();
     }
@@ -92,5 +104,13 @@ public class EditUserViewModel {
 
     public void setUser(UserDto user) {
         this.user = user;
+    }
+
+    public UserDto getTempUser() {
+        return tempUser;
+    }
+
+    public void setTempUser(UserDto tempUser) {
+        this.tempUser = tempUser;
     }
 }

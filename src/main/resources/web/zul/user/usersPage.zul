@@ -1,5 +1,5 @@
 <zk>
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div id="userListWin" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
         <window title="All Users" border="normal" width="1200px"
                 apply="org.zkoss.bind.BindComposer"
                 viewModel="@id('vm') @init('com.roger.user.viewmodel.UserListViewModel')">
@@ -18,10 +18,10 @@
                     </columns>
                     <template name="model" var="user">
                         <row>
-                            <label value="@bind(user.username)"/>
+                            <label value="@load(user.username)"/>
                             <label value="************"/>
-                            <label value="@bind(user.nickname)"/>
-                            <label value="@bind(user.email)"/>
+                            <label value="@load(user.nickname)"/>
+                            <label value="@load(user.email)"/>
                             <button label="Delete" onClick="@command('deleteUser', user=user)"/>
                             <button label="Edit" onClick="@command('editUser', user=user)"/>
                             <button label="Detail" onClick="@command('userDetail', user=user)"/>
@@ -39,3 +39,4 @@
         </window>
     </div>
 </zk>
+

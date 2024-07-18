@@ -46,8 +46,8 @@ public class DeleteUserViewModel {
         // 刪除使用者
         userService.deleteUser(user);
 
-        // 重新加載會員列表
-        List<UserDto> users = userService.findAllUsers();
+        // 顯示刪除成功的消息
+        Clients.showNotification("刪除成功", "info", null, "middle_center", 2000);
 
         // 關閉彈窗
         closeDialog();
