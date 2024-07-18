@@ -6,16 +6,20 @@
             <grid model="@load(vm.users)">
                 <columns>
                     <column label="Username"/>
+                    <column label="Password"/>
                     <column label="Nickname"/>
                     <column label="Email"/>
+                    <column label="Actions"/>
                     <column label="Actions"/>
                 </columns>
                 <template name="model" var="user">
                     <row>
                         <label value="@load(user.username)"/>
+                        <label value="************"/>
                         <label value="@load(user.nickname)"/>
                         <label value="@load(user.email)"/>
                         <button label="Edit" onClick="@command('editUser', user=user)"/>
+                        <button label="Details" onClick="@command('userDetail', user=user)"/>
                     </row>
                 </template>
             </grid>

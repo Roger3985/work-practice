@@ -1,7 +1,5 @@
 package com.roger.user.viewmodel;
 
-import com.roger.department.service.DepartmentService;
-import com.roger.master.service.MasterService;
 import com.roger.user.dto.UserDto;
 import com.roger.user.pojo.Result;
 import com.roger.user.pojo.User;
@@ -39,7 +37,7 @@ public class UserViewModel {
      */
     @Command
     public void registerPage() {
-        Executions.sendRedirect("/zk/registerUser");
+        Executions.sendRedirect("~./zul/user/registerUser.zul");
     }
 
     @Command
@@ -53,7 +51,7 @@ public class UserViewModel {
      */
     @Command
     public void deletePage() {
-        Executions.sendRedirect("/zk/deleteUser");
+        Executions.sendRedirect("~./zul/user/deleteUser.zul");
     }
 
     /**
@@ -70,7 +68,7 @@ public class UserViewModel {
      */
     @Command
     public void updatePage() {
-        Executions.sendRedirect("/zk/updateUser");
+        Executions.sendRedirect("~./zul/user/updateUser.zul");
     }
 
     /**
@@ -87,7 +85,7 @@ public class UserViewModel {
      */
     @Command
     public void searchPage() {
-        Executions.sendRedirect("/zk/searchUser");
+        Executions.sendRedirect("~./zul/user/searchUser.zul");
     }
 
     /**
@@ -98,6 +96,13 @@ public class UserViewModel {
     public void searchUser() {
         User user = new User(userDto.getUsername(), userDto.getNickname(), userDto.getEmail());
         result = userService.findUserUnion(user);
+    }
+
+    /**
+     * Go to AllUsersPage
+     */
+    public void allUsersPage() {
+        Executions.sendRedirect("~./zul/user/usersPage.zul");
     }
 
     public UserDto getUserDto() {

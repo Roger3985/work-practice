@@ -1,19 +1,19 @@
 <zk>
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <window title="Edit User" border="normal" width="400px"
-                apply="org.zkoss.bind.BindComposer"
-                viewModel="@id('vm') @init('com.roger.user.viewmodel.EditUserViewModel')">
-            <vlayout>
-                <label value="Username: "/>
-                <textbox value="@bind(vm.user.username)" readonly="true"/>
-                <label value="Password: "/>
-                <textbox value="@bind(vm.user.password)"/>
-                <label value="Nickname:"/>
-                <textbox value="@bind(vm.user.nickname)"/>
-                <label value="Email: "/>
-                <textbox value="@bind(vm.user.email)"/>
-                <button label="Save" onClick="@command('saveUser')"/>
-            </vlayout>
-        </window>
-    </div>
+    <!-- mode="modal" 點擊 editUserPage.zul 後會出現彈窗效果 -->
+    <window id="editUserWin" title="Edit User" border="normal" width="400px" mode="modal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.roger.user.viewmodel.EditUserViewModel')">
+        <vlayout>
+            <label value="Username: "/>
+            <textbox value="@bind(vm.user.username)"/>
+            <label value="Password: "/>
+            <textbox value="@bind(vm.user.password)" type="password"/>
+            <label value="Nickname:"/>
+            <textbox value="@bind(vm.user.nickname)"/>
+            <label value="Email: "/>
+            <textbox value="@bind(vm.user.email)"/>
+            <button label="Save" onClick="@command('saveUser')"/>
+            <button label="✖️ Close" onClick="@command('closeDialog', window=editUserWin)"/>
+        </vlayout>
+    </window>
 </zk>

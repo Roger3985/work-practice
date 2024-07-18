@@ -253,6 +253,7 @@ public class UserServiceImpl implements UserService {
     private UserDto mapToDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
+        // userDto.setPassword(user.getPassword());
         userDto.setUsername(user.getUsername());
         userDto.setNickname(user.getNickname());
         userDto.setEmail(user.getEmail());

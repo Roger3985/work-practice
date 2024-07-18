@@ -8,6 +8,7 @@
                 <button label="Go to Delete Page" onClick="@command('deletePage')"/>
                 <button label="Go to Update Page" onClick="@command('updatePage')"/>
                 <button label="Go to Search Page" onClick="@command('searchPage')"/>
+                <button label="Go to Search All Users Page" onClick="@command('allUsersPage')"/>
             </vlayout>
         </window>
     </div>
