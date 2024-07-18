@@ -24,9 +24,20 @@ public class UserListViewModel {
     private List<UserDto> users = new ArrayList<>();
     private UserDto selectedUser = new UserDto();
 
+    // 分頁相關屬性
+    private int pageSize = 10; // 每頁顯示的數量
+    private int pageNumber = 1; // 當前頁碼
+    private int totalUserCount; // 總會員數量
+
     @Init
     public void init() {
-        users = userService.findAllUsers();
+        loadUsers();
+    }
+
+    // 加載會員數量
+    private void loadUsers() {
+        users = userService.findUsersByPage(pageNumber, pageSize);
+        totalUserCount = userService.countAllUsers(); // 獲取總資料數量
     }
 
     /**
@@ -98,5 +109,29 @@ public class UserListViewModel {
 
     public void setSelectedUser(UserDto selectedUser) {
         this.selectedUser = selectedUser;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getTotalUserCount() {
+        return totalUserCount;
+    }
+
+    public void setTotalUserCount(int totalUserCount) {
+        this.totalUserCount = totalUserCount;
     }
 }

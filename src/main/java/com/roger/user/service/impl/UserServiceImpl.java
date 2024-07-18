@@ -261,4 +261,20 @@ public class UserServiceImpl implements UserService {
         userDto.setEmail(user.getEmail());
         return userDto;
     }
+
+    /**
+     * 透過限制傳入顯示每頁資料
+     */
+    @Override
+    public List<UserDto> findUsersByPage(int pageNumber, int pageSize) {
+        return List.of();
+    }
+
+    /**
+     * 獲取總資料數量
+     */
+    @Override
+    public int countAllUsers() {
+        return 0;
+    }
 }
