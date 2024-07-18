@@ -24,7 +24,7 @@
                         </row>
                     </template>
                 </grid>
-                <space height="20px"/>
+                <space height="10px"/>
                 <button label="Go Back to index Page" onClick="@command('indexPage')"/>
             </vlayout>
         </window>
