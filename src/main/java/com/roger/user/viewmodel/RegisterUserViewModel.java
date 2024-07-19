@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -52,6 +53,8 @@ public class RegisterUserViewModel {
         Clients.showNotification("添加成功", "info", null, "middle_center", 2000);
 
         closeDialog();
+
+        Executions.sendRedirect("~./zul/user/usersPage.zul");
     }
 
     /**

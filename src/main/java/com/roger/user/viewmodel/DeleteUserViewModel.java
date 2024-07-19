@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -15,7 +16,10 @@ import org.zkoss.zul.Window;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+@Getter
+@Setter
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class DeleteUserViewModel {
 
@@ -31,6 +35,7 @@ public class DeleteUserViewModel {
     @WireVariable
     private UserService userService;
 
+    private List<UserDto> users = new ArrayList<>();
     private UserDto user = new UserDto();
 
     /**
@@ -50,6 +55,8 @@ public class DeleteUserViewModel {
 
         // 顯示刪除成功的消息
         Clients.showNotification("刪除成功", "info", null, "middle_center", 2000);
+
+        users.remove(user);
 
         // 關閉彈窗
         closeDialog();
@@ -76,11 +83,4 @@ public class DeleteUserViewModel {
         }
     }
 
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
 }
