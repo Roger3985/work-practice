@@ -141,6 +141,11 @@ public class UserListViewModel {
         Result result = userService.findUserIntersection(user);
     }
 
+    @Command
+    public void showBigListPage() {
+        Executions.createComponents("~./zul/user/paging.zul", null, null);
+    }
+
     public List<UserDto> getUsers() {
         return users;
     }
