@@ -40,7 +40,7 @@ public class RegisterUserViewModel {
      * 新增使用者的方法
      */
     @Command
-    @NotifyChange("users")
+    @NotifyChange({"users", "user"})
     public void registerUser() {
 
         System.out.println(user.getUsername());
@@ -75,6 +75,7 @@ public class RegisterUserViewModel {
         }
     }
 
+    // Getter and Setter
     public UserDto getUser() {
         return user;
     }

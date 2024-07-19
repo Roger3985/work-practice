@@ -5,13 +5,13 @@
             viewModel="@id('vm') @init('com.roger.user.viewmodel.EditUserViewModel')">
         <vlayout>
             <label value="Username: "/>
-            <textbox value="@load(vm.user.username) @save(vm.tempUser.username)" readonly="true"/>
+            <textbox value="@load(vm.user.username) @save(vm.user.username, before='saveUser')" readonly="true"/>
             <label value="Password: "/>
-            <textbox value="@load(vm.user.password) @save(vm.tempUser.password)" type="password"/>
+            <textbox value="@load(vm.user.password) @save(vm.user.password, before='saveUser')" type="password"/>
             <label value="Nickname: "/>
-            <textbox value="@load(vm.user.nickname) @save(vm.tempUser.nickname)"/>
+            <textbox value="@load(vm.user.nickname) @save(vm.user.nickname, before='saveUser')"/>
             <label value="Email: "/>
-            <textbox value="@load(vm.user.email) @save(vm.tempUser.email)"/>
+            <textbox value="@load(vm.user.email) @save(vm.user.email, before='saveUser')"/>
             <button label="Save" onClick="@command('saveUser')"/>
             <button label="✖️ Close" onClick="@command('closeDialog', window=editUserWin)"/>
         </vlayout>

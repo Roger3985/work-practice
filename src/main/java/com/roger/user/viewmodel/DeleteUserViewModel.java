@@ -12,6 +12,8 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Window;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
@@ -41,7 +43,7 @@ public class DeleteUserViewModel {
     }
 
     @Command
-    @NotifyChange("users")
+    @NotifyChange({"users", "user"})
     public void deleteUser() {
         // 刪除使用者
         userService.deleteUser(user);
