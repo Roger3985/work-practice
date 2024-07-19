@@ -26,7 +26,7 @@ public class UserListViewModel {
     private UserDto selectedUser = new UserDto();
 
     // 分頁相關屬性
-    private int pageSize = 2; // 每頁顯示的數量
+    private int pageSize = 10; // 每頁顯示的數量
     private int pageNumber = 1; // 當前頁碼
     private int totalUserCount; // 總會員數量
     private int totalPage; // 總頁數
@@ -43,7 +43,7 @@ public class UserListViewModel {
     /**
      * 加載會員數量
      */
-    @NotifyChange({"pageNumber", "totalPage"})
+    @NotifyChange({"users", "totalUserCount", "pageNumber", "totalPage"})
     private void loadUsers() {
         users = userService.findUsersByPage(pageNumber, pageSize); // 傳入資料限制每頁資料
         totalUserCount = userService.countAllUsers(); // 獲取總資料數量
@@ -54,7 +54,7 @@ public class UserListViewModel {
      * 翻頁
      */
     @Command
-    @NotifyChange({"users", "pageNumber"})
+    @NotifyChange({"users", "totalUserCount","pageNumber", "totalPage"})
     public void navigatePage(@BindingParam("page") int page) {
         System.out.println("navigatePage called with page: " + page);
         // 如果目標頁碼大於0且小於等於總頁數，則進行頁碼切換
@@ -85,6 +85,7 @@ public class UserListViewModel {
      * 新增使用者
      */
     @Command
+    @NotifyChange({"users", "user"})
     public void registerUser() {
         Map<String, Object> args = new HashMap<>();
         Executions.createComponents("~./zul/user/registerUserPage.zul", null, args);
@@ -95,6 +96,7 @@ public class UserListViewModel {
      * @param user 使用者
      */
     @Command
+    @NotifyChange({"users", "user"})
     public void deleteUser(@BindingParam("user") UserDto user) {
         System.out.println("user: " + user.getUsername());
         Map<String, Object> args = new HashMap<>();

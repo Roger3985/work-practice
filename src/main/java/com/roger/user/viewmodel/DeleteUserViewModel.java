@@ -43,7 +43,7 @@ public class DeleteUserViewModel {
     }
 
     @Command
-    @NotifyChange("users")
+    @NotifyChange({"users", "user"})
     public void deleteUser() {
         // 刪除使用者
         userService.deleteUser(user);

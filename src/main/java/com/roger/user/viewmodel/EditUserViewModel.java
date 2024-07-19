@@ -13,6 +13,9 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Window;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class EditUserViewModel {
 
@@ -31,7 +34,6 @@ public class EditUserViewModel {
     private UserService userService;
 
     private UserDto user = new UserDto();
-    private UserDto tempUser = new UserDto(); // 臨時儲存物件
 
     /**
      * 在 ViewModel 初始化時調用，接收傳遞過來的使用者資料
@@ -40,25 +42,14 @@ public class EditUserViewModel {
     @Init
     public void init(@ExecutionArgParam("user") UserDto user) {
         this.user = user;
-        // 初始化臨時物件
-        this.tempUser.setUsername(user.getUsername());
-        this.tempUser.setPassword(user.getPassword());
-        this.tempUser.setNickname(user.getNickname());
-        this.tempUser.setEmail(user.getEmail());
     }
 
     /**
      * 保存使用者資料的方法
      */
     @Command
-    @NotifyChange("users")
+    @NotifyChange({"users", "user"})
     public void saveUser() {
-
-        // 將臨時對象的值複製到實際用戶對象
-        user.setUsername(tempUser.getUsername());
-        user.setPassword(tempUser.getPassword());
-        user.setNickname(tempUser.getNickname());
-        user.setEmail(tempUser.getEmail());
 
         // 更新使用者
         userService.upateUser(user);
@@ -97,13 +88,5 @@ public class EditUserViewModel {
 
     public void setUser(UserDto user) {
         this.user = user;
-    }
-
-    public UserDto getTempUser() {
-        return tempUser;
-    }
-
-    public void setTempUser(UserDto tempUser) {
-        this.tempUser = tempUser;
     }
 }

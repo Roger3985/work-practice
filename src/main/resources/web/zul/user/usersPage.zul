@@ -18,10 +18,10 @@
                     </columns>
                     <template name="model" var="user">
                         <row>
-                            <label value="@load(user.username)"/>
+                            <label value="@bind(user.username)"/>
                             <label value="************"/>
-                            <label value="@load(user.nickname)"/>
-                            <label value="@load(user.email)"/>
+                            <label value="@bind(user.nickname)"/>
+                            <label value="@bind(user.email)"/>
                             <button label="Delete" onClick="@command('deleteUser', user=user)"/>
                             <button label="Edit" onClick="@command('editUser', user=user)"/>
                             <button label="Detail" onClick="@command('userDetail', user=user)"/>
@@ -32,7 +32,9 @@
                 <!-- 分頁控制區域 -->
                 <hlayout>
                     <button label="Previous" onClick="@command('navigatePage', page=vm.pageNumber - 1)" disabled="(vm.pageNumber == 1)"/>
-                    <label value="Page ${vm.pageNumber} of ${vm.totalPage}"/>
+                    <label value="@load(vm.pageNumber)"/>
+                    <label value="of"/>
+                    <label value="@load(vm.totalPage)"/>
                     <button label="Next" onClick="@command('navigatePage', page=vm.pageNumber + 1)" disabled="(vm.pageNumber == vm.totalPage)"/>
                 </hlayout>
             </vlayout>
