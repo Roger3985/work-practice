@@ -1,10 +1,11 @@
 <zk>
     <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
-        <listbox id="listbox"> <!-- model="@load(vm.currentPageUsers)" mold="paging" pageSize="@bind(vm.pageSize)" activePage="@bind(vm.activePage)" totalSize="@load(vm.totalSize)" -->
+        <!-- Listbox 用於顯示使用者數據 -->
+        <listbox id="listbox" model="@bind(vm.users)" mold="paging" pageSize="@bind(vm.pageSize - 1)" activePage="@bind(vm.pageNumber)" totalSize="@bind(vm.totalUserCount)">
             <listhead>
-                <listheader label="ID"/>
-                <listheader label="Name"/>
-                <listheader label="Email"/>
+                <listheader label="ID" />
+                <listheader label="Name" />
+                <listheader label="Email" />
             </listhead>
             <template name="model">
                 <listitem>
@@ -17,8 +18,8 @@
         <vlayout>
             <radiogroup>
                 <attribute name="onCheck"><![CDATA[
-            listbox.pagingPosition = self.selectedItem.label;
-        ]]></attribute>
+                    listbox.pagingPosition = self.selectedItem.label;
+                ]]></attribute>
                 <vlayout>
                     <label value="Paging Indicator Placement :" />
                     <radio label="top" />
@@ -29,8 +30,8 @@
             <div height="10px"/>
             <checkbox label="Switch Paging Mold">
                 <attribute name="onCheck"><![CDATA[
-            listbox.pagingChild.mold = "os".equals(listbox.pagingChild.mold) ? "default" : "os";
-        ]]></attribute>
+                    listbox.pagingChild.mold = "os".equals(listbox.pagingChild.mold) ? "default" : "os";
+                ]]></attribute>
             </checkbox>
         </vlayout>
     </window>

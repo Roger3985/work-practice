@@ -3,81 +3,138 @@ package com.roger.user.viewmodel;
 import com.roger.user.dto.UserDto;
 import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
+import lombok.Getter;
+import lombok.Setter;
+import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Getter
+@Setter
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class UserViewModel2 {
 
     @WireVariable
     private UserService userService;
 
-    private List<UserDto> allUsers; // 獲取所有使用者
-    private List<User> currentPageUsers;
-    private int pageSize = 10;
-    private int activePage = 0;
+    private List<UserDto> users = new ArrayList<>();
+    private UserDto selectedUser = new UserDto();
+    private User user;
 
+    // 分頁相關屬性
+    private int pageSize = 10; // 每頁顯示的數量
+    private int pageNumber = 1; // 當前頁碼
+    private int totalUserCount; // 總會員數量
+    private int totalPage; // 總頁數
+
+    /**
+     * 初始化
+     */
     @Init
     public void init() {
-        allUsers = userService.findAllUsers();
+        // users = userService.findAllUsers();
+        loadUsers();
     }
 
-
-
-    private void updateCurrentPageUsers() {
-        int start = activePage * pageSize;
-        int end = Math.min(start + pageSize, allUsers.size());
+    /**
+     * 加載會員數量
+     */
+    @NotifyChange({"users", "totalUserCount", "pageNumber", "totalPage"})
+    private void loadUsers() {
+        users = userService.findUsersByPage(pageNumber, pageSize); // 傳入資料限制每頁資料
+        totalUserCount = userService.countAllUsers(); // 獲取總資料數量
+        totalPage = (int) Math.ceil((double) totalUserCount / pageSize); // 計算總頁數
     }
 
+    /**
+     * 翻頁
+     */
     @Command
-    @NotifyChange("currentPageUsers")
-    public void changePageSize(int pageSize) {
-        this.pageSize = pageSize;
-        updateCurrentPageUsers();
+    @NotifyChange({"users", "totalUserCount","pageNumber", "totalPage"})
+    public void navigatePage(@BindingParam("page") int page) {
+        System.out.println("navigatePage called with page: " + page);
+        // 如果目標頁碼大於0且小於等於總頁數，則進行頁碼切換
+        if (page > 0 && page <= totalPage()) {
+            // 設置當前頁碼為使用者點擊的目標頁碼
+            pageNumber = page;
+            // 加載對應頁碼的使用者數據
+            loadUsers();
+        }
     }
 
+    /**
+     * 獲取總頁數
+     */
+    private int totalPage() {
+        return (int) Math.ceil((double) totalUserCount / pageSize);
+    }
+
+    /**
+     * Go Back to index Page
+     */
     @Command
-    @NotifyChange("currentPageUsers")
-    public void changeActivePage(int activePage) {
-        this.activePage = activePage;
-        updateCurrentPageUsers();
+    public void indexPage() {
+        Executions.sendRedirect("/");
     }
 
-    public int getActivePage() {
-        return activePage;
+    /**
+     * 新增使用者
+     */
+    @Command
+    @NotifyChange({"users", "user"})
+    public void registerUser() {
+        Map<String, Object> args = new HashMap<>();
+        Executions.createComponents("~./zul/user/registerUserPage.zul", null, args);
     }
 
-    public void setActivePage(int activePage) {
-        this.activePage = activePage;
+    /**
+     * 刪除選擇的使用者
+     * @param user 使用者
+     */
+    @Command
+    @NotifyChange({"users", "user"})
+    public void deleteUser(@BindingParam("user") UserDto user) {
+        System.out.println("user: " + user.getUsername());
+        Map<String, Object> args = new HashMap<>();
+        args.put("user", user);
+        // 將選擇的會員傳遞到刪除頁面，且使用正確的 zul 文件路徑
+        Executions.createComponents("~./zul/user/deleteUserPage.zul", null, args);
     }
 
-    public int getPageSize() {
-        return pageSize;
+    /**
+     * 編輯使用者並且帶參數過去
+     * @param user 使用者
+     */
+    @Command
+    @NotifyChange({"users", "user"})
+    public void editUser(@BindingParam("user") UserDto user) {
+        System.out.println("user:" + user.getUsername());
+        Map<String, Object> args = new HashMap<>();
+        args.put("user", user);
+        // 將選擇的會員傳遞到編輯頁面，使用正確的ZUL文件路徑
+        Executions.createComponents("~./zul/user/editUserPage.zul", null, args);
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public List<User> getCurrentPageUsers() {
-        return currentPageUsers;
-    }
-
-    public void setCurrentPageUsers(List<User> currentPageUsers) {
-        this.currentPageUsers = currentPageUsers;
-    }
-
-    public List<UserDto> getAllUsers() {
-        return allUsers;
-    }
-
-    public void setAllUsers(List<UserDto> allUsers) {
-        this.allUsers = allUsers;
+    /**
+     * 查看使用者詳細資訊並且帶參數過去
+     * @param user 使用者
+     */
+    @Command
+    public void userDetail(@BindingParam("user") UserDto user) {
+        System.out.println("user: " + user.getUsername());
+        Map<String, Object> args = new HashMap<>();
+        args.put("user", user);
+        // 將選擇的會員傳遞到詳細頁面，且使用正確的 zul 文件路徑
+        Executions.createComponents("~./zul/user/userDetailPage.zul", null, args);
     }
 }
