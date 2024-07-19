@@ -5,6 +5,13 @@
                 viewModel="@id('vm') @init('com.roger.user.viewmodel.UserListViewModel')">
             <vlayout>
                 <button label="+" onClick="@command('registerUser')"/>
+                <label value="What's your name:"/>
+                <textbox value="@load(vm.user.username)" id="usernameBox"/>
+                <label value="What's your nickname:"/>
+                <textbox value="@load(vm.user.nickname)" id="nicknameBox"/>
+                <label value="What's your email:"/>
+                <textbox value="@load(vm.user.email)" id="emailBox"/>
+                <button label="Submit" onClick="@command('findUsersByChoose')"/>
                 <space height="5px"/>
                 <grid model="@load(vm.users)">
                     <columns>

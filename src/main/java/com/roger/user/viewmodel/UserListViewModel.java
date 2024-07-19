@@ -1,5 +1,6 @@
 package com.roger.user.viewmodel;
 
+import com.roger.user.pojo.Result;
 import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
 import com.roger.user.dto.UserDto;
@@ -24,6 +25,8 @@ public class UserListViewModel {
 
     private List<UserDto> users = new ArrayList<>();
     private UserDto selectedUser = new UserDto();
+    private User user;
+    private Result result;
 
     // 分頁相關屬性
     private int pageSize = 2; // 每頁顯示的數量
@@ -133,9 +136,9 @@ public class UserListViewModel {
     }
 
     @Command
-    @NotifyChange({"users"})
-    public void findUsersByChoose() {
-
+    @NotifyChange("result")
+    public void findUsersByChoose(@BindingParam("user") User user) {
+        Result result = userService.findUserIntersection(user);
     }
 
     public List<UserDto> getUsers() {
@@ -188,5 +191,21 @@ public class UserListViewModel {
     @NotifyChange("totalPage")
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
     }
 }

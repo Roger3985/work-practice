@@ -41,6 +41,7 @@ public class UserDetailViewModel {
     /**
      * 關閉對話框的方式
      */
+    @Command
     public void closeDialog() {
         if (userDetailWin != null) {
             userDetailWin.detach(); // 使用 detach() 方法關閉

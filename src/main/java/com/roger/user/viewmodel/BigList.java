@@ -19,5 +19,4 @@ public class BigList extends AbstractList<Integer> {
     public Integer get(int j) {
         return Integer.valueOf(j);
     }
-
 }
