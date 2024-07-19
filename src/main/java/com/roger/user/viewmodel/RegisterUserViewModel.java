@@ -43,7 +43,7 @@ public class RegisterUserViewModel {
     @NotifyChange({"users", "user"})
     public void registerUser() {
 
-        System.out.println(user.getUsername());
+        // System.out.println(user.getUsername());
 
         // 新增使用者
         userService.register_zk(user);

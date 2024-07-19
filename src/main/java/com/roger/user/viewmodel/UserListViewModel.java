@@ -26,7 +26,7 @@ public class UserListViewModel {
     private UserDto selectedUser = new UserDto();
 
     // 分頁相關屬性
-    private int pageSize = 10; // 每頁顯示的數量
+    private int pageSize = 2; // 每頁顯示的數量
     private int pageNumber = 1; // 當前頁碼
     private int totalUserCount; // 總會員數量
     private int totalPage; // 總頁數
@@ -130,6 +130,12 @@ public class UserListViewModel {
         args.put("user", user);
         // 將選擇的會員傳遞到詳細頁面，且使用正確的 zul 文件路徑
         Executions.createComponents("~./zul/user/userDetailPage.zul", null, args);
+    }
+
+    @Command
+    @NotifyChange({"users"})
+    public void findUsersByChoose() {
+
     }
 
     public List<UserDto> getUsers() {
