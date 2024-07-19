@@ -1,0 +1,32 @@
+<zk>
+    <zscript><![CDATA[
+        List items = new com.roger.user.viewmodel.BigList(1000); //a big list of Integer
+    ]]></zscript>
+    <listbox id="listbox" mold="paging" pageSize="10">
+        <listitem forEach="${items}">
+            <listcell label="${each}-1" />
+            <listcell label="${each}-2" />
+            <listcell label="${each}-3" />
+            <listcell label="${each}-4" />
+        </listitem>
+    </listbox>
+    <vlayout>
+        <radiogroup>
+            <attribute name="onCheck"><![CDATA[
+            listbox.pagingPosition = self.selectedItem.label;
+        ]]></attribute>
+            <vlayout>
+                <label value="Paging Indicator Placement :" />
+                <radio label="top" />
+                <radio label="bottom" checked="true" />
+                <radio label="both" />
+            </vlayout>
+        </radiogroup>
+        <div height="10px"/>
+        <checkbox label="Switch Paging Mold">
+            <attribute name="onCheck"><![CDATA[
+            listbox.pagingChild.mold = "os".equals(listbox.pagingChild.mold) ? "default" : "os";
+        ]]></attribute>
+        </checkbox>
+    </vlayout>
+</zk>
