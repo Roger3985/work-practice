@@ -12,7 +12,7 @@
 [![Build Status](https://github.com/zkoss/zk/workflows/zk-build/badge.svg)](https://github.com/zkoss/zk/actions?query=workflow%3Azk-build) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.zkoss.zk/zk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.zkoss.zk/zk) [![Code Climate](https://codeclimate.com/github/zkoss/zk/badges/gpa.svg)](https://codeclimate.com/github/zkoss/zk)
 
 ## About Project 
-This is a simple spring boot application with the basic details of docker implementation.
+This is a simple spring boot application with the basic details of docker and ZK Framework implementation.
 
 ## Repository contains 
 
