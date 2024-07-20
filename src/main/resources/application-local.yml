@@ -10,6 +10,32 @@ spring:
     view:
       prefix: /web/zul/
       suffix: .zul
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: MyScheduler
+          threadPool:
+            threadCount: 3
+          jobStore:
+            misfireThreshold: 60000
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            useProperties: false
+            dataSource: quartzDataSource
+            tablePrefix: QRTZ_
+            isClustered: true
+          dataSource:
+            quartzDataSource:
+              driver: org.postgresql.Driver
+              URL: jdbc:postgresql://localhost:5433/postgres
+              user: postgres
+              password: mysecretpassword
+              maxConnections: 5
 #  quartz:
 #    scheduler-name: myScheduler
 #    properties:
