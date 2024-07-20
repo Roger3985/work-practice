@@ -1,20 +1,25 @@
-<zk>
-    <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="User List" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:n="native">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
         <!-- Listbox 用於顯示使用者數據 -->
-        <listbox id="listbox" model="@bind(vm.users)" mold="paging" pageSize="@bind(vm.pageSize - 1)" activePage="@bind(vm.pageNumber)" totalSize="@bind(vm.totalUserCount)">
+        <listbox id="listbox" model="@bind(vm.users)" mold="paging">
             <listhead>
-                <listheader label="ID" />
-                <listheader label="Name" />
-                <listheader label="Email" />
+                <listheader label="Name"/>
+                <listheader label="NickName"/>
+                <listheader label="Email"/>
             </listhead>
             <template name="model">
                 <listitem>
-                    <listcell label="${each.id}" />
-                    <listcell label="${each.username}" />
-                    <listcell label="${each.email}" />
+                    <listcell label="@load(each.username)"/>
+                    <listcell label="@load(each.nickname)"/>
+                    <listcell label="@load(each.email)"/>
                 </listitem>
             </template>
         </listbox>
+
+        <!-- 控制分頁位置和樣式 -->
         <vlayout>
             <radiogroup>
                 <attribute name="onCheck"><![CDATA[

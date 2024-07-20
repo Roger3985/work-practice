@@ -1,0 +1,17 @@
+<!-- settings.zul -->
+<zk>
+    <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
+        <vlayout>
+            <radiogroup onCheck="@command('changePagingPosition', position=self.selectedItem.label)">
+                <vlayout>
+                    <label value="Paging Indicator Placement :" />
+                    <radio label="top" />
+                    <radio label="bottom" checked="true" />
+                    <radio label="both" />
+                </vlayout>
+            </radiogroup>
+            <div height="10px"/>
+            <checkbox label="Switch Paging Mold" onCheck="@command('switchPagingMold')" />
+        </vlayout>
+    </window>
+</zk>

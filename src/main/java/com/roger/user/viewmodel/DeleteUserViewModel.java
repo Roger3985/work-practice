@@ -56,10 +56,10 @@ public class DeleteUserViewModel {
         // 顯示刪除成功的消息
         Clients.showNotification("刪除成功", "info", null, "middle_center", 2000);
 
-        users.remove(user);
-
         // 關閉彈窗
         closeDialog();
+
+        Executions.sendRedirect("~./zul/user/usersPage");
     }
 
     /**

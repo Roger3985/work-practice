@@ -5,6 +5,8 @@ import com.roger.user.pojo.User;
 import com.roger.user.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
@@ -14,15 +16,14 @@ import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class UserViewModel2 {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserViewModel2.class);
 
     @WireVariable
     private UserService userService;
@@ -42,7 +43,7 @@ public class UserViewModel2 {
      */
     @Init
     public void init() {
-        // users = userService.findAllUsers();
+        // 加載初始資料
         loadUsers();
     }
 
@@ -51,9 +52,14 @@ public class UserViewModel2 {
      */
     @NotifyChange({"users", "totalUserCount", "pageNumber", "totalPage"})
     private void loadUsers() {
-        users = userService.findUsersByPage(pageNumber, pageSize); // 傳入資料限制每頁資料
-        totalUserCount = userService.countAllUsers(); // 獲取總資料數量
-        totalPage = (int) Math.ceil((double) totalUserCount / pageSize); // 計算總頁數
+        try {
+            users = userService.findUsersByPage(pageNumber, pageSize); // 傳入資料限制每頁資料
+            totalUserCount = userService.countAllUsers(); // 獲取總資料數量
+            totalPage = (int) Math.ceil((double) totalUserCount / pageSize); // 計算總頁數
+            logger.info("Loaded users: {} Total users: {} Total pages: {}", users.size(), totalUserCount, totalPage);
+        } catch (Exception e) {
+            logger.error("Failed to load users", e);
+        }
     }
 
     /**
