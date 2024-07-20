@@ -28,9 +28,6 @@ public class QuartzConfig {
                 .build();
     }
 
-    /**
-     * 每五分鐘顯示一次
-     */
     @Bean
     public JobDetail frequentJobDetail() {
         return JobBuilder.newJob(FrequentJob.class)
@@ -52,6 +49,18 @@ public class QuartzConfig {
     }
 
     /**
+     * 每 5分鐘 顯示一次
+     */
+    @Bean
+    public Trigger frequentJobTrigger(JobDetail frequentJobDetail) {
+        return TriggerBuilder.newTrigger()
+                .forJob(frequentJobDetail)
+                .withIdentity("frequentTrigger")
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?"))
+                .build();
+    }
+
+    /**
      * 每日 10 點會呼叫一次
      */
     @Bean
@@ -61,18 +70,6 @@ public class QuartzConfig {
                 .withIdentity("sampleTrigger")
                 // 每日 10 點會呼叫一次
                 .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(10, 0))
-                .build();
-    }
-
-    /**
-     * 每 5分鐘 顯示一次
-     */
-    @Bean
-    public Trigger frequentJobTrigger(JobDetail frequentJobDetail) {
-        return TriggerBuilder.newTrigger()
-                .forJob(frequentJobDetail)
-                .withIdentity("frequentTrigger")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/5 * * * ?"))
                 .build();
     }
 

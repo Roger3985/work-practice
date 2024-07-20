@@ -10,6 +10,45 @@ spring:
     view:
       prefix: /web/zul/
       suffix: .zul
+#  quartz:
+#    scheduler-name: myScheduler
+#    properties:
+#      org:
+#        quartz:
+#          jobStore:
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+#            dataSource: myDataSource
+#            tablePrefix: QRTZ_
+#            isClustered: true
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 10
+#          jobFactory:
+#            class: org.springframework.scheduling.quartz.SpringBeanJobFactory
+#          scheduler:
+#            instanceName: myScheduler
+#          job:
+#            autoStartup: true
+#          trigger:
+#            misfireInstruction: 1
+#          cron:
+#            # Job to run every 5 seconds
+#            fiveSecondJob:
+#              cron: "*/5 * * * * ?"
+#              jobName: myJob2
+#              jobGroup: fiveSecondJobGroup
+#            # Job to run every 5 minutes
+#            fiveMinuteJob:
+#              cron: "0 0/5 * * * ?"
+#              jobName: frequentJob
+#              jobGroup: fiveMinuteJobGroup
+#            # Job to run every 10 o'clock
+#            tenClockJob:
+#              cron: "0 0 10 * * ?"
+#              jobName: sampleJob
+#              jobGroup: tenClockJobGroup
+
 
 #  thymeleaf:
 #    prefix: classpath:/templates/
@@ -50,3 +89,5 @@ zk:
   zul-view-resolver-enabled: true
   richlet-filter-mapping: /richlet/*
   resource-uri: /zkres
+
+
