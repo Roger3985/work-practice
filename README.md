@@ -1,7 +1,7 @@
 <p align="center">
 	<img width="70" height="70" src="picture/spring_docker.png" alt="Spring boot">
     <img width="70" height="70" src="picture/zk.png" alt="Spring boot">  
-  <h1 align="center">Build Spring boot application with Docker and ZK Framework and Quartz Scheduler</h1>
+  <h1 align="center">Build Spring boot application with Docker(Podman) and ZK Framework and Quartz Scheduler</h1>
 </p>
 
 [![Platform](https://img.shields.io/badge/Java-21%2B-red)](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html)
@@ -14,7 +14,7 @@
 [![Framework](https://img.shields.io/badge/Quartz-3.2.3-blue)](https://www.quartz-scheduler.org/)
 
 ## About Project 
-This is a simple spring boot application with the basic details of docker and ZK Framework implementation and Quartz Scheduler.
+This is a simple spring boot application with the basic details of docker(podman) and ZK Framework implementation and Quartz Scheduler.
 
 ## Repository contains 
 
@@ -25,6 +25,7 @@ This is a simple spring boot application with the basic details of docker and ZK
   * Spring security source code.
   * MyBatis ORM.
   * Swagger 3.0 ui.
+  * [Podman](https://podman.io/)
   * Docker Hub.
   * Quartz Scheduler
 
@@ -39,11 +40,17 @@ This is a simple spring boot application with the basic details of docker and ZK
   * [Javadoc API](http://www.zkoss.org/javadoc/latest/zk/)
   * [More](http://books.zkoss.org)
 
-## How it works using docker container
+## How it works using docker(podman) container
+#### First choose 
   * Create a simple spring boot application.
   * Create a docker file under parent directory.
   * Paste the following code in the dockerfile.
+#### Second choose
+  * Create a simple spring boot application.
+  * Create a docker-compose.yml under parent directory.
+  * Paste the following code in the docker-compose.yml.
 
+#### Dockerfile: 
 ```
 FROM amazoncorretto:21
 WORKDIR /app
@@ -52,11 +59,39 @@ EXPOSE 8080
 ENTRYPOINT ["java", "SPRING_PROFILES_ACTIVE=dev","-jar", "app.jar"]
 ```
 
+#### docker-compose.yml
+
+```
+version: '1.0'
+
+services:
+  db:
+    image: postgres:14.12
+    container_name: nice_zhukovsky
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "5433:5432" # 將宿主機的5433端口映射到容器的5432端口
+  app:
+    image: spring.app:1.0
+    container_name: springproject
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5433/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: mysecretpassword
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+```
+
 * Go to the spring boot application root directory open the cmd and create jar file using following command
 First: ```mvn clean```
 Second: ```mvn package```
 Finally: The .jar file will create on the target package.
-   ### Docker Commands
+### Docker Commands
 * Execute the following docker command to create the docker images.<br>
 * ```docker buile -t <imagename> .```
   * Here "-t" is used fo mention the tag of container.
