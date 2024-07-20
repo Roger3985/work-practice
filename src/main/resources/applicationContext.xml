@@ -17,7 +17,23 @@
         <!-- 指定 job 的分組 -->
         <property name="group" value="job_group1"/>
         <!-- 指定具體的 job 類 -->
-        <property name="jobClass" value="com.roger.quartz.MyJob"/>
+        <property name="jobClass" value="com.roger.quartz.MyJob2"/>
+    </bean>
+    <bean name="frequentJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <!-- 指定 job 的名稱 -->
+        <property name="name" value="job3"/>
+        <!-- 指定 job 的分組 -->
+        <property name="group" value="job_group3"/>
+        <!-- 指定具體的 job 類 -->
+        <property name="jobClass" value="com.roger.quartz.FrequentJob"/>
+    </bean>
+    <bean name="sampleJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <!-- 指定 job 的名稱 -->
+        <property name="name" value="job2"/>
+        <!-- 指定 job 的分組 -->
+        <property name="group" value="job_group2"/>
+        <!-- 指定具體的 job 類 -->
+        <property name="jobClass" value="com.roger.quartz.SampleJob"/>
     </bean>
 
     <!-- 2: 定義觸發器的 bean，定義一個 Cron 的 Trigger，一個觸發器只能和一個任務進行綁定 -->
@@ -31,12 +47,34 @@
         <!-- 指定 Cron 的表達式，當前是每隔 5s 運行一次 -->
         <property name="cronExpression" value="*/5 * * * * ?"/>
     </bean>
+    <bean name="frequentCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!-- 指定 Trigger 的名稱 -->
+        <property name="name" value="trigger3"/>
+        <!-- 指定 Trigger 的分組 -->
+        <property name="group" value="trigger_group3"/>
+        <!-- 指定 Trigger 綁定的 JobDetail -->
+        <property name="jobDetail" ref="frequentJob"/>
+        <!-- 指定 Cron 的表達式，當前是每隔 5分鐘 運行一次 -->
+        <property name="cronExpression" value="0 0/5 * * * ?"/>
+    </bean>
+    <bean name="sampleCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!-- 指定 Trigger 的名稱 -->
+        <property name="name" value="trigger2"/>
+        <!-- 指定 Trigger 的分組 -->
+        <property name="group" value="trigger_group2"/>
+        <!-- 指定 Trigger 綁定的 JobDetail -->
+        <property name="jobDetail" ref="sampleJob"/>
+        <!-- 指定 Cron 的表達式，當前是每天十點 運行一次 -->
+        <property name="cronExpression" value="0 0 10 * * ?"/>
+    </bean>
 
     <!-- 3: 定義調度器，並將 Trigger 註冊到調度器中 -->
     <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="cronTrigger"/>
+                <ref bean="frequentCronTrigger"/>
+                <ref bean="sampleCronTrigger"/>
             </list>
         </property>
         <!-- 添加 quartz 配置，如下兩種方式均可以 -->

@@ -2,8 +2,10 @@ package com.roger;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
