@@ -1,7 +1,7 @@
 <p align="center">
 	<img width="70" height="70" src="picture/spring_docker.png" alt="Spring boot">
     <img width="70" height="70" src="picture/zk.png" alt="Spring boot">  
-  <h1 align="center">Build Spring boot application with Docker and ZK Framework</h1>
+  <h1 align="center">Build Spring boot application with Docker and ZK Framework and Quartz Scheduler</h1>
 </p>
 
 [![Platform](https://img.shields.io/badge/Java-21%2B-red)](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html)
@@ -11,19 +11,22 @@
 [![Framework](https://img.shields.io/badge/Swagger-3.0.0-green)](https://swagger.io/)
 [![Framework](https://img.shields.io/badge/Docker-26.0.0-blue)](https://www.docker.com/)
 [![Build Status](https://github.com/zkoss/zk/workflows/zk-build/badge.svg)](https://github.com/zkoss/zk/actions?query=workflow%3Azk-build) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.zkoss.zk/zk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.zkoss.zk/zk) [![Code Climate](https://codeclimate.com/github/zkoss/zk/badges/gpa.svg)](https://codeclimate.com/github/zkoss/zk)
+[![Framework](https://img.shields.io/badge/Quartz-3.2.3-blue)](https://www.quartz-scheduler.org/)
 
 ## About Project 
-This is a simple spring boot application with the basic details of docker and ZK Framework implementation.
+This is a simple spring boot application with the basic details of docker and ZK Framework implementation and Quartz Scheduler.
 
 ## Repository contains 
 
 ## BackEnd 
+  * [JDK Amazon Corretto 21](https://aws.amazon.com/tw/corretto/?filtered-posts.sort-by=item.additionalFields.createdDate&filtered-posts.sort-order=desc)
   * Spring MVC source code.
   * Spring boot application source code.
   * Spring security source code.
   * MyBatis ORM.
   * Swagger 3.0 ui.
   * Docker Hub.
+  * Quartz Scheduler
 
 ## FrontEnd 
   * Spring-Thymeleaf
