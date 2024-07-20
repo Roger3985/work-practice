@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        Spring 整合 Quartz 進行配置遵循下方步驟：
+        1. 定義工作任務的 Job
+        2. 定義觸發器 Trigger，並將觸發器與工作任務綁定
+        3. 定義調度器，並將 Trigger 註冊到 Scheduler
+    -->
+
+    <!-- 1: 定義任務的 bean，這裡使用 JobDetailFactoryBean，也可以使用 MethodInvokingJobDetailFactoryBean，配置類似 -->
+    <bean name="lxJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <!-- 指定 job 的名稱 -->
+        <property name="name" value="job1"/>
+        <!-- 指定 job 的分組 -->
+        <property name="group" value="job_group1"/>
+        <!-- 指定具體的 job 類 -->
+        <property name="jobClass" value="com.roger.quartz.MyJob"/>
+    </bean>
+
+    <!-- 2: 定義觸發器的 bean，定義一個 Cron 的 Trigger，一個觸發器只能和一個任務進行綁定 -->
+    <bean name="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!-- 指定 Trigger 的名稱 -->
+        <property name="name" value="trigger1"/>
+        <!-- 指定 Trigger 的分組 -->
+        <property name="group" value="trigger_group1"/>
+        <!-- 指定 Trigger 綁定的 JobDetail -->
+        <property name="jobDetail" ref="lxJob"/>
+        <!-- 指定 Cron 的表達式，當前是每隔 5s 運行一次 -->
+        <property name="cronExpression" value="*/5 * * * * ?"/>
+    </bean>
+
+    <!-- 3: 定義調度器，並將 Trigger 註冊到調度器中 -->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+        <!-- 添加 quartz 配置，如下兩種方式均可以 -->
+        <!-- <property name="configLocation" value="classpath:quartz.properties"/> -->
+        <property name="quartzProperties">
+            <value>
+                # 指定調度器名稱，非實作類
+                org.quartz.scheduler.instanceName = DefaultQuartzScheduler
+                # 指定執行緒池實作類別
+                org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPool
+                # 執行緒池執行緒數量
+                org.quartz.threadPool.threadCount = 10
+                # 優先級，預設5
+                org.quartz.threadPool.threadPriority = 5
+                # 非持久化job
+                org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore
+            </value>
+        </property>
+    </bean>
+</beans>
