@@ -4,7 +4,7 @@
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
         <!-- Listbox 用於顯示使用者數據 -->
-        <listbox id="listbox" model="@bind(vm.users)" mold="paging">
+        <listbox id="listbox" model="@load(vm.users)" mold="paging" pageSize="@load(vm.pageSize)" activePage="@load(vm.pageNumber - 1)">
             <listhead>
                 <listheader label="Name"/>
                 <listheader label="NickName"/>

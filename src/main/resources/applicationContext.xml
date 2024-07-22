@@ -78,8 +78,8 @@
             </list>
         </property>
         <!-- 添加 quartz 配置，如下兩種方式均可以 -->
-        <!-- <property name="configLocation" value="classpath:quartz.properties"/> -->
-        <property name="quartzProperties">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <!-- <property name="quartzProperties">
             <value>
                 # 指定調度器名稱，非實作類
                 org.quartz.scheduler.instanceName = DefaultQuartzScheduler
@@ -92,6 +92,6 @@
                 # 非持久化job
                 org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore
             </value>
-        </property>
+        </property> -->
     </bean>
 </beans>

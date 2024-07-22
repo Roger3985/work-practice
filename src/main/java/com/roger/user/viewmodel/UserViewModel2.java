@@ -33,7 +33,7 @@ public class UserViewModel2 {
     private User user;
 
     // 分頁相關屬性
-    private int pageSize = 10; // 每頁顯示的數量
+    private int pageSize = 100; // 每頁顯示的數量
     private int pageNumber = 1; // 當前頁碼
     private int totalUserCount; // 總會員數量
     private int totalPage; // 總頁數
