@@ -7,10 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author : Roger
  */
+@EnableScheduling
 @SpringBootApplication
 @ComponentScan(basePackages = "com.*")
 // 指 mapper 介   面所在包,及 mapper 介面所用注解。

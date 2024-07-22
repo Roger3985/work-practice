@@ -206,6 +206,13 @@
 <!--      <version>5.2.6.RELEASE</version>-->
 <!--    </dependency>-->
 
+    <!-- Spring Schedule -->
+<!--    <dependency>-->
+<!--      <groupId>com.lifeonwalden</groupId>-->
+<!--      <artifactId>spring-scheduler</artifactId>-->
+<!--      <version>0.2.11</version>-->
+<!--    </dependency>-->
+
   </dependencies>
 
   <repositories>
