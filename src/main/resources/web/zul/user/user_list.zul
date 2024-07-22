@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?page title="User List" contentType="text/html;charset=UTF-8"?>
-<zk xmlns:n="native">
+<zk>
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
         <!-- Listbox 用於顯示使用者數據 -->
-        <listbox id="listbox" model="@load(vm.users)" mold="paging" pageSize="@load(vm.pageSize)" activePage="@load(vm.pageNumber - 1)">
+        <listbox id="listbox" model="@load(vm.users)" mold="paging" pageSize="100">
             <listhead>
                 <listheader label="Name"/>
                 <listheader label="NickName"/>
@@ -18,7 +18,6 @@
                 </listitem>
             </template>
         </listbox>
-
         <!-- 控制分頁位置和樣式 -->
         <vlayout>
             <radiogroup>
