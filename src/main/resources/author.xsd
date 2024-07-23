@@ -1,11 +1,4 @@
------------------------------------------------------------------------
-        本文章著作權歸作者所有，任何形式的轉載都請註明出處。
-        作者：J.J. Huang
-        鏈接：https://morosedog.gitlab.io/springboot-20190417-springboot29/
-        來源：SpringBoot - 第二十九章 | WebService簡介及應用 (Server) | J.J.'s Blogs
-        -----------------------------------------------------------------------
-
-        <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.jj.com/webservice"
            targetNamespace="http://www.jj.com/webservice" elementFormDefault="qualified">
 
