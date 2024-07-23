@@ -19,7 +19,7 @@ public class TestQuartz1 {
                         // .repeatForever()) // 一直執行，直到結束時間
                         .withRepeatCount(3)) // 設置執行次數
                 // 設置結束時間（注：月份默認從 0 開始）
-                .endAt(new GregorianCalendar(2024, 7, 20, 17, 30, 10).getTime())
+                .endAt(new GregorianCalendar(2024, 7, 25, 17, 30, 10).getTime())
                 .build();
 
         // 定義一個 JobDetail

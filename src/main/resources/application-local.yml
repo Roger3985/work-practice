@@ -11,6 +11,8 @@ spring:
       prefix: /web/zul/
       suffix: .zul
   quartz:
+    jdbc:
+      initialize-schema: always
     job-store-type: jdbc
     properties:
       org:

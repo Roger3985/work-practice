@@ -5,6 +5,7 @@ import com.roger.quartz.MyJob2;
 import com.roger.quartz.SampleJob;
 import org.quartz.*;
 import org.quartz.spi.JobFactory;
+import org.quartz.CronTrigger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -43,7 +44,7 @@ public class QuartzConfig {
      * 每 5秒 顯示一次
      */
     @Bean
-    public Trigger myJob2Trigger(JobDetail myJob2Detail) {
+    public CronTrigger myJob2Trigger(JobDetail myJob2Detail) {
         return TriggerBuilder.newTrigger()
                 .forJob(myJob2Detail)
                 .withIdentity("myJob2Trigger")
