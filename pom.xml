@@ -30,6 +30,16 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
+    <!-- spring web service 依賴 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web-services</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>wsdl4j</groupId>
+      <artifactId>wsdl4j</artifactId>
+    </dependency>
+
     <!-- For Spring AOP and AspectJ integration -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -213,6 +223,7 @@
 <!--      <version>0.2.11</version>-->
 <!--    </dependency>-->
 
+    <!-- java activation -->
   </dependencies>
 
   <repositories>
@@ -229,15 +240,38 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>21</source>
-                <target>21</target>
-                <compilerArgs>--enable-preview</compilerArgs>
-            </configuration>
-        </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+              <source>21</source>
+              <target>21</target>
+              <compilerArgs>--enable-preview</compilerArgs>
+          </configuration>
+      </plugin>
+      <!--
+        <schemaDirectory> ─ xsd 檔所在位置。
+        <outputDirectory> ─ 生成後的 Java 物件目標路徑。
+      -->
+      <!-- jaxb2-maven-plugin 插件配置 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+          <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+          <clearOutputDir>false</clearOutputDir>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
