@@ -8,8 +8,12 @@ import java.util.GregorianCalendar;
 
 public class TestQuartz1 {
     public static void main(String[] args) throws Exception {
+        // 設置 SehedulerFactory 並載入 quartz.properties 配置文件
+        SchedulerFactory schedulerFactory = new StdSchedulerFactory("quartz.properties");
         // 創建 Scheduler，調度器
-        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        Scheduler scheduler = schedulerFactory.getScheduler();
+        // 啟動調度器
+        scheduler.start();
         // 定義一個 Trigger，觸發條件類
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("trigger1", "group1") // 定義名稱 / 群組
