@@ -35,6 +35,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web-services</artifactId>
     </dependency>
+    <!-- 生產wsdl文件 -->
     <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
@@ -270,6 +271,8 @@
           <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
           <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
           <clearOutputDir>false</clearOutputDir>
+          <!-- package路徑 -->
+          <packageName>com.roger.webservice</packageName>
         </configuration>
       </plugin>
     </plugins>
