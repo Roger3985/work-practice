@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+此檔案是由 Eclipse Implementation of JAXB, v3.0.0 所產生 
+請參閱 https://eclipse-ee4j.github.io/jaxb-ri 
+一旦重新編譯來源綱要, 對此檔案所做的任何修改都將會遺失. 
+產生時間: 2024.07.23 於 03:28:30 PM CST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.jj.com/webservice">
+    <schemaBindings map="false">
+      <package name="com.jj.webservice"/>
+    </schemaBindings>
+    <bindings scd="tns:authorRequest">
+      <class ref="com.jj.webservice.AuthorRequest"/>
+    </bindings>
+    <bindings scd="tns:authorResponse">
+      <class ref="com.jj.webservice.AuthorResponse"/>
+    </bindings>
+    <bindings scd="~tns:author">
+      <class ref="com.jj.webservice.Author"/>
+    </bindings>
+    <bindings scd="tns:authorListRequest">
+      <class ref="com.jj.webservice.AuthorListRequest"/>
+    </bindings>
+    <bindings scd="tns:authorListResponse">
+      <class ref="com.jj.webservice.AuthorListResponse"/>
+    </bindings>
+    <bindings scd="~tns:sex">
+      <typesafeEnumClass ref="com.jj.webservice.Sex"/>
+    </bindings>
+  </bindings>
+</bindings>
+
