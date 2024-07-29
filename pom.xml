@@ -139,7 +139,7 @@
       <version>2.6.0</version>
     </dependency>
 
-    <!-- Log4j2 -->
+    <!-- Log4j2 將預設的 logback 排除，利用 log4j2 取代 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
