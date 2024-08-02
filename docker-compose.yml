@@ -3,7 +3,7 @@ version: '1.0'
 services:
   db:
     image: postgres:14.12
-    container_name: nice_zhukovsky
+    container_name: postgres
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -12,7 +12,7 @@ services:
       - "5433:5432" # 將宿主機的5433端口映射到容器的5432端口
   app:
     image: spring.app:1.0
-    container_name: springproject
+    container_name: spring.app
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5433/postgres
       SPRING_DATASOURCE_USERNAME: postgres

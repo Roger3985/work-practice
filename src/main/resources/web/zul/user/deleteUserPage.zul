@@ -1,0 +1,19 @@
+<zk>
+    <!-- mode="modal" 點擊 deleteUserPage.zul 後會出現彈窗效果 -->
+    <window id="deleteUserWin" title="Delete User" border="normal" width="400px" mode="modal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.roger.user.viewmodel.DeleteUserViewModel')">
+        <vlayout>
+            <hbox>
+                <label value="Username: "/>
+                <label value="@load(vm.user.username) @save(vm.user.username, before='deleteUser')"/>
+            </hbox>
+            <hbox>
+                <label value="Password"/>
+                <textbox value="@load(vm.user.password) @save(vm.user.password, before='deleteUser')" type="password"/>
+            </hbox>
+            <button label="Delete" onClick="@command('deleteUser')"/>
+            <button label="✖️ Close" onClick="@command('closeDialog', window=deleteUserWin)"/>
+        </vlayout>
+    </window>
+</zk>

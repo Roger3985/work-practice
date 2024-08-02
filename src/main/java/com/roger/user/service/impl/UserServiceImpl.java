@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Tag(name = "service block")
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -108,6 +108,25 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     * 註冊會員(ZK)
+     */
+    @Override
+    @Transactional
+    public Result register_zk(UserDto userDto) {
+        // 檢查會員是否存在
+        User user = userMapper.findByUserName(userDto.getUsername());
+        if (user != null) {
+            return Result.error("該會員名稱已經被註冊");
+        }
+        // Passwordencoder 加密
+        String hashPassword = passwordEncoder.encode(userDto.getPassword());
+
+        // 添加新會員
+        userMapper.addUser(new User(userDto.getUsername(), hashPassword, userDto.getDepartment()));
+        return Result.success("新增會員成功，歡迎: " + userDto.getUsername());
+    }
+
 //    @Override
 //    public User register(UserDto userDto) {
 //
@@ -158,7 +177,9 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             // 修改會員資料
             user.setUsername(userDto.getUsername());
-            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            if (userDto.getPassword() != null) {
+                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            }
             user.setNickname(userDto.getNickname());
             user.setEmail(userDto.getEmail());
             userMapper.updateUser(user);
@@ -210,5 +231,59 @@ public class UserServiceImpl implements UserService {
     public User findByUserName(String username) {
         User user = userMapper.findByUserName(username);
         return user;
+    }
+
+    /**
+     * 全部的使用者
+     */
+    @Override
+    public List<UserDto> findAllUsers() {
+        // 查詢所有使用者訊息
+        List<User> users = userMapper.findAll();
+
+        // 將所有物件轉換為 UserDto 物件
+        List<UserDto> userDtos = users.stream()
+                .map(user -> mapToDto(user))
+                .collect(Collectors.toList());
+
+        return userDtos;
+    }
+
+    /**
+     * 透過限制傳入顯示每頁資料
+     */
+    @Override
+    public List<UserDto> findUsersByPage(int pageNumber, int pageSize) {
+        // 查詢分頁中使用者訊息
+        int offset = (pageNumber - 1) * pageSize;
+        List<User> users = userMapper.findUsersByPage(offset, pageSize);
+
+        // 將所有物件轉換為 UserDto 物件
+        List<UserDto> userDtos = users.stream()
+                .map(user -> mapToDto(user))
+                .collect(Collectors.toList());
+
+        return userDtos;
+    }
+
+    /**
+     * 獲取總資料數量
+     */
+    @Override
+    public int countAllUsers() {
+        return userMapper.countAllUsers();
+    }
+
+    /**
+     * map to dto
+     */
+    private UserDto mapToDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        // userDto.setPassword(user.getPassword());
+        userDto.setUsername(user.getUsername());
+        userDto.setNickname(user.getNickname());
+        userDto.setEmail(user.getEmail());
+        return userDto;
     }
 }

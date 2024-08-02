@@ -1,0 +1,15 @@
+<zk>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="Welcome to the zk World" border="normal" width="400px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel')">
+            <vlayout>
+                <button label="Go to Register Page" onClick="@command('registerPage')"/>
+                <button label="Go to Delete Page" onClick="@command('deletePage')"/>
+                <button label="Go to Update Page" onClick="@command('updatePage')"/>
+                <button label="Go to Search Page" onClick="@command('searchPage')"/>
+                <button label="Go to Search All Users Page" onClick="@command('allUsersPage')"/>
+            </vlayout>
+        </window>
+    </div>
+</zk>

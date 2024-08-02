@@ -1,0 +1,52 @@
+<zk>
+    <div id="userListWin" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="All Users" border="normal" width="1200px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.UserListViewModel')">
+            <vlayout>
+                <button label="+" onClick="@command('registerUser')"/>
+                <button label="%" onClick="@command('showBigListPage')"/>
+                <label value="What's your name:"/>
+                <textbox value="@load(vm.user.username)" id="usernameBox"/>
+                <label value="What's your nickname:"/>
+                <textbox value="@load(vm.user.nickname)" id="nicknameBox"/>
+                <label value="What's your email:"/>
+                <textbox value="@load(vm.user.email)" id="emailBox"/>
+                <button label="Submit" onClick="@command('findUsersByChoose')"/>
+                <space height="5px"/>
+                <grid model="@load(vm.users)">
+                    <columns>
+                        <column label="Username"/>
+                        <column label="Password"/>
+                        <column label="Nickname"/>
+                        <column label="Email"/>
+                        <column label="Actions"/>
+                        <column label="Actions"/>
+                        <column label="Actions"/>
+                    </columns>
+                    <template name="model" var="user">
+                        <row>
+                            <label value="@bind(user.username)"/>
+                            <label value="************"/>
+                            <label value="@bind(user.nickname)"/>
+                            <label value="@bind(user.email)"/>
+                            <button label="Delete" onClick="@command('deleteUser', user=user)"/>
+                            <button label="Edit" onClick="@command('editUser', user=user)"/>
+                            <button label="Detail" onClick="@command('userDetail', user=user)"/>
+                        </row>
+                    </template>
+                </grid>
+                <space height="10px"/>
+                <!-- 分頁控制區域 -->
+                <hlayout>
+                    <button label="Previous" onClick="@command('navigatePage', page=vm.pageNumber - 1)" disabled="(vm.pageNumber == 1)"/>
+                    <label value="@load(vm.pageNumber)"/>
+                    <label value="of"/>
+                    <label value="@load(vm.totalPage)"/>
+                    <button label="Next" onClick="@command('navigatePage', page=vm.pageNumber + 1)" disabled="(vm.pageNumber == vm.totalPage)"/>
+                </hlayout>
+            </vlayout>
+        </window>
+    </div>
+</zk>
+

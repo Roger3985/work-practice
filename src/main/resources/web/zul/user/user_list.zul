@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="User List" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel2')">
+        <!-- Listbox 用於顯示使用者數據 -->
+        <listbox id="listbox" model="@load(vm.users)" mold="paging" pageSize="100">
+            <listhead>
+                <listheader label="Name"/>
+                <listheader label="NickName"/>
+                <listheader label="Email"/>
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@load(each.username)"/>
+                    <listcell label="@load(each.nickname)"/>
+                    <listcell label="@load(each.email)"/>
+                </listitem>
+            </template>
+        </listbox>
+        <!-- 控制分頁位置和樣式 -->
+        <vlayout>
+            <radiogroup>
+                <attribute name="onCheck"><![CDATA[
+                    listbox.pagingPosition = self.selectedItem.label;
+                ]]></attribute>
+                <vlayout>
+                    <label value="Paging Indicator Placement :" />
+                    <radio label="top" />
+                    <radio label="bottom" checked="true" />
+                    <radio label="both" />
+                </vlayout>
+            </radiogroup>
+            <div height="10px"/>
+            <checkbox label="Switch Paging Mold">
+                <attribute name="onCheck"><![CDATA[
+                    listbox.pagingChild.mold = "os".equals(listbox.pagingChild.mold) ? "default" : "os";
+                ]]></attribute>
+            </checkbox>
+        </vlayout>
+    </window>
+</zk>

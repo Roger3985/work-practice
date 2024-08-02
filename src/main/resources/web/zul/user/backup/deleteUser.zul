@@ -1,0 +1,18 @@
+<zk>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <window title="User Delete" border="normal" width="400px"
+                apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.roger.user.viewmodel.UserViewModel')">
+            <vlayout>
+                <label value="What's your name:"/>
+                <textbox value="@bind(vm.userDto.username)" id="usernameBox"/>
+                <label value="What's your password: (一定要輸入，確保你是本人才能刪除此使用者)"/>
+                <textbox value="@bind(vm.userDto.password)" id="passwordBox"/>
+                <button label="Submit" onClick="@command('deleteUser')"/>
+                <separator/>
+                <label value="@load(vm.result)" id="resultLabel"/>
+                <button label="Go Back to index Page" onClick="@command('indexPage')"/>
+            </vlayout>
+        </window>
+    </div>
+</zk>

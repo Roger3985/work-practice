@@ -1,5 +1,9 @@
 server:
+<<<<<<< HEAD
   port: 8081
+=======
+  port: 8080
+>>>>>>> 1259f2407df8d6c83c43c8b0db65cccc58cbd51d
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/postgres
@@ -8,8 +12,67 @@ spring:
     driver-class-name: org.postgresql.Driver
   mvc:
     view:
-      prefix: /zul
+      prefix: /web/zul/
       suffix: .zul
+  quartz:
+    jdbc:
+      initialize-schema: always
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            dataSource: quartzDataSource
+            tablePrefix: QRTZ_
+            isClustered: true
+          dataSource:
+            quartzDataSource:
+              provider: hikaricp
+              driver: org.postgresql.Driver
+              url: jdbc:postgresql://localhost:5433/postgres
+              user: postgres
+              password: mysecretpassword
+              maxConnections: 10
+#  quartz:
+#    scheduler-name: myScheduler
+#    properties:
+#      org:
+#        quartz:
+#          jobStore:
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+#            dataSource: myDataSource
+#            tablePrefix: QRTZ_
+#            isClustered: true
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 10
+#          jobFactory:
+#            class: org.springframework.scheduling.quartz.SpringBeanJobFactory
+#          scheduler:
+#            instanceName: myScheduler
+#          job:
+#            autoStartup: true
+#          trigger:
+#            misfireInstruction: 1
+#          cron:
+#            # Job to run every 5 seconds
+#            fiveSecondJob:
+#              cron: "*/5 * * * * ?"
+#              jobName: myJob2
+#              jobGroup: fiveSecondJobGroup
+#            # Job to run every 5 minutes
+#            fiveMinuteJob:
+#              cron: "0 0/5 * * * ?"
+#              jobName: frequentJob
+#              jobGroup: fiveMinuteJobGroup
+#            # Job to run every 10 o'clock
+#            tenClockJob:
+#              cron: "0 0 10 * * ?"
+#              jobName: sampleJob
+#              jobGroup: tenClockJobGroup
 
 
 #  thymeleaf:
@@ -45,8 +108,11 @@ logging:
     config: classpath:log4j2-spring.xml # Log4j2 的配置文件位置，使用 classpath 資源
 
 zk:
-  homepage: demo
+  homepage: user/user_list
   zul-view-resolver-prefix: /zul
   zul-view-resolver-suffix: .zul
+  zul-view-resolver-enabled: true
   richlet-filter-mapping: /richlet/*
   resource-uri: /zkres
+
+

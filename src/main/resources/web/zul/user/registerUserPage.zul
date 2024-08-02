@@ -1,0 +1,15 @@
+<zk>
+    <!-- mode="modal" 點擊 registerUserPage.zul 後會出現彈窗效果 -->
+    <window id="registerUserWin" title="Register User" border="normal" width="400px" mode="modal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.roger.user.viewmodel.RegisterUserViewModel')">
+        <vlayout>
+            <label value="Username: "/>
+            <textbox value="@save(vm.user.username, before='registerUser')"/>
+            <label value="Password: "/>
+            <textbox value="@save(vm.user.password, before='registerUser')"/>
+            <button label="Register" onClick="@command('registerUser')"/>
+            <button label="✖️ Close" onClick="@command('closeDialog')"/>
+        </vlayout>
+    </window>
+</zk>

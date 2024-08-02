@@ -6,6 +6,9 @@ import com.roger.user.pojo.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -23,6 +26,11 @@ public interface UserService {
      * 註冊會員
      */
     User register(UserDto userDto);
+
+    /**
+     * 註冊會員(ZK)
+     */
+    Result register_zk(UserDto userDto);
 
     /**
      * 刪除會員資料
@@ -51,4 +59,18 @@ public interface UserService {
      */
     User findByUserName(String username);
 
+    /**
+     * 全部的會員
+     */
+    List<UserDto> findAllUsers();
+
+    /**
+     * 透過限制傳入顯示每頁資料
+     */
+    List<UserDto> findUsersByPage(int pageNumber, int pageSize);
+
+    /**
+     * 獲取總資料數量
+     */
+    int countAllUsers();
 }
