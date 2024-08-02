@@ -67,7 +67,7 @@ public class SecurityConfig {
                         // 登入功能
                         "/user/userLogin").permitAll()
                 // 除了註冊跟登入功能外其他的都需要
-                .anyRequest().authenticated() // 其他認證過後就可以登入
+                .anyRequest().permitAll() // 其他認證過後就可以登入
             )
             // 禁用 httpBasic
             .httpBasic(httpBasic -> httpBasic.disable())
